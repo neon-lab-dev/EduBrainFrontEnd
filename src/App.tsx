@@ -1,12 +1,14 @@
+import React from 'react'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>EduBrain</div>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<div>Hiii</div>} />
+      </Routes>
+    </Router>
   )
 }
 
