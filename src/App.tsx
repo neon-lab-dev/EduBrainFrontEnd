@@ -1,15 +1,8 @@
-import React from 'react'
+import RoutesContainer from './routes'
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import type { JSX } from 'react'
 
-function App(): JSX.Element {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<div>Hiii</div>} />
-      </Routes>
-    </Router>
-  )
+const App = (): JSX.Element => {
+  return <RoutesContainer />
 }
-
 export default App
