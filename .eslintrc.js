@@ -24,4 +24,9 @@ module.exports = {
     'space-before-function-paren': 'off',
     'react/react-in-jsx-scope': 'warn',
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 }
