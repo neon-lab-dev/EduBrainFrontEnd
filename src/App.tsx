@@ -6,7 +6,7 @@ function App(): JSX.Element {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<div>Check Rule</div>} />
+        <Route path="/" element={<div>Hiii</div>} />
       </Routes>
     </Router>
   )
