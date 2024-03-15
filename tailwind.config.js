@@ -21,7 +21,7 @@ export default {
         'neutral/90': '#313233',
         'neutral/95': '#252526',
         'neutral/100': '#141414',
-        yellow: '#FF9300',
+        coral: '#FF9300',
         cardBgColor: '#121721',
       },
     },
