@@ -4,7 +4,7 @@
 
 /* default styles */
 * {
-  @apply font-Roboto tracking-[0%];
+  @apply font-Roboto tracking-[0px];
 }
 
 h1,
@@ -57,7 +57,7 @@ h6 {
     @apply mx-[16px] md:mx-[40px] 2xl:mx-[80px];
   }
   .padding-x {
-    @apply mx-[16px] md:mx-[40px] 2xl:mx-[80px];
+    @apply px-[16px] md:px-[40px] 2xl:px-[80px];
   }
 
   /* icon */
