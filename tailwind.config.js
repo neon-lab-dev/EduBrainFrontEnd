@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./public/index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
@@ -9,20 +10,43 @@ export default {
       },
       screens: {
         xs: '475px',
+        md: '744px',
+        '2xl': '1440px',
       },
-      colors: {
-        primary: '#246BFD',
-        'primary/10': '#246BFD1A',
-        background: '#0C0C0D',
-        neutral: '#F4F4F4',
-        'neutral/10': '#F5F8FF',
-        'neutral/40': '#ABAEB2',
-        'neutral/60': '#7A7C80',
-        'neutral/90': '#313233',
-        'neutral/95': '#252526',
-        'neutral/100': '#141414',
-        coral: '#FF9300',
-        cardBgColor: '#121721',
+    },
+    colors: {
+      white: '#FFFFFF',
+      background: '#0C0C0D',
+      coral: '#FF9300',
+      card: {
+        fill: '#121721',
+        stroke: '#252526',
+      },
+      primary: {
+        10: '#D3E1FF',
+        20: '#B6CEFE',
+        30: '#91B5FE', //primary for dark mode
+        40: '#6D9CFE',
+        50: '#4884FD',
+        60: '#1E59D3', //primary for light mode
+        70: '#1847A9',
+        80: '#12357E',
+        90: '#0C2454',
+        100: '#071533',
+      },
+      neutral: {
+        10: '#F5F8FF', //For Dark theme/Heading
+        15: '#E9ECF2',
+        20: '#DCDFE5',
+        30: '#C4C7CC',
+        40: '#ABAEB2', //For Dark theme/Body Text
+        50: '#939599',
+        60: '#7A7C80', //For Light theme/Body Text
+        70: '#626366',
+        80: '#494A4D',
+        90: '#313233',
+        95: '#252526',
+        100: '#141414', //For Light theme/Heading
       },
     },
   },
