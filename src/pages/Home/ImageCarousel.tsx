@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
 import type { JSX } from 'react'
+
 const DRAG_BUFFER = 30 // in pixels => how much user has to drag to change the slide
 
 // spring animation options
@@ -64,7 +65,6 @@ const ImageCarousel = ({
 
   return (
     <div
-      key={activeIndex}
       className={`relative w-full h-full ${isStacked ? '' : 'overflow-hidden'}`}
     >
       <motion.div
