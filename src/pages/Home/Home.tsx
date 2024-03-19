@@ -28,7 +28,7 @@ const Home = (): JSX.Element => {
   })
 
   return (
-    <div className="flex flex-col gap-[120px] xl:gap-48 overflow-hidden px-4 sm:px-10">
+    <div className="flex flex-col gap-[120px] xl:gap-48 overflow-hidden padding-x">
       {/* // Hero Section */}
       <HeroSection />
       {/* //about us */}
@@ -43,7 +43,7 @@ const Home = (): JSX.Element => {
         />
         <div className="flex items-center justify-center w-full xl:relative  xl:h-[800px]">
           <motion.div
-            {...(width > 1024
+            {...(width > 1024 // only show this animation on desktop
               ? {
                   ref: aboutUsRef,
                   initial: { opacity: 0, scale: 0 },
@@ -70,7 +70,7 @@ const Home = (): JSX.Element => {
             src={aboutUsImage}
             className="hidden xl:block z-40 w-[493px] h-[369.75px]"
           />
-          {/* // hear glow at center  */}
+          {/* // glow image at center  */}
           <img
             src={hearGlow}
             className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"

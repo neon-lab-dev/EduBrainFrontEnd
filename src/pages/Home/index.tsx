@@ -4,9 +4,9 @@ import type { JSX } from 'react'
 
 const HomePage = (): JSX.Element => {
   return (
-    <div className="bg-background">
+    <div className="dark bg-background">
       <Navbar />
-      <main className="mt-[64px] xl:mt-[80px] bg-background max-w-[1450px] mx-auto">
+      <main className="mt-[64px] xl:mt-[80px] max-w-[1450px] mx-auto">
         <Home />
       </main>
     </div>

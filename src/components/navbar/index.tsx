@@ -5,19 +5,21 @@ import close from '../../assets/icons/close.svg'
 import NAV_LINKS from './navlinks'
 import { useRef } from 'react'
 import type { JSX } from 'react'
+import SecondaryButton from '../buttons/SecondaryButton'
+import PrimaryButton from '../buttons/PrimaryButton'
 
 const Navbar = (): JSX.Element => {
   const asideBarRef = useRef<HTMLElement>(null)
   return (
     <>
       <header className="absolute inset-0 w-full bg-background py-4 h-fit z-40">
-        <nav className="flex justify-between items-center wrapper">
+        <nav className="flex justify-between items-center padding-x m-auto">
           {/* logo */}
           <Link to="/" className="2xl:w-[250px]">
             <img src={logo} className="w-[100px]" />
           </Link>
           {/* links */}
-          <ul className="gap-8 text-[#F5F8FF] hidden xl:flex">
+          <ul className="gap-8 text-neutral-10 hidden xl:flex">
             {NAV_LINKS.map((link, index) => (
               <li key={index} className="text-[18px]">
                 <a href={link.url}>{link.label}</a>
@@ -26,17 +28,11 @@ const Navbar = (): JSX.Element => {
           </ul>
           {/* cta buttons */}
           <div className="gap-4 hidden xl:flex">
-            <Link
-              to="/login"
-              className="text-center bg-dark font-Roboto rounded-lg px-6 py-3 text-white"
-            >
-              Login
+            <Link to="/login">
+              <SecondaryButton>Login</SecondaryButton>
             </Link>
-            <Link
-              to="#"
-              className="text-center bg-blue font-Roboto rounded-lg px-6 py-3 text-white w-48"
-            >
-              Enroll Now
+            <Link to="#" className="w-[193px]">
+              <PrimaryButton className="w-full">Enroll Now</PrimaryButton>
             </Link>
           </div>
           <button
@@ -72,7 +68,7 @@ const Navbar = (): JSX.Element => {
           </div>
 
           {/* links */}
-          <ul className="gap-8 text-[#F5F8FF] flex flex-col">
+          <ul className="gap-8 text-neutral-10 flex flex-col">
             {NAV_LINKS.map((link, index) => (
               <li key={index} className="text-[18px]">
                 <Link to={link.url}>{link.label}</Link>
@@ -81,17 +77,11 @@ const Navbar = (): JSX.Element => {
           </ul>
           {/* cta buttons */}
           <div className="flex gap-4">
-            <Link
-              to="#"
-              className="text-center bg-dark w-full font-Roboto rounded-lg px-6 py-3 text-white"
-            >
-              Login
+            <Link to="/login" className="w-full">
+              <SecondaryButton className="w-full">Login</SecondaryButton>
             </Link>
-            <Link
-              to="#"
-              className="text-center bg-blue w-full font-Roboto rounded-lg px-6 py-3 text-white"
-            >
-              Enroll Now
+            <Link to="#" className="w-full">
+              <PrimaryButton className="w-full">Enroll Now</PrimaryButton>
             </Link>
           </div>
         </nav>

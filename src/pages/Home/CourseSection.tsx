@@ -9,6 +9,9 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import ImageCarousel from './ImageCarousel'
 import type { JSX } from 'react'
+import SecondaryButton from '../../components/buttons/SecondaryButton'
+import PrimaryButton from '../../components/buttons/PrimaryButton'
+import Button from '../../components/buttons/Button'
 
 const CourseSection = (): JSX.Element => {
   const [activeCourse, setActiveCourse] = useState(0)
@@ -37,7 +40,7 @@ const CourseSection = (): JSX.Element => {
         <div className="flex flex-col">
           <motion.span
             layout
-            className="text-blue text-base sm:text-xl xl:text-2xl"
+            className="text-primary-30 text-base sm:text-xl xl:text-2xl"
           >
             {OUR_COURSES[activeCourse].category}
           </motion.span>
@@ -48,7 +51,7 @@ const CourseSection = (): JSX.Element => {
                 animate={{ opacity: 1, y: 0, position: 'relative' }}
                 exit={{ opacity: 0, y: -20, position: 'absolute' }}
                 key={activeCourse}
-                className="text-[24px] leading-[28.8px] font-bold text-[#F5F8FF] font-Montserrat sm:text-[32px] sm:leading-[38.4px] xl:text-[48px] xl:leading-[57.6px]"
+                className="text-[24px] leading-[28.8px] font-bold text-neutral-10 font-Montserrat sm:text-[32px] sm:leading-[38.4px] xl:text-[48px] xl:leading-[57.6px]"
               >
                 {OUR_COURSES[activeCourse].title}
               </motion.h2>
@@ -56,7 +59,7 @@ const CourseSection = (): JSX.Element => {
           </div>
         </div>
         {/* for smaller devices */}
-        <motion.p className="text-[#7A7C80] text-xs leading-[18px] sm:text-sm sm:leading-[21px] xl:hidden">
+        <motion.p className="text-neutral-60 text-xs leading-[18px] sm:text-sm sm:leading-[21px] xl:hidden">
           <span className="mr-2">
             {isReadMoreActive
               ? OUR_COURSES[activeCourse].desc
@@ -66,7 +69,7 @@ const CourseSection = (): JSX.Element => {
             onClick={() => {
               setIsReadMoreActive((prev) => !prev)
             }}
-            className="text-white"
+            className="text-neutral-10"
           >
             {
               // if read more is active show "Read Less" else "Read More"
@@ -75,17 +78,17 @@ const CourseSection = (): JSX.Element => {
           </button>
         </motion.p>
         {/* for larger devices */}
-        <motion.p className="text-[#7A7C80] text-lg hidden xl:block">
+        <motion.p className="text-neutral-60 text-lg hidden xl:block">
           {OUR_COURSES[activeCourse].desc.substring(0, 280) + '...'}
         </motion.p>
         <motion.div className="flex gap-2 sm:gap-3 items-end">
-          <span className="text-white text-2xl sm:text-3xl xl:text-3xl font-semibold">
+          <span className="text-neutral-10 text-2xl sm:text-3xl xl:text-3xl font-semibold">
             ₹{OUR_COURSES[activeCourse].discountedPrice}
           </span>
-          <span className="text-[#AEABB2] text-xs sm:text-base xl:text-lg line-through mb-1 sm:mb-0.5">
+          <span className="text-neutral-40 text-xs sm:text-base xl:text-lg line-through mb-1 sm:mb-0.5">
             ₹{OUR_COURSES[activeCourse].basePrice}
           </span>
-          <span className="text-xs xl:text-lg sm:text-base text-blue mb-1 sm:mb-0.5">
+          <span className="text-xs xl:text-lg sm:text-base text-blue mb-1 sm:mb-0.5 text-primary-30">
             ({OUR_COURSES[activeCourse].discount}%)
           </span>
         </motion.div>
@@ -95,10 +98,10 @@ const CourseSection = (): JSX.Element => {
               src={userSquare2}
               className="w-6 sm:w-8 h-6 sm:h-8 mr-1 mb-1 sm:mb-1.5"
             />
-            <span className="text-white text-base xs:text-lg sm:text-2xl font-medium">
+            <span className="text-neutral-10 text-base xs:text-lg sm:text-2xl font-medium">
               {OUR_COURSES[activeCourse].lecturesCount}
             </span>
-            <span className="text-[#E0DCE5] text-sm xs:text-base sm:text-xl">
+            <span className="text-neutral-20 text-sm xs:text-base sm:text-xl">
               Lectures
             </span>
           </div>
@@ -107,32 +110,23 @@ const CourseSection = (): JSX.Element => {
               src={ClockImg}
               className="w-6 sm:w-8 h-6 sm:h-8 mr-1 mb-1 sm:mb-1.5"
             />
-            <span className="text-white text-base xs:text-lg sm:text-2xl font-medium">
+            <span className="text-neutral-10 text-base xs:text-lg sm:text-2xl font-medium">
               {OUR_COURSES[activeCourse].duration}
             </span>
-            <span className="text-[#E0DCE5] text-sm xs:text-base sm:text-xl">
+            <span className="text-neutral-20 text-sm xs:text-base sm:text-xl">
               Time
             </span>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:gap-5 xl:max-w-[414px] mt-3">
-          <Link
-            to="#"
-            className="text-center bg-dark font-Roboto rounded-lg px-6 py-3 text-white"
-          >
-            Let’s explore it!
+          <Link to="#" className="w-full">
+            <SecondaryButton className="w-full">View Details</SecondaryButton>
           </Link>
-          <Link
-            to="#"
-            className="text-center bg-blue font-Roboto rounded-lg px-6 py-3 text-white"
-          >
-            Enroll Now
+          <Link to="#" className="w-full">
+            <PrimaryButton className="w-full">Enroll Now</PrimaryButton>
           </Link>
-          <Link
-            to="#"
-            className="col-span-2 bg-[#FF9300] text-center font-Roboto rounded-lg px-6 py-3 text-white"
-          >
-            Get more discount!
+          <Link to="#" className="w-full col-span-2">
+            <Button className="w-full bg-coral">Get more discount!</Button>
           </Link>
         </div>
       </div>
@@ -179,11 +173,11 @@ const CourseSection = (): JSX.Element => {
             <img src={play} alt="play button" className="h-4 w-4 ml-0.5" />
           </button>
           {/* // courses indicator line  */}
-          <div className="flex relative w-full  bg-[#252526] h-1 mt-6 rounded-full">
+          <div className="flex relative w-full  bg-neutral-90 h-1 mt-6 rounded-full">
             <AnimatePresence>
               <motion.div
                 layout
-                className="h-1 bg-[#246BFD] rounded-full absolute top-0 left-0"
+                className="h-1 bg-primary-30 rounded-full absolute top-0 left-0"
                 style={{
                   width: `${100 / OUR_COURSES.length}%`,
                   left: `${(100 / OUR_COURSES.length) * activeCourse}%`,

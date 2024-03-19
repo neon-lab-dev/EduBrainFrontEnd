@@ -1,6 +1,7 @@
 import PROCESS from '../../assets/data/process'
 import crown from '../../assets/images/Crown.png'
 import emoji from '../../assets/images/🥳.png'
+import PrimaryButton from '../../components/buttons/PrimaryButton'
 import { useInnerSize } from '../../hooks/useInnerSize'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
@@ -95,23 +96,21 @@ const Timeline = ({
           animate={isInView ? { x: 0, opacity: 1 } : {}}
           transition={{ duration: 0.4 }}
           className={`
-            bg-[#121721] border border-[#252526] px-8 py-6 rounded-3xl flex flex-col gap-4 lg:my-auto ${
+            bg-card-fill border border-card-stroke px-8 py-6 rounded-3xl flex flex-col gap-4 lg:my-auto ${
               isHighlighted !== undefined ? 'relative' : ''
             }`}
         >
-          <h3 className="font-Montserrat font-[600] text-[20px] sm:text-[28px] sm:leading-[33.6px] leading-[24px] xl:text-[32px] xl:leading-[38.4px]">
-            {card.title}
-          </h3>
-          <p className="text-[#ABAEB2] text-xs sm:text-sm xl:text-base">
+          <h3 className="h3">{card.title}</h3>
+          <p className="text-neutral-40 text-xs sm:text-sm xl:text-base">
             {card.desc}
           </p>
           {card.button !== undefined && (
-            <button
-              className="bg-[#246BFD] px-6 py-3 rounded-lg mt-4 xs:max-w-[200px]"
+            <PrimaryButton
+              className="px-6 py-3 mt-4 xs:max-w-[200px]"
               onClick={card.button?.action}
             >
               {card.button?.label}
-            </button>
+            </PrimaryButton>
           )}
           {/* highlight */}
           {isHighlighted !== undefined && (

@@ -27,7 +27,7 @@ const InternshipOpportunities = (): JSX.Element => {
             >
               <h3
                 className={`text-base sm:text-xl font-semibold font-Montserrat ${
-                  activeIndex === i ? 'text-[#246BFD]' : 'text-[#7A7C80]'
+                  activeIndex === i ? 'text-primary-30' : 'text-neutral-60'
                 }
                 `}
               >
@@ -40,14 +40,14 @@ const InternshipOpportunities = (): JSX.Element => {
                     height: activeIndex === i ? 'auto' : 0,
                   }}
                   exit={{ height: 0 }}
-                  className="text-xs sm:text-sm text-[#ABAEB2] text-start overflow-hidden"
+                  className="text-xs sm:text-sm text-neutral-40 text-start overflow-hidden"
                 >
                   {qna.answer}
                 </motion.p>
               </AnimatePresence>
-              <div className="w-full h-[1.5px] bg-[#313233] relative mt-1">
+              <div className="w-full h-[1.5px] bg-neutral-90 relative mt-1">
                 {activeIndex === i && (
-                  <span className="absolute bottom-0 left-0 bg-[#246BFD] w-[100px] h-1 rounded-full" />
+                  <span className="absolute bottom-0 left-0 bg-primary-30 w-[100px] h-1 rounded-full" />
                 )}
               </div>
             </button>

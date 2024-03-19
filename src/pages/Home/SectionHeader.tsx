@@ -18,7 +18,7 @@ const SectionHeader = (props: SectionHeaderProps): JSX.Element => {
       `}
     >
       <div className="">
-        <span className="text-blue text-base sm:text-xl md:text-2xl xl:text-2xl">
+        <span className="text-primary-30 text-base sm:text-xl md:text-2xl xl:text-2xl">
           {props.header}
         </span>
         <h2
@@ -27,7 +27,7 @@ const SectionHeader = (props: SectionHeaderProps): JSX.Element => {
         />
       </div>
       {props.desc !== undefined && (
-        <p className="text-[#7A7C80] text-xs sm:text-sm xl:text-base max-w-[628px]">
+        <p className="body-text-md text-neutral-60 max-w-[628px]">
           {props.desc}
         </p>
       )}
