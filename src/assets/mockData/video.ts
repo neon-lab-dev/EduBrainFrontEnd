@@ -1,7 +1,7 @@
 import videoThumbnail from '../../assets/images/Frame 568.svg'
 const VIDEO_DATA = {
   img: videoThumbnail,
-  overallProgress: '30%',
+  overallProgress: 30, // percentage
   summary:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo con Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollitanim id es',
   resources: [

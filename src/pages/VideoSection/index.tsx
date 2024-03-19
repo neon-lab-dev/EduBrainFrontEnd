@@ -93,37 +93,34 @@ const VideoSection = (): JSX.Element => {
             <h2 className="h2 text-neutral-10">
               Course <br /> Progress
             </h2>
-            <div className="relative">
-              <div className="relative w-[120px] h-[120px] flex items-center justify-center">
-                <span className="text-2xl font-semibold text-white z-10">
-                  20%
-                </span>
-              </div>
-              <svg
-                className="w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                viewBox="0 0 36 36"
-              >
-                <path
-                  className="text-background"
-                  d="M18 2.0845
-        a 15.9155 15.9155 0 0 1 0 31.831
-        a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="primary-30"
+            <div className="inline-flex items-center justify-center overflow-hidden rounded-full bg-background w-20 h-20">
+              {/* <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ --> */}
+              <svg className="w-20 h-20 bg-background">
+                <circle
+                  className="text-gray-300"
+                  strokeWidth="5"
                   stroke="currentColor"
-                  strokeWidth="1.5"
+                  fill="transparent"
+                  r="30"
+                  cx="40"
+                  cy="40"
                 />
-                <path
-                  className="text-primary-30"
-                  d="M18 2.0845
-        a 15.9155 15.9155 0 0 1 0 31.831
-        a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="currentColor"
+                <circle
+                  className="text-blue-600"
+                  strokeWidth="5"
+                  strokeDasharray="188.4" // 2 * PI * r (where r is 30)
+                  strokeDashoffset={`${188.4 - (VIDEO_DATA.overallProgress / 100) * 188.4}`}
+                  strokeLinecap="round"
                   stroke="currentColor"
-                  strokeDasharray="100, 100"
-                  strokeDashoffset="75"
-                  strokeWidth="2.5"
+                  fill="transparent"
+                  r="30"
+                  cx="40"
+                  cy="40"
                 />
               </svg>
+              <span className="absolute text-xl text-blue-700">
+                {`${VIDEO_DATA.overallProgress}%`}
+              </span>
             </div>
           </div>
           <div className="flex flex-col gap-5 w-full">
