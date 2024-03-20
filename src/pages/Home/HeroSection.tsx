@@ -57,7 +57,7 @@ const HeroSection = (): JSX.Element => {
           {/* // overlay */}
           <img
             src={heroImageOverlay}
-            className="absolute h-[152.25px] w-[152.25px] blur-sm top-[200px] right-[100px]"
+            className="absolute h-[152.25px] w-[152.25px] blur-sm top-[140px] sm:top-[200px] right-[100px]"
             alt=""
           />
         </div>
