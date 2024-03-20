@@ -93,34 +93,38 @@ const VideoSection = (): JSX.Element => {
             <h2 className="h2 text-neutral-10">
               Course <br /> Progress
             </h2>
-            <div className="inline-flex items-center justify-center overflow-hidden rounded-full bg-background w-20 h-20">
-              {/* <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ --> */}
-              <svg className="w-20 h-20 bg-background">
-                <circle
-                  className="text-gray-300"
-                  strokeWidth="5"
-                  stroke="currentColor"
-                  fill="transparent"
-                  r="30"
-                  cx="40"
-                  cy="40"
-                />
-                <circle
-                  className="text-blue-600"
-                  strokeWidth="5"
-                  strokeDasharray="188.4" // 2 * PI * r (where r is 30)
-                  strokeDashoffset={`${188.4 - (VIDEO_DATA.overallProgress / 100) * 188.4}`}
-                  strokeLinecap="round"
-                  stroke="currentColor"
-                  fill="transparent"
-                  r="30"
-                  cx="40"
-                  cy="40"
-                />
-              </svg>
-              <span className="absolute text-xl text-blue-700">
-                {`${VIDEO_DATA.overallProgress}%`}
+
+            <div
+              className="h-[120px] w-[120px] aspect-square rounded-full bg-background flex items-center justify-center relative"
+              style={{
+                filter: 'drop-shadow(0px 0px 91.6px rgba(36, 107, 253, 0.16))',
+              }}
+            >
+              <span className="h3 text-neutral-10 ">
+                {VIDEO_DATA.overallProgress}%
               </span>
+              <div className="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90">
+                <svg className="" width="120" height="120">
+                  <circle
+                    className="stroke-background"
+                    strokeWidth="4"
+                    fill="transparent"
+                    r="56"
+                    cx="60"
+                    cy="60"
+                  />
+                  <circle
+                    className="stroke-primary-30 "
+                    strokeWidth="8"
+                    fill="transparent"
+                    r="56"
+                    cx="60"
+                    cy="60"
+                    strokeDasharray={Math.PI * 2 * 56}
+                    strokeDashoffset={`${(1 - VIDEO_DATA.overallProgress / 100) * 2 * Math.PI * 56}`}
+                  />
+                </svg>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-5 w-full">
