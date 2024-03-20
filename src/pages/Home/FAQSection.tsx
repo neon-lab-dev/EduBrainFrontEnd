@@ -10,12 +10,12 @@ const FAQSection = (): JSX.Element => {
     <div className="relative">
       <img
         src={vector9}
-        className="absolute -top-[10%] xl:-top-[15%] left-0 w-[142.35px] h-[79.83px] md:w-[237.65px] md:h-[132.3px] xl:w-[339.5px] xl:h-[189px]"
+        className="absolute -top-[80px] xl:-top-[150px] left-0 w-[142.35px] h-[79.83px] md:w-[237.65px] md:h-[132.3px] xl:w-[339.5px] xl:h-[189px]"
         alt=""
       />
       <img
         src={vector10}
-        className="absolute top-[30%] sm:top-[20%] right-0 w-[142.35px] h-[79.83px] md:w-[237.65px] md:h-[132.3px] xl:w-[339.5px] xl:h-[189px]"
+        className="absolute top-[250px] sm:top-[120px] right-0 w-[142.35px] h-[79.83px] md:w-[237.65px] md:h-[132.3px] xl:w-[339.5px] xl:h-[189px]"
         alt=""
       />
       <section
