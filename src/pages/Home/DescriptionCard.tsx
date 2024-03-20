@@ -15,6 +15,7 @@ const DescriptionCard = (props: DescriptionCardProps): JSX.Element => {
   const cardInView = useInView(cardRef, {
     amount: 0.2,
   })
+
   return (
     <motion.div
       ref={cardRef}
@@ -25,7 +26,7 @@ const DescriptionCard = (props: DescriptionCardProps): JSX.Element => {
             exit: { opacity: 0, scale: 0 },
             transition: { duration: 0.4 },
           }
-        : {})}
+        : {})} // only show this animation on mobile
       className="rounded-3xl border-card-stroke border bg-card-fill flex flex-col items-center justify-center gap-4 xl:gap-6 w-full py-5 px-10 xl:px-5 max-w-[332px] xl:max-w-[400px]"
     >
       <img src={props.icon} className="w-8 h-8 xl:h-10 xl:w-10" />

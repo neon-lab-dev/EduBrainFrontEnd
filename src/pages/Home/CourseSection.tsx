@@ -79,7 +79,7 @@ const CourseSection = (): JSX.Element => {
         </motion.p>
         {/* for larger devices */}
         <motion.p className="text-neutral-60 text-lg hidden xl:block">
-          {OUR_COURSES[activeCourse].desc.substring(0, 280) + '...'}
+          {OUR_COURSES[activeCourse].desc.substring(0, 250) + '...'}
         </motion.p>
         <motion.div className="flex gap-2 sm:gap-3 items-end">
           <span className="text-neutral-10 text-2xl sm:text-3xl xl:text-3xl font-semibold">

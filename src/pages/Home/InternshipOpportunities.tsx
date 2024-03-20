@@ -7,7 +7,7 @@ import type { JSX } from 'react'
 const InternshipOpportunities = (): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState(0)
   return (
-    <section className="flex flex-col items-start justify-start wrapper overflow-hidden sm:overflow-visible gap-12">
+    <section className="flex flex-col items-start justify-start wrapper overflow-hidden sm:overflow-visible gap-12 max-w-[1450px] mx-auto padding-x">
       <SectionHeader {...INTERNSHIP_OPPORTUNITIES} align="left" />
       <div className="flex gap-12 mt-6 flex-col md:flex-row max-w-7xl">
         <img

@@ -15,20 +15,22 @@ import PROCESS from '../../assets/data/process'
 import HeroSection from './HeroSection'
 import { useInnerSize } from '../../hooks/useInnerSize'
 import type { JSX } from 'react'
+import vector5 from '../../assets/icons/Vector 5.svg'
+import vector6 from '../../assets/icons/Vector 6.svg'
+import vector7 from '../../assets/icons/Vector 7.svg'
+import vector8 from '../../assets/icons/Vector 8.svg'
+
+// max-w-[1450px] mx-auto padding-x
 
 const Home = (): JSX.Element => {
   const aboutUsRef = useRef(null)
   const { width } = useInnerSize()
-  const aboutUsInView = useInView(aboutUsRef, {
-    once: true,
-  })
+  const aboutUsInView = useInView(aboutUsRef)
   const aboutUsImgRef = useRef(null)
-  const aboutUsImgInView = useInView(aboutUsImgRef, {
-    once: true,
-  })
+  const aboutUsImgInView = useInView(aboutUsImgRef)
 
   return (
-    <div className="flex flex-col gap-[120px] xl:gap-48 overflow-hidden padding-x">
+    <div className="flex flex-col gap-[120px] xl:gap-48 overflow-hidden">
       {/* // Hero Section */}
       <HeroSection />
       {/* //about us */}
@@ -48,7 +50,7 @@ const Home = (): JSX.Element => {
                   ref: aboutUsRef,
                   initial: { opacity: 0, scale: 0 },
                   animate: aboutUsInView ? { opacity: 1, scale: 1 } : {},
-                  transition: { duration: 0.5, delay: 0.5 },
+                  transition: { duration: 0.4, delay: 0.2 },
                 }
               : {})}
             className="flex flex-col px-4 gap-4 items-center xl:absolute xl:gap-[100px]"
@@ -80,22 +82,34 @@ const Home = (): JSX.Element => {
       </section>
 
       {/* Our Courses */}
-      <section
-        id="courses"
-        className="flex flex-col items-center justify-center overflow-hidden sm:overflow-visible "
-      >
-        <SectionHeader
-          header="Our Courses"
-          title="Unlock Your Potential by our <br/> Tech Courses"
-          desc="Explore tech excellence with Edubraining courses. Transformative learning for a future of possibilities."
+      <div className="relative">
+        <img
+          src={vector5}
+          className="absolute top-[7%] md:top-[5%] xl:top-[10%] left-0 w-[175.35px] h-[46.83px] md:w-[292.25px] md:h-[78.05px] xl:w-[417px] xl:h-[111.5px]"
+          alt=""
         />
-        <CourseSection />
-      </section>
+        <img
+          src={vector6}
+          className="absolute top-[58%] sm:top-[65%] xl:top-[105%] right-0 w-[175.35px] h-[46.83px] md:w-[292.25px] md:h-[78.05px] xl:w-[417px] xl:h-[111.5px]"
+          alt=""
+        />
+        <section
+          id="courses"
+          className="flex flex-col items-center justify-center overflow-hidden sm:overflow-visible max-w-[1450px] mx-auto padding-x"
+        >
+          <SectionHeader
+            header="Our Courses"
+            title="Unlock Your Potential by our <br/> Tech Courses"
+            desc="Explore tech excellence with Edubraining courses. Transformative learning for a future of possibilities."
+          />
+          <CourseSection />
+        </section>
+      </div>
 
       {/* Process  todo */}
       <section
         id="process"
-        className="flex flex-col items-center justify-center gap-12 overflow-hidden wrapper sm:overflow-visible sm:gap-16 xl:gap-28"
+        className="flex flex-col items-center justify-center gap-12 overflow-hidden wrapper sm:overflow-visible sm:gap-16 xl:gap-28 max-w-[1450px] mx-auto padding-x"
       >
         <SectionHeader header="Process" title="Your path to success" />
         <div className="flex flex-col max-w-5xl gap-12 ml-6 text-white lg:ml-auto lg:mx-auto">
@@ -106,23 +120,38 @@ const Home = (): JSX.Element => {
       </section>
 
       {/* Certification  */}
-      <section
-        id="certification"
-        className="flex flex-col items-center justify-center gap-12 overflow-hidden sm:gap-16 xl:gap-28"
-      >
-        <SectionHeader {...CERTIFICATION_AND_ACHIEVEMENT} />
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-5 xl:gap-8">
-          {CERTIFICATION_AND_ACHIEVEMENT.cards.map((card, i) => (
-            <DescriptionCard key={i} {...card} />
-          ))}
-        </div>
-      </section>
+      <div className="relative">
+        <img
+          src={vector7}
+          className="absolute top-[1%] md:top-[5%] xl:top-[10%] left-0 w-[175.35px] h-[46.83px] md:w-[292.25px] md:h-[78.05px] xl:w-[417px] xl:h-[111.5px]"
+          alt=""
+        />
+        <img
+          src={vector8}
+          className="absolute top-[58%] sm:top-[65%] xl:top-[105%] right-0 w-[142.35px] h-[79.83px] md:w-[237.65px] md:h-[132.3px] xl:w-[339.5px] xl:h-[189px]"
+          alt=""
+        />
+        <section
+          id="certification"
+          className="flex flex-col items-center justify-center gap-12 overflow-hidden sm:gap-16 xl:gap-28"
+        >
+          <SectionHeader {...CERTIFICATION_AND_ACHIEVEMENT} />
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-5 xl:gap-8">
+            {CERTIFICATION_AND_ACHIEVEMENT.cards.map((card, i) => (
+              <DescriptionCard key={i} {...card} />
+            ))}
+          </div>
+        </section>
+      </div>
 
       {/* internship opportunities6 */}
       <InternshipOpportunities />
 
       {/* cta banner */}
-      <CTABanner />
+
+      <section className="w-full padding-x">
+        <CTABanner />
+      </section>
 
       {/* faq */}
       <FAQSection />
