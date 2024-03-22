@@ -1,11 +1,15 @@
+import Navbar from '../../components/navbar'
+import Home from './Home'
 import type { JSX } from 'react'
 
-const Home = (): JSX.Element => {
-  // test
+const HomePage = (): JSX.Element => {
   return (
-    <div className="text-4xl font-bold text-center mt-20 text-red-700">
-      Home
+    <div className="dark bg-background">
+      <Navbar />
+      <main className="mt-[64px] xl:mt-[80px]">
+        <Home />
+      </main>
     </div>
   )
 }
-export default Home
+export default HomePage
