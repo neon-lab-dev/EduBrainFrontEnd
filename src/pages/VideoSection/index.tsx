@@ -7,6 +7,7 @@ import PrimaryButton from '../../components/buttons/PrimaryButton'
 import VIDEO_DATA from '../../assets/mockData/video'
 import { Link } from 'react-router-dom'
 import CoursePart from './CoursePart'
+import FAQSection from './FAQSection'
 const VideoSection = (): JSX.Element => {
   return (
     <div className="dark:bg-background bg-background-light padding-default w-full h-full">
@@ -94,11 +95,7 @@ const VideoSection = (): JSX.Element => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-4 mt-2">
-            <h4 className="sub-heading text-foreground-light dark:text-neutral-10">
-              FAQs
-            </h4>
-          </div>
+          <FAQSection faqs={VIDEO_DATA.faq} />
           <PrimaryButton
             style={{
               maxWidth: 'max-content',

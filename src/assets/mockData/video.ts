@@ -146,6 +146,18 @@ const VIDEO_DATA = {
       ],
     },
   ],
+  faq: [
+    {
+      question: 'What is the JavaScript?',
+      answer:
+        'JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. JavaScript has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.',
+    },
+    {
+      question: 'What is the Node.js?',
+      answer:
+        'Node.js is an open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser.',
+    },
+  ],
 }
 
 export default VIDEO_DATA
