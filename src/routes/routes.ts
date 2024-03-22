@@ -1,9 +1,9 @@
-import type { LazyExoticComponent } from 'react'
+import type { LazyExoticComponent, ComponentType } from 'react'
 import { lazy } from 'react'
+import type { RouteProps } from 'react-router-dom'
 
-interface IRoute {
-  path: string // Path of the route
-  component: LazyExoticComponent<() => JSX.Element> // Component to render -> lazy import with async await
+type IRoute = RouteProps & {
+  component: LazyExoticComponent<ComponentType<any>>
 }
 
 const ROUTES: IRoute[] = [
@@ -11,5 +11,10 @@ const ROUTES: IRoute[] = [
     path: '/',
     component: lazy(async () => await import('../pages/Home')),
   },
+  {
+    path: '/dashboard/assignments',
+    component: lazy(async () => await import('../pages/Assignments')),
+  },
 ]
+
 export default ROUTES
