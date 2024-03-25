@@ -4,6 +4,7 @@ import uploadIcon from '../../assets/icons/upload.svg'
 import { motion } from 'framer-motion'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 import SecondaryButton from '../../components/buttons/SecondaryButton'
+import toast from 'react-hot-toast'
 const SubmitCard = ({
   task,
   i,
@@ -105,6 +106,12 @@ const SubmitCard = ({
           </div>
           <input
             onChange={(e) => {
+              if (e.target.files === null) return
+              if (e.target.files?.length === 0) return
+              if (e.target.files?.[0]?.size > 20 * 1024 * 1024) {
+                toast.error('File size should not be more than 20MB')
+                return
+              }
               setFile(e.target.files?.[0] ?? null)
             }}
             ref={imgInputRef}
