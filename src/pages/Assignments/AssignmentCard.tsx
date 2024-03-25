@@ -2,7 +2,7 @@ import type { JSX } from 'react'
 import Button from '../../components/buttons/Button'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 
-interface IAssessmentCard {
+interface IAssignmentCard {
   i: number
   status: string
   dueDate: string
@@ -13,7 +13,7 @@ interface IAssessmentCard {
   }>
 }
 
-const AssessmentCard = (props: IAssessmentCard): JSX.Element => {
+const AssignmentCard = (props: IAssignmentCard): JSX.Element => {
   return (
     <div className="h-[280px] w-[341px] justify-between dark:border-neutral-95 border rounded-2xl p-4 flex flex-col gap-3">
       <div className="flex justify-between dark:text-neutral-10/80 body-text-md">
@@ -85,4 +85,4 @@ const AssessmentCard = (props: IAssessmentCard): JSX.Element => {
     </div>
   )
 }
-export default AssessmentCard
+export default AssignmentCard
