@@ -1,25 +1,25 @@
-import React from 'react';
-import type { ReactNode } from 'react';
-import DashboardHeader from '../../pages/Dashboard/DashboardHeader/DashboardHeader';
-import Sidebar from '../reusable/Sidebar/Sidebar';
+import React from 'react'
+import type { ReactNode } from 'react'
+import DashboardHeader from '../../pages/Dashboard/DashboardHeader/DashboardHeader'
+import Sidebar from '../reusable/Sidebar/Sidebar'
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode
 }
 
 const DashboardLayout = ({ children }: Props): JSX.Element => {
-    return (
-        <div className="flex">
-            {/* Dashboard left sidebar */}
-            <Sidebar />
+  return (
+    <div className="flex">
+      {/* Dashboard left sidebar */}
+      <Sidebar />
 
-            {/* All Pages */}
-            <div className="bg-neutral-100 w-full px-7 md:px-10 py-5 overflow-hidden">
-                <DashboardHeader />
-                {children}
-            </div>
-        </div>
-    );
-};
+      {/* All Pages */}
+      <div className="bg-neutral-100 w-full px-7 md:px-10 py-5 overflow-hidden">
+        <DashboardHeader />
+        {children}
+      </div>
+    </div>
+  )
+}
 
-export default DashboardLayout;
+export default DashboardLayout

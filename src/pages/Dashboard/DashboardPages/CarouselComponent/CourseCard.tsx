@@ -1,23 +1,23 @@
-import React from 'react';
-import calender from "../../../../assets/calendar.svg";
-import timer from "../../../../assets/timer-start.png";
-import { FaPlay } from "react-icons/fa";
-import clock from "../../../../assets/clock.png";
-import userIcon from "../../../../assets/user-square.png";
+import React from 'react'
+import calender from '../../../../assets/calendar.svg'
+import timer from '../../../../assets/timer-start.png'
+import { FaPlay } from 'react-icons/fa'
+import clock from '../../../../assets/clock.png'
+import userIcon from '../../../../assets/user-square.png'
 // import PropTypes from 'prop-types';
 
 interface CourseDetails {
-  img: any;
-  courseName: string;
-  lecture?: string;
-  duration?: string;
-  startDate?: string;
-  startTime?: string;
-  enrollDate?: string;
-  time?: string;
-  completedModule?: string;
-  module?: string;
-  startIn?: string;
+  img: any
+  courseName: string
+  lecture?: string
+  duration?: string
+  startDate?: string
+  startTime?: string
+  enrollDate?: string
+  time?: string
+  completedModule?: string
+  module?: string
+  startIn?: string
 }
 
 const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
@@ -26,10 +26,10 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
       <img className="rounded-t-2xl mb-2 " src={details?.img} alt="" />
       <div className="px-4 pb-2">
         <h1 className="text-lg text-neutral-10 font-bold font-roboto mb-[3px]">
-          { details?.courseName}
+          {details?.courseName}
         </h1>
 
-        {details?.lecture !==undefined? (
+        {details?.lecture !== undefined ? (
           <div>
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2 mb-4">
@@ -59,7 +59,7 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
           </div>
         ) : (
           <div>
-            {details?.startDate !==undefined ? (
+            {details?.startDate !== undefined ? (
               <div className="flex justify-between items-center mb-5">
                 <div className="flex items-center gap-2">
                   <img className="w-6" src={calender} alt="" />
@@ -92,10 +92,14 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
                 </div>
 
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  
-                <div className={`flex h-2  w-[300px] mx-auto items-center justify-center rounded-full bg-neutral-55`}>
-        <div style={{ width: `${details?.completedModule}%` }} className={`transition-width mr-auto h-2 w-0 rounded-full  bg-primary-55 duration-500`}></div>
-    </div>
+                  <div
+                    className={`flex h-2  w-[300px] mx-auto items-center justify-center rounded-full bg-neutral-55`}
+                  >
+                    <div
+                      style={{ width: `${details?.completedModule}%` }}
+                      className={`transition-width mr-auto h-2 w-0 rounded-full  bg-primary-55 duration-500`}
+                    ></div>
+                  </div>
                   <p className="text-base text-neutral-10 font-normal font-roboto">
                     {details.completedModule ?? 0}%
                   </p>
@@ -103,7 +107,7 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
               </div>
             )}
 
-            {details?.startIn !==undefined ? (
+            {details?.startIn !== undefined ? (
               <div className="flex justify-between items-center">
                 <div>
                   <h1 className="text-base text-neutral-40 font-normal font-roboto mb-[3px]">
@@ -140,7 +144,7 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CourseCard;
+export default CourseCard
