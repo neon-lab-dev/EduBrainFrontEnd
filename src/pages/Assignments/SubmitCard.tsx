@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import arrowDown from '../../assets/icons/arrow-down.svg'
 import uploadIcon from '../../assets/icons/upload.svg'
 import { motion } from 'framer-motion'
@@ -16,7 +16,25 @@ const SubmitCard = ({
 }): JSX.Element => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const imgInputRef = useRef<HTMLInputElement>(null)
+  const [isFileDropping, setIsFileDropping] = useState(false)
   const [file, setFile] = useState<File | null | string>(null)
+
+  // Prevent default behavior of drag and drop in the window
+  useEffect(() => {
+    const preventDefault = (e: DragEvent): void => {
+      if ((e.target as Element).id !== 'drop-button') {
+        e.preventDefault()
+      }
+    }
+    window.addEventListener('dragover', preventDefault)
+    window.addEventListener('drop', preventDefault)
+
+    return (): void => {
+      window.removeEventListener('dragover', preventDefault)
+      window.removeEventListener('drop', preventDefault)
+    }
+  }, [])
+
   return (
     <motion.div
       className={`w-full px-5 rounded-xl flex flex-col overflow-hidden gap-6 ${
@@ -99,7 +117,22 @@ const SubmitCard = ({
             onClick={() => {
               imgInputRef.current?.click()
             }}
-            className="border border-neutral-20 dark:border-neutral-90 rounded-lg px-5 py-8 flex items-center justify-center flex-col gap-2"
+            onDrop={(e) => {
+              e.preventDefault()
+              setIsFileDropping(false)
+              setFile(e.dataTransfer.files[0])
+            }}
+            onDragOver={(e) => {
+              e.preventDefault()
+              setIsFileDropping(true)
+            }}
+            onDragLeave={() => {
+              setIsFileDropping(false)
+            }}
+            style={{
+              boxShadow: isFileDropping ? '0px 4px 60px 0px #6E40FF29' : '',
+            }}
+            className="border border-neutral-20 dark:border-neutral-90 rounded-lg px-5 py-8 flex items-center justify-center flex-col gap-2 transition-all"
           >
             <img src={uploadIcon} alt="upload" />
             <div className="body-text-md text-neutral-50 dark:text-neutral-60">
