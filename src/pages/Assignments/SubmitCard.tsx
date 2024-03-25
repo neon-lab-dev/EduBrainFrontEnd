@@ -125,7 +125,15 @@ const SubmitCard = ({
                 {file}
               </a>
             ) : (
-              file.name
+              <button
+                className="hover:underline"
+                onClick={() => {
+                  const url = URL.createObjectURL(file)
+                  window.open(url, '_blank')
+                }}
+              >
+                {file.name}
+              </button>
             )}
           </div>
           <SecondaryButton
