@@ -1,4 +1,4 @@
-import ASSIGNMENTS from '../assets/mockData/assignments'
+import type ASSIGNMENTS from '../assets/mockData/assignments'
 
 export const filterAssignments = (
   courseData: (typeof ASSIGNMENTS)[number],

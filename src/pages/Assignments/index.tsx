@@ -87,4 +87,3 @@ const AssignmentPage = (): JSX.Element => {
   )
 }
 export default AssignmentPage
-
