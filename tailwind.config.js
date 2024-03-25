@@ -30,10 +30,12 @@ export default {
         30: '#91B5FE', //primary for dark mode
         40: '#6D9CFE',
         50: '#4884FD',
+        55: '#246BFD',
         60: '#1E59D3', //primary for light mode
         70: '#1847A9',
         80: '#12357E',
         90: '#0C2454',
+        95: '#246BFD1A',
         100: '#071533',
       },
       neutral: {
@@ -41,11 +43,17 @@ export default {
         15: '#E9ECF2',
         20: '#DCDFE5',
         30: '#C4C7CC',
+        35: '#D9D9D9',
         40: '#ABAEB2', //For Dark theme/Body Text
+        45: '#252525',
         50: '#939599',
+        55: '#4B494D',
         60: '#7A7C80', //For Light theme/Body Text
+        65: '#AEABB2',
         70: '#626366',
+        75: '#121212',
         80: '#494A4D',
+        85: '#1A1A1F',
         90: '#313233',
         95: '#252526',
         100: '#141414', //For Light theme/Heading
