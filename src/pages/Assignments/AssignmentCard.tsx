@@ -2,7 +2,7 @@ import type { JSX } from 'react'
 import Button from '../../components/buttons/Button'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 
-interface IAssignmentCard {
+interface INowCard {
   i: number
   status: string
   dueDate: string
@@ -13,11 +13,11 @@ interface IAssignmentCard {
   }>
 }
 
-const AssignmentCard = (props: IAssignmentCard): JSX.Element => {
+const NowCard = (props: INowCard): JSX.Element => {
   return (
     <div className="h-[280px] w-[341px] justify-between dark:border-neutral-95 border rounded-2xl p-4 flex flex-col gap-3">
       <div className="flex justify-between dark:text-neutral-10/80 body-text-md">
-        <span className="">Assignment {props.i + 1}</span>
+        <span className="">Now {props.i + 1}</span>
         <span className="dark:border-neutral-95 border px-3 py-1 rounded-md">
           {props.status[0].toUpperCase() + props.status.slice(1)}
         </span>
@@ -48,25 +48,9 @@ const AssignmentCard = (props: IAssignmentCard): JSX.Element => {
       {(() => {
         if (props.status === 'completed') {
           return (
-            <Button className="bg-neutral-95 text-neutral-20">
-              View Assignment
-            </Button>
+            <Button className="bg-neutral-95 text-neutral-20">View Now</Button>
           )
         } else if (props.status === 'pending') {
-          return (
-            <div className="flex gap-4 items-center ">
-              <div className="body-text-sm text-neutral-30">
-                Deadline:{' '}
-                <span className="text-neutral-10 font-Montserrat text-[18px] font-[600] ml-2">
-                  {props.dueDate}
-                </span>
-              </div>
-              <PrimaryButton className="!h-[40px] w-full">
-                Submit Assignment
-              </PrimaryButton>
-            </div>
-          )
-        } else {
           return (
             <div className="flex gap-4 items-center ">
               <div className="body-text-sm text-neutral-30">
@@ -80,9 +64,23 @@ const AssignmentCard = (props: IAssignmentCard): JSX.Element => {
               </PrimaryButton>
             </div>
           )
+        } else {
+          return (
+            <div className="flex gap-4 items-center ">
+              <div className="body-text-sm text-neutral-30">
+                Deadline:{' '}
+                <span className="text-neutral-10 font-Montserrat text-[18px] font-[600] ml-2">
+                  {props.dueDate}
+                </span>
+              </div>
+              <PrimaryButton className="!h-[40px] w-3/4">
+                Update Now
+              </PrimaryButton>
+            </div>
+          )
         }
       })()}
     </div>
   )
 }
-export default AssignmentCard
+export default NowCard
