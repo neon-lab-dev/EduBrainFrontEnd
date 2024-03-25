@@ -17,7 +17,7 @@ const AssignmentPage = (): JSX.Element => {
   }, [selectedCourse])
 
   return (
-    <div className="flex dark">
+    <div className="flex dark bg-background">
       <div className="min-w-[290px] h-full"></div>
       <div className="flex flex-col flex-grow">
         <div className="w-full h-[88px]"></div>

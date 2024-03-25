@@ -15,6 +15,12 @@ const ROUTES: IRoute[] = [
     path: '/dashboard/assignments',
     component: lazy(async () => await import('../pages/Assignments')),
   },
+  {
+    path: '/dashboard/assignments/submit',
+    component: lazy(
+      async () => await import('../pages/Assignments/SubmitAssignment')
+    ),
+  },
 ]
 
 export default ROUTES
