@@ -1,8 +1,8 @@
 import type { JSX } from 'react'
-import Button from '../../components/buttons/Button'
-import PrimaryButton from '../../components/buttons/PrimaryButton'
+import Button from '../../../../components/buttons/Button'
+import PrimaryButton from '../../../../components/buttons/PrimaryButton'
 
-interface INowCard {
+interface IAssignmentCard {
   i: number
   status: string
   dueDate: string
@@ -13,12 +13,12 @@ interface INowCard {
   }>
 }
 
-const NowCard = (props: INowCard): JSX.Element => {
+const AssignmentCard = (props: IAssignmentCard): JSX.Element => {
   return (
     <div className="h-[280px] w-[341px] justify-between dark:border-neutral-95 border rounded-2xl p-4 flex flex-col gap-3">
       <div className="flex justify-between dark:text-neutral-10/80 body-text-md">
-        <span className="">Now {props.i + 1}</span>
-        <span className="dark:border-neutral-95 border px-3 py-1 rounded-md">
+        <span className="">Assignment {props.i + 1}</span>
+        <span className="dark:border-neutral-95 border-neutral-30 border px-3 py-1 rounded-md">
           {props.status[0].toUpperCase() + props.status.slice(1)}
         </span>
       </div>
@@ -32,11 +32,11 @@ const NowCard = (props: INowCard): JSX.Element => {
           <span
             className={`px-3 py-2 rounded-md ${(() => {
               if (task.status === 'checked') {
-                return 'bg-[#29BF1214] bg-opacity-10 dark:text-[#29BF12]'
+                return 'bg-[#29BF1214] bg-opacity-10 text-[#29BF12]'
               } else if (task.status === 'submitted') {
-                return 'bg-coral/10 dark:text-coral'
+                return 'bg-coral/10 text-coral'
               } else {
-                return 'bg-[#EF233C14] bg-opacity-10 dark:text-[#EF233C]'
+                return 'bg-[#EF233C14] bg-opacity-10 text-[#EF233C]'
               }
             })()}`}
             key={i}
@@ -48,14 +48,16 @@ const NowCard = (props: INowCard): JSX.Element => {
       {(() => {
         if (props.status === 'completed') {
           return (
-            <Button className="bg-neutral-95 text-neutral-20">View Now</Button>
+            <Button className="dark:bg-neutral-95 bg-neutral-20 text-neutral-85 dark:text-neutral-20">
+              View Now
+            </Button>
           )
         } else if (props.status === 'pending') {
           return (
             <div className="flex gap-4 items-center ">
-              <div className="body-text-sm text-neutral-30">
+              <div className="body-text-sm dark:text-neutral-30 text-neutral-80">
                 Deadline:{' '}
-                <span className="text-neutral-10 font-Montserrat text-[18px] font-[600] ml-2">
+                <span className="dark:text-neutral-10 text-neutral-90 font-Montserrat text-[18px] font-[600] ml-2">
                   {props.dueDate}
                 </span>
               </div>
@@ -67,9 +69,9 @@ const NowCard = (props: INowCard): JSX.Element => {
         } else {
           return (
             <div className="flex gap-4 items-center ">
-              <div className="body-text-sm text-neutral-30">
+              <div className="body-text-sm dark:text-neutral-30 text-neutral-80 ">
                 Deadline:{' '}
-                <span className="text-neutral-10 font-Montserrat text-[18px] font-[600] ml-2">
+                <span className="dark:text-neutral-10 text-neutral-90 font-Montserrat text-[18px] font-[600] ml-2">
                   {props.dueDate}
                 </span>
               </div>
@@ -83,4 +85,4 @@ const NowCard = (props: INowCard): JSX.Element => {
     </div>
   )
 }
-export default NowCard
+export default AssignmentCard

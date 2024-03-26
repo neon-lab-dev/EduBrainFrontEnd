@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import arrowDown from '../../assets/icons/arrow-down.svg'
-import uploadIcon from '../../assets/icons/upload.svg'
+import arrowDown from '../../../../assets/icons/arrow-down.svg'
+import uploadIcon from '../../../../assets/icons/upload.svg'
 import { motion } from 'framer-motion'
-import PrimaryButton from '../../components/buttons/PrimaryButton'
-import SecondaryButton from '../../components/buttons/SecondaryButton'
+import PrimaryButton from '../../../../components/buttons/PrimaryButton'
+import SecondaryButton from '../../../../components/buttons/SecondaryButton'
 import toast from 'react-hot-toast'
+import { MAX_FILE_SIZE_IN_MB } from '../../../../assets/data/constants'
 const SubmitCard = ({
   task,
   i,
@@ -86,7 +87,7 @@ const SubmitCard = ({
             type="text"
             placeholder="Past any url"
             pattern="https?://.+"
-            className="border border-neutral-20 dark:bg-background dark:border-neutral-90 rounded-lg px-4 py-2"
+            className="border border-neutral-20 bg-[transparent] dark:border-neutral-90 rounded-lg px-4 py-2 dark:text-neutral-20"
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault()
@@ -100,7 +101,7 @@ const SubmitCard = ({
             }}
           />
           <div className="relative h-0.5 w-full bg-neutral-20 dark:bg-neutral-90 rounded-lg my-1">
-            <span className="absolute top-1/2 dark:bg-background dark:text-neutral-30 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-2">
+            <span className="absolute top-1/2 dark:bg-neutral-100 bg-neutral-10 dark:text-neutral-30 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-2">
               or
             </span>
           </div>
@@ -108,8 +109,13 @@ const SubmitCard = ({
             onChange={(e) => {
               if (e.target.files === null) return
               if (e.target.files?.length === 0) return
-              if (e.target.files?.[0]?.size > 20 * 1024 * 1024) {
-                toast.error('File size should not be more than 20MB')
+              if (
+                e.target.files?.[0]?.size >
+                MAX_FILE_SIZE_IN_MB * 1024 * 1024
+              ) {
+                toast.error(
+                  `File size should not be more than ${MAX_FILE_SIZE_IN_MB}MB`
+                )
                 return
               }
               setFile(e.target.files?.[0] ?? null)
@@ -127,6 +133,16 @@ const SubmitCard = ({
             onDrop={(e) => {
               e.preventDefault()
               setIsFileDropping(false)
+              if (e.dataTransfer.files.length === 0) return
+              if (
+                e.dataTransfer.files[0].size >
+                MAX_FILE_SIZE_IN_MB * 1024 * 1024
+              ) {
+                toast.error(
+                  `File size should not be more than ${MAX_FILE_SIZE_IN_MB}MB`
+                )
+                return
+              }
               setFile(e.dataTransfer.files[0])
             }}
             onDragOver={(e) => {
@@ -154,7 +170,7 @@ const SubmitCard = ({
       )}
       {file !== null && (
         <div className="flex items-center gap-5">
-          <div className="border border-neutral-20 dark:border-neutral-90 rounded-lg px-4 py-2 flex-grow">
+          <div className="border border-neutral-20 dark:border-neutral-90 rounded-lg px-4 py-2 flex-grow dark:text-neutral-20">
             {typeof file === 'string' ? (
               <a
                 href={file}
