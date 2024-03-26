@@ -3,7 +3,7 @@ import { lazy } from 'react'
 
 interface IRoute {
   path: string
-  component: LazyExoticComponent<() => JSX.Element> 
+  component: LazyExoticComponent<() => JSX.Element>
 }
 
 const ROUTES: IRoute[] = [
@@ -14,9 +14,9 @@ const ROUTES: IRoute[] = [
 
   {
     path: '/dashboard/myCourse',
-    component: lazy(async () => await import('../pages/Dashboard/DashboardPages/MyCourse')),
+    component: lazy(
+      async () => await import('../pages/Dashboard/DashboardPages/MyCourse')
+    ),
   },
-
- 
 ]
 export default ROUTES

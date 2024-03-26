@@ -1,19 +1,20 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
 interface CarouselBtnProps {
-  btnpressprev: () => void;
-  btnpressnext: () => void;
-  slideName: string;
+  btnpressprev: () => void
+  btnpressnext: () => void
+  slideName: string
 }
 
-const CarouselBtn = ({btnpressprev, btnpressnext}: CarouselBtnProps): JSX.Element => {
-
-    return (
-        <div className="flex items-center gap-6 text-neutral-10 text-[24px]">
+const CarouselBtn = ({
+  btnpressprev,
+  btnpressnext,
+}: CarouselBtnProps): JSX.Element => {
+  return (
+    <div className="flex items-center gap-6 text-neutral-10 text-[24px]">
       <svg
-      onClick={btnpressprev}
-        
+        onClick={btnpressprev}
         className="cursor-pointer hover:bg-primary-60 rounded transition duration-300"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -32,7 +33,7 @@ const CarouselBtn = ({btnpressprev, btnpressnext}: CarouselBtnProps): JSX.Elemen
       </svg>
 
       <svg
-     onClick={btnpressnext}
+        onClick={btnpressnext}
         className="cursor-pointer hover:bg-primary-60 rounded transition duration-300"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -50,13 +51,13 @@ const CarouselBtn = ({btnpressprev, btnpressnext}: CarouselBtnProps): JSX.Elemen
         />
       </svg>
     </div>
-    );
-};
+  )
+}
 
 CarouselBtn.propTypes = {
   btnpressprev: PropTypes.func.isRequired,
   btnpressnext: PropTypes.func.isRequired,
   slideName: PropTypes.string.isRequired,
-};
+}
 
-export default CarouselBtn;
+export default CarouselBtn

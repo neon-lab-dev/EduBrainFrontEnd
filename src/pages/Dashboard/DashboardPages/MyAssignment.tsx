@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-const MyAssignment = () => {
-    return (
-        <div>
-            Assignment Page
-        </div>
-    );
-};
+const MyAssignment = (): JSX.Element => {
+  return <div>Assignment Page</div>
+}
 
-export default MyAssignment;
+export default MyAssignment
