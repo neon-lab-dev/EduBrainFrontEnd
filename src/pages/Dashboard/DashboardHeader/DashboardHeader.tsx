@@ -64,7 +64,7 @@ const DashboardHeader = (): JSX.Element => {
   // }, [isOpen, isNotificationOpen]);
 
   return (
-    <div className="mb-12">
+    <div className="">
       <div className="flex justify-between items-center ">
         <h1 className="text-[32px] text-neutral-10 font-semibold font-roboto hidden md:flex">
           Hello, Rahul
