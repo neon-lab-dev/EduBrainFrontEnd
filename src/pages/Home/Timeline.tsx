@@ -54,7 +54,7 @@ const Timeline = ({
         className={`
           translate-y-12 xl:translate-y-28 ${
             i !== PROCESS.length - 1
-              ? 'relative after:absolute after:top-0 after:-bottom-12 after:start-3.5 after:w-1 after:-translate-x-[0.5px] after:bg-[#252526]'
+              ? 'relative after:absolute after:top-0 after:-bottom-12 after:start-3.5 after:w-1 after:-translate-x-[0.5px] after:bg-neutral-65'
               : ''
           }`}
       >

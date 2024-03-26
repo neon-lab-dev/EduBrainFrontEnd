@@ -2,14 +2,21 @@ import type { LazyExoticComponent } from 'react'
 import { lazy } from 'react'
 
 interface IRoute {
-  path: string // Path of the route
-  component: LazyExoticComponent<() => JSX.Element> // Component to render -> lazy import with async await
+  path: string
+  component: LazyExoticComponent<() => JSX.Element>
 }
 
 const ROUTES: IRoute[] = [
   {
     path: '/',
     component: lazy(async () => await import('../pages/Home')),
+  },
+
+  {
+    path: '/dashboard/myCourse',
+    component: lazy(
+      async () => await import('../pages/Dashboard/DashboardPages/MyCourse')
+    ),
   },
 ]
 export default ROUTES
