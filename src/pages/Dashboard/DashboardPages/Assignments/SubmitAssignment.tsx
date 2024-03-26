@@ -6,14 +6,14 @@ import DashboardLayout from '../../../../components/layouts/DashboardLayout'
 const SubmitAssignment = (): JSX.Element => {
   return (
     <DashboardLayout>
-      <main className="h-full w-full pb-32 pt-8 flex flex-col gap-12 min-h-[calc(100vh-100px)]">
+      <main className="h-full w-full pb-32 pt-8 flex flex-col gap-5 md:gap-12 min-h-[calc(100vh-100px)]">
         <div className="flex self-start items-center gap-2 text-neutral-90 dark:text-neutral-20">
           <span>Assignments</span>
           <span>&gt;</span>
           <span>Assignment - 1</span>
         </div>
-        <div className="flex flex-col items-center justify-center px-10">
-          <div className="w-[600px] ">
+        <div className="flex flex-col items-center justify-center">
+          <div className="w-full md:w-[600px] ">
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
                 <h3 className="h3 dark:text-neutral-10">Assignment - 1</h3>
