@@ -6,7 +6,7 @@ const MyCourse = (): JSX.Element => {
   return (
     <DashboardLayout>
       <div>
-        <CourseDataProvider/>
+        <CourseDataProvider />
       </div>
     </DashboardLayout>
   )
