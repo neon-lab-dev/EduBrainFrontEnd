@@ -4,8 +4,12 @@ import { IoNotificationsOutline } from 'react-icons/io5'
 import { FiLogOut } from 'react-icons/fi'
 import DashboardSidebar from '../DashboardSidebar/DashboardSidebar'
 import Notifications from './Notifications/Notifications'
+import arrowUp from '../../..//assets/icons/arrow-up.svg'
+interface Props {
+  from?: string
+}
 
-const DashboardHeader = (): JSX.Element => {
+const DashboardHeader = (props: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
   const [isNotificationOpen, setNotificationOpen] = useState(false)
 
@@ -66,9 +70,18 @@ const DashboardHeader = (): JSX.Element => {
   return (
     <div className="">
       <div className="flex justify-between items-center ">
-        <h1 className="text-[32px] text-neutral-10 font-semibold font-roboto hidden md:flex">
-          Hello, Rahul
-        </h1>
+        {props.from === 'videoSection' ? (
+          <div className="flex gap-8 items-center">
+            <button className="border border-neutral-70 rounded-lg px-1.5 py-1">
+              <img src={arrowUp} alt="link icon" className="-rotate-90 h-6 w-6" />
+            </button>
+            <h3 className="h3 dark:text-neutral-10">UI/UX Design</h3>
+          </div>
+        ) : (
+          <h1 className="text-[32px] text-neutral-10 font-semibold font-roboto hidden md:flex">
+            Hello, Rahul
+          </h1>
+        )}
         <div className="flex md:hidden">
           <DashboardSidebar />
         </div>

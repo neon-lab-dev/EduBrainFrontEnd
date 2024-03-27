@@ -8,11 +8,12 @@ import VIDEO_DATA from '../../assets/mockData/video'
 import { Link } from 'react-router-dom'
 import CoursePart from './CoursePart'
 import FAQSection from './FAQSection'
+import DashboardHeader from '../Dashboard/DashboardHeader/DashboardHeader'
 const VideoSection = (): JSX.Element => {
   return (
-    <div className="dark:bg-background bg-background-light padding-default w-full h-full">
-      <div className="h-[50px] w-full"></div>
-      <main className="flex gap-6 flex-col lg:flex-row">
+    <div className="dark:bg-background bg-background-light padding-x py-12 w-full h-full">
+      <DashboardHeader from="videoSection" />
+      <main className="flex gap-6 flex-col lg:flex-row mt-8">
         <div className="flex-grow flex gap-6 flex-col">
           <div className="flex flex-col gap-3">
             <span className="body-text-md text-foreground-light dark:text-neutral-10">
