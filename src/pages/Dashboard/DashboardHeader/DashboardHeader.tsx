@@ -73,7 +73,11 @@ const DashboardHeader = (props: Props): JSX.Element => {
         {props.from === 'videoSection' ? (
           <div className="flex gap-8 items-center">
             <button className="border border-neutral-70 rounded-lg px-1.5 py-1">
-              <img src={arrowUp} alt="link icon" className="-rotate-90 h-6 w-6" />
+              <img
+                src={arrowUp}
+                alt="link icon"
+                className="-rotate-90 h-6 w-6"
+              />
             </button>
             <h3 className="h3 dark:text-neutral-10">UI/UX Design</h3>
           </div>
