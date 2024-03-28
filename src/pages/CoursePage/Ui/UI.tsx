@@ -5,7 +5,7 @@ import Hero from './Hero'
 import Curriculum from './Curriculum'
 import SliderCard from './Slider'
 import Certification from './Certification'
-import Sectionlearn from './Sectionlearn';
+import Sectionlearn from './Sectionlearn'
 import UiHome from '../../../assets/data/data/Hero'
 import UiCardData from '../../../assets/data/data/Card'
 import Payment from './Subscrition'
