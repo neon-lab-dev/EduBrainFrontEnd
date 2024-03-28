@@ -66,7 +66,9 @@ const AssignmentCard = (props: IAssignmentCard): JSX.Element => {
                 </span>
               </div>
               <Link to="/dashboard/myAssignment/submit" className="w-3/4">
-                <PrimaryButton className="!h-[40px] w-full">Submit Now</PrimaryButton>
+                <PrimaryButton className="!h-[40px] w-full">
+                  Submit Now
+                </PrimaryButton>
               </Link>
             </div>
           )

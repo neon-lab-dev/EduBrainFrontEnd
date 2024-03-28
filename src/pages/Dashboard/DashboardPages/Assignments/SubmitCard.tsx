@@ -157,7 +157,7 @@ const SubmitCard = ({
             }}
             className="border border-neutral-20 dark:border-neutral-90 rounded-lg px-5 py-8 flex items-center justify-center flex-col gap-2 transition-all"
           >
-            <img src={uploadIcon} alt="upload" />
+            <img src={uploadIcon} alt="upload" className='dark:invert' />
             <div className="body-text-md text-neutral-50 dark:text-neutral-60">
               Drop any file here or{' '}
               <span className="text-[#6E40FF]">Upload a file</span>
