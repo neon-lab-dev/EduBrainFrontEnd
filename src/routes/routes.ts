@@ -18,5 +18,9 @@ const ROUTES: IRoute[] = [
       async () => await import('../pages/Dashboard/DashboardPages/MyCourse')
     ),
   },
+  {
+    path: '/video',
+    component: lazy(async () => await import('../pages/VideoSection')),
+  },
 ]
 export default ROUTES

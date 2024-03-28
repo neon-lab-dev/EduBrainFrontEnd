@@ -3,25 +3,54 @@ import plus from '../../assets/icons/add-square.svg'
 import minus from '../../assets/icons/minus-square.svg'
 import type { JSX } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+
 interface FAQsProps {
   faqs: Array<{ question: string; answer: string }>
+  faqButtonProps?: JSX.IntrinsicElements['button'] & {
+    height?: number
+  }
+  containerProps?: JSX.IntrinsicElements['div']
 }
 
-const FAQs = (props: FAQsProps): JSX.Element => {
+const FAQs = ({
+  faqs,
+  faqButtonProps,
+  containerProps,
+}: FAQsProps): JSX.Element => {
+  const {
+    height: faqButtonHeight,
+    className: faqButtonClassName,
+    style: faqButtonStyle,
+    ...faqButtonRestProps
+  } = faqButtonProps ?? {} // Destructuring the props object and setting default values
+
+  const { className: containerClassName, ...containerRestProps } =
+    containerProps ?? {} // Destructuring the props object and setting default values
+
   const [activeFaq, setActiveFaq] = useState(null as null | number)
   return (
-    <div className="flex flex-col w-full max-w-3xl gap-3 mt-6 sm:gap-6">
-      {props.faqs.map((faq, i) => (
+    <div
+      className={`flex flex-col w-full max-w-3xl gap-3 mt-6 ${containerClassName}`}
+      {...containerRestProps}
+    >
+      {faqs.map((faq, i) => (
         <button
           key={i}
           onClick={() => {
             setActiveFaq(activeFaq === i ? null : i)
           }}
-          className="flex flex-col gap-4 p-4 sm:px-6 rounded-xl border-2 border-neutral-90 w-full overflow-y-hidden"
+          style={{
+            height: activeFaq === i ? 'auto' : faqButtonHeight ?? 64,
+            ...faqButtonStyle,
+          }}
+          className={`flex flex-col gap-4 px-[20px] py-3 sm:px-6 rounded-xl border-2 bg-neutral-95 dark:bg-neutral-95 w-full overflow-y-hidden ${faqButtonClassName}`}
+          {...faqButtonRestProps}
         >
           <div className="flex items-center justify-between w-full">
-            <h3 className="text-neutral-10 text-lg">{faq.question}</h3>
-            <img src={activeFaq === i ? minus : plus} className="h-7 w-7" />
+            <h3 className="text-foreground-light dark:text-neutral-10 text-lg">
+              {faq.question}
+            </h3>
+            <img src={activeFaq === i ? minus : plus} className="h-6 w-6" />
           </div>
           <AnimatePresence>
             <motion.p
