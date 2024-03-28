@@ -86,21 +86,25 @@ const DashboardHeader = (props: Props): JSX.Element => {
             Hello, Rahul
           </h1>
         )}
-        <div className="flex md:hidden">
-          <DashboardSidebar />
-        </div>
+        {!(props.from === 'videoSection') && (
+          <div className="flex md:hidden">
+            <DashboardSidebar />
+          </div>
+        )}
 
         {/* Right side search bar, notification, user image */}
         <div className="flex items-center gap-[22px]">
           {/* Search bar */}
-          <div className="relative w-[320px] hidden md:block">
-            <input
-              type="text"
-              className="text-white bg-neutral-100 border border-neutral-55 rounded-xl px-4 py-3 w-[320px] outline-none focus:border-primary-60 hover:border-blue-800 transition duration-300"
-              placeholder="Search"
-            />
-            <CiSearch className="text-neutral-10 w-6 h-6 absolute right-2 bottom-3 cursor-pointer" />
-          </div>
+          {!(props.from === 'videoSection') && (
+            <div className="relative w-[320px] hidden md:block">
+              <input
+                type="text"
+                className="text-white bg-neutral-100 border border-neutral-55 rounded-xl px-4 py-3 w-[320px] outline-none focus:border-primary-60 hover:border-blue-800 transition duration-300"
+                placeholder="Search"
+              />
+              <CiSearch className="text-neutral-10 w-6 h-6 absolute right-2 bottom-3 cursor-pointer" />
+            </div>
+          )}
 
           <div className="relative sidebar">
             {/* Notification */}
