@@ -26,7 +26,7 @@ const Learn: React.FC = (): JSX.Element => {
           <div className="flex flex-col gap-5 w-[700px] max-xl:w-[550px] max-lg:w-[664px] max-sm:w-[320px]">
             <Paragraph expanded={expanded} toggleExpand={toggleExpand} />
             <div>
-              <img className="rounded-xl" src ={learn} alt="Tick Icon" />
+              <img className="rounded-xl" src={learn} alt="Tick Icon" />
             </div>
           </div>
         </div>
