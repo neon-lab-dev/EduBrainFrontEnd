@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-
+import { Toaster } from 'react-hot-toast'
 const rootElement = document.getElementById('root')
 let root = null
 if (rootElement !== null) {
@@ -16,6 +16,7 @@ if (root !== null) {
   root.render(
     <React.StrictMode>
       <App />
+      <Toaster />
     </React.StrictMode>
   )
 }

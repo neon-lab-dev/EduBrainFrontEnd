@@ -9,11 +9,10 @@ const RoutesContainer = (): JSX.Element => {
   return (
     <Router>
       <Routes>
-        {ROUTES.map(({ component: Component, path }, index) => {
+        {ROUTES.map(({ component: Component, ...props }, index) => {
           return (
             <Route
               key={index}
-              path={path}
               element={
                 <AppLayout>
                   <Suspense fallback={<AppLoading />}>
@@ -21,6 +20,7 @@ const RoutesContainer = (): JSX.Element => {
                   </Suspense>
                 </AppLayout>
               }
+              {...props}
             />
           )
         })}
