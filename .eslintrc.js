@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     'space-before-function-paren': 'off',
     'react/react-in-jsx-scope': 'warn',
-    "@typescript-eslint/no-empty-interface": "off",
+    '@typescript-eslint/no-empty-interface': 'off',
   },
   settings: {
     react: {
