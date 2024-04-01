@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import logo from '../../assets/icons/logo.svg';
-import menu from '../../assets/icons/menu.svg';
-import close from '../../assets/icons/close.svg';
-import NAV_LINKS from './navlinks';
-import { useRef } from 'react';
-import type { JSX } from 'react';
-import SecondaryButton from '../buttons/SecondaryButton';
-import PrimaryButton from '../buttons/PrimaryButton';
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import logo from '../../assets/icons/logo.svg'
+import menu from '../../assets/icons/menu.svg'
+import close from '../../assets/icons/close.svg'
+import NAV_LINKS from './navlinks'
+import { useRef } from 'react'
+import type { JSX } from 'react'
+import SecondaryButton from '../buttons/SecondaryButton'
+import PrimaryButton from '../buttons/PrimaryButton'
 
 const Navbar = ({ onClick }: { onClick: () => void }): JSX.Element => {
-  const asideBarRef = useRef<HTMLElement>(null);
+  const asideBarRef = useRef<HTMLElement>(null)
   return (
     <>
       <header className="absolute inset-0 w-full bg-background py-4 h-fit z-40">
@@ -38,8 +38,8 @@ const Navbar = ({ onClick }: { onClick: () => void }): JSX.Element => {
           </div>
           <button
             onClick={() => {
-              asideBarRef?.current?.classList.add('translate-x-0');
-              asideBarRef?.current?.classList.remove('translate-x-full');
+              asideBarRef?.current?.classList.add('translate-x-0')
+              asideBarRef?.current?.classList.remove('translate-x-full')
             }}
             className="xl:hidden"
           >
@@ -60,8 +60,8 @@ const Navbar = ({ onClick }: { onClick: () => void }): JSX.Element => {
             </Link>
             <button
               onClick={() => {
-                asideBarRef?.current?.classList.remove('translate-x-0');
-                asideBarRef?.current?.classList.add('translate-x-full');
+                asideBarRef?.current?.classList.remove('translate-x-0')
+                asideBarRef?.current?.classList.add('translate-x-full')
               }}
             >
               <img src={close} alt="Close" className="h-8 w-8" />
@@ -88,11 +88,11 @@ const Navbar = ({ onClick }: { onClick: () => void }): JSX.Element => {
         </nav>
       </aside>
     </>
-  );
-};
+  )
+}
 
 Navbar.propTypes = {
   onClick: PropTypes.func.isRequired,
-};
+}
 
-export default Navbar;
+export default Navbar

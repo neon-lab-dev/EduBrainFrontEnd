@@ -20,31 +20,29 @@ import vector6 from '../../assets/icons/Vector 6.svg'
 import vector7 from '../../assets/icons/Vector 7.svg'
 import vector8 from '../../assets/icons/Vector 8.svg'
 import AuthenticationModal from '../../components/reusable/AuthenticationModal/AuthenticationModal'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 // max-w-[1450px] mx-auto padding-x
 
-const Home = ({ handleModal, isModalOpen }: { handleModal: () => void; isModalOpen: boolean; }): JSX.Element => {
+const Home = ({
+  handleModal,
+  isModalOpen,
+}: {
+  handleModal: () => void
+  isModalOpen: boolean
+}): JSX.Element => {
   const aboutUsRef = useRef(null)
   const { width } = useInnerSize()
   const aboutUsInView = useInView(aboutUsRef)
   const aboutUsImgRef = useRef(null)
   const aboutUsImgInView = useInView(aboutUsImgRef)
 
-
-
-
   return (
     <div className="flex flex-col gap-[120px] xl:gap-48 overflow-hidden">
       <AuthenticationModal
-      isModalOpen={isModalOpen} 
-      handleModal={handleModal}
-      >
-
-            
-
-
-      </AuthenticationModal>
+        isModalOpen={isModalOpen}
+        handleModal={handleModal}
+      ></AuthenticationModal>
       {/* // Hero Section */}
       <HeroSection />
       {/* //about us */}
@@ -174,11 +172,10 @@ const Home = ({ handleModal, isModalOpen }: { handleModal: () => void; isModalOp
       <section className="h-[30vh]"></section>
     </div>
   )
-};
+}
 Home.propTypes = {
   handleModal: PropTypes.func.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
-};
-
+}
 
 export default Home

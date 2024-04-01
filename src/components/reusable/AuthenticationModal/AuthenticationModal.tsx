@@ -30,7 +30,6 @@ const AuthenticationModal = ({
       {isModalOpen && (
         <div className="bg-primary-100 bg-opacity-30 backdrop-blur-sm fixed inset-0 flex justify-center items-center z-50 w-full mx-auto">
           <div className="bg-primary-100 w-4/5 max-h-screen rounded-3xl relative">
-            
             {activeTab === 'login' && (
               <div className="w-4/5 max-w-[475px] mx-auto py-4">
                 {/* Icon */}
