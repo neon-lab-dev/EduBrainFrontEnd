@@ -1,9 +1,9 @@
-import type { LazyExoticComponent } from 'react'
+import type { LazyExoticComponent, ComponentType } from 'react'
 import { lazy } from 'react'
+import type { RouteProps } from 'react-router-dom'
 
-interface IRoute {
-  path: string
-  component: LazyExoticComponent<() => JSX.Element>
+type IRoute = RouteProps & {
+  component: LazyExoticComponent<ComponentType<any>>
 }
 
 const ROUTES: IRoute[] = [
@@ -19,8 +19,25 @@ const ROUTES: IRoute[] = [
     ),
   },
   {
+
+    path: '/dashboard/myAssignment',
+    component: lazy(
+      async () => await import('../pages/Dashboard/DashboardPages/Assignments')
+    ),
+  },
+  {
+    path: '/dashboard/myAssignment/submit',
+    component: lazy(
+      async () =>
+        await import(
+          '../pages/Dashboard/DashboardPages/Assignments/SubmitAssignment'
+        )
+    )},
+    {
     path: '/video',
     component: lazy(async () => await import('../pages/VideoSection')),
+
   },
 ]
+
 export default ROUTES
