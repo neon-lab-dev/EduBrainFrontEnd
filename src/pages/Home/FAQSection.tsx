@@ -23,7 +23,12 @@ const FAQSection = (): JSX.Element => {
         className="flex flex-col items-center justify-center gap-12 overflow-hidden max-w-[1450px] mx-auto padding-x sm:overflow-visible"
       >
         <SectionHeader {...FAQ} />
-        <FAQs faqs={FAQ.faqs} />
+        <FAQs
+          faqs={FAQ.faqs}
+          faqButtonProps={{
+            className: '!bg-background !border-neutral-95',
+          }}
+        />
       </section>
     </div>
   )
