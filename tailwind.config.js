@@ -17,7 +17,12 @@ export default {
     colors: {
       white: '#FFFFFF',
       background: '#0C0C0D',
+
       green: '#29BF12',
+
+      'background-light': '#F8F5FF',
+      'foreground-light': '#121212',
+
       coral: '#FF9300',
       red: '#EF233C',
       card: {

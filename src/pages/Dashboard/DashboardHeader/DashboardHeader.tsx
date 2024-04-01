@@ -4,8 +4,12 @@ import { IoNotificationsOutline } from 'react-icons/io5'
 import { FiLogOut } from 'react-icons/fi'
 import DashboardSidebar from '../DashboardSidebar/DashboardSidebar'
 import Notifications from './Notifications/Notifications'
+import arrowUp from '../../..//assets/icons/arrow-up.svg'
+interface Props {
+  from?: string
+}
 
-const DashboardHeader = (): JSX.Element => {
+const DashboardHeader = (props: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
   const [isNotificationOpen, setNotificationOpen] = useState(false)
 
@@ -66,24 +70,41 @@ const DashboardHeader = (): JSX.Element => {
   return (
     <div className="">
       <div className="flex justify-between items-center ">
-        <h1 className="text-[32px] text-neutral-10 font-semibold font-roboto hidden md:flex">
-          Hello, Rahul
-        </h1>
-        <div className="flex md:hidden">
-          <DashboardSidebar />
-        </div>
+        {props.from === 'videoSection' ? (
+          <div className="flex gap-8 items-center">
+            <button className="border border-neutral-70 rounded-lg px-1.5 py-1">
+              <img
+                src={arrowUp}
+                alt="link icon"
+                className="-rotate-90 h-6 w-6"
+              />
+            </button>
+            <h3 className="h3 dark:text-neutral-10">UI/UX Design</h3>
+          </div>
+        ) : (
+          <h1 className="text-[32px] text-neutral-10 font-semibold font-roboto hidden md:flex">
+            Hello, Rahul
+          </h1>
+        )}
+        {!(props.from === 'videoSection') && (
+          <div className="flex md:hidden">
+            <DashboardSidebar />
+          </div>
+        )}
 
         {/* Right side search bar, notification, user image */}
         <div className="flex items-center gap-[22px]">
           {/* Search bar */}
-          <div className="relative w-[320px] hidden md:block">
-            <input
-              type="text"
-              className="text-white bg-neutral-100 border border-neutral-55 rounded-xl px-4 py-3 w-[320px] outline-none focus:border-primary-60 hover:border-blue-800 transition duration-300"
-              placeholder="Search"
-            />
-            <CiSearch className="text-neutral-10 w-6 h-6 absolute right-2 bottom-3 cursor-pointer" />
-          </div>
+          {!(props.from === 'videoSection') && (
+            <div className="relative w-[320px] hidden md:block">
+              <input
+                type="text"
+                className="text-white bg-neutral-100 border border-neutral-55 rounded-xl px-4 py-3 w-[320px] outline-none focus:border-primary-60 hover:border-blue-800 transition duration-300"
+                placeholder="Search"
+              />
+              <CiSearch className="text-neutral-10 w-6 h-6 absolute right-2 bottom-3 cursor-pointer" />
+            </div>
+          )}
 
           <div className="relative sidebar">
             {/* Notification */}

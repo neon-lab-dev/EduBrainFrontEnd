@@ -25,7 +25,7 @@ const HeroSection = (): JSX.Element => {
         className="absolute top-[60%] xs:top-[40%] sm:top-[45%] right-0 w-[142px] h-[79.38px] sm:w-[237.65px] sm:h-[132.3px] xl:top-[95%] 2xl:top-full xl:w-[339px] xl:h-[189px]"
         alt=""
       />
-      <section className="flex relative flex-col justify-center items-center gap-[60px] xl:flex-row xl:gap-28 max-w-[1450px] mx-auto padding-x">
+      <section className="flex relative flex-col justify-center items-center gap-[60px] xl:flex-row xl:gap-28 max-w-[1450px] mx-auto padding-x xl:max-h-[calc(100vh-100px)]">
         <div className="gap-8 xl:gap-10 flex flex-col items-center xl:items-start mt-16 sm:mt-[100px] xl:mt-[116px]">
           <div className="flex flex-col gap-5 xl:gap-6 items-center justify-center text-center xl:text-start xl:items-start">
             <h1 className="large-heading text-neutral-10">
