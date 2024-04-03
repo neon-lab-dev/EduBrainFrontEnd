@@ -10,7 +10,7 @@ import CTABanner from './CTABanner'
 import FAQSection from './FAQSection'
 import Timeline from './Timeline'
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import PROCESS from '../../assets/data/process'
 import HeroSection from './HeroSection'
 import { useInnerSize } from '../../hooks/useInnerSize'
@@ -19,10 +19,20 @@ import vector5 from '../../assets/icons/Vector 5.svg'
 import vector6 from '../../assets/icons/Vector 6.svg'
 import vector7 from '../../assets/icons/Vector 7.svg'
 import vector8 from '../../assets/icons/Vector 8.svg'
+import AuthenticationModal from '../../components/reusable/AuthenticationModal/AuthenticationModal'
+import PropTypes from 'prop-types'
 
 // max-w-[1450px] mx-auto padding-x
 
-const Home = (): JSX.Element => {
+const Home = ({
+  handleModal,
+  isModalOpen,
+  setIsModalOpen,
+}: {
+  handleModal: () => void
+  isModalOpen: boolean
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}): JSX.Element => {
   const aboutUsRef = useRef(null)
   const { width } = useInnerSize()
   const aboutUsInView = useInView(aboutUsRef)
@@ -31,6 +41,11 @@ const Home = (): JSX.Element => {
 
   return (
     <div className="flex flex-col gap-[120px] xl:gap-48 overflow-hidden">
+      <AuthenticationModal
+        isModalOpen={isModalOpen}
+        handleModal={handleModal}
+        setIsModalOpen={setIsModalOpen}
+      ></AuthenticationModal>
       {/* // Hero Section */}
       <HeroSection />
       {/* //about us */}
@@ -161,4 +176,10 @@ const Home = (): JSX.Element => {
     </div>
   )
 }
+Home.propTypes = {
+  handleModal: PropTypes.func.isRequired,
+  isModalOpen: PropTypes.bool.isRequired,
+  setIsModalOpen: PropTypes.func.isRequired,
+}
+
 export default Home

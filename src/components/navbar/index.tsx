@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/icons/logo.svg'
 import menu from '../../assets/icons/menu.svg'
@@ -8,7 +9,7 @@ import type { JSX } from 'react'
 import SecondaryButton from '../buttons/SecondaryButton'
 import PrimaryButton from '../buttons/PrimaryButton'
 
-const Navbar = (): JSX.Element => {
+const Navbar = ({ onClick }: { onClick: () => void }): JSX.Element => {
   const asideBarRef = useRef<HTMLElement>(null)
   return (
     <>
@@ -16,7 +17,7 @@ const Navbar = (): JSX.Element => {
         <nav className="flex justify-between items-center padding-x m-auto">
           {/* logo */}
           <Link to="/" className="2xl:w-[250px]">
-            <img src={logo} className="w-[100px]" />
+            <img src={logo} className="w-[100px]" alt="Logo" />
           </Link>
           {/* links */}
           <ul className="gap-8 text-neutral-10 hidden xl:flex">
@@ -28,9 +29,9 @@ const Navbar = (): JSX.Element => {
           </ul>
           {/* cta buttons */}
           <div className="gap-4 hidden xl:flex">
-            <Link to="/login">
+            <button onClick={onClick}>
               <SecondaryButton>Login</SecondaryButton>
-            </Link>
+            </button>
             <Link to="#" className="w-[193px]">
               <PrimaryButton className="w-full">Enroll Now</PrimaryButton>
             </Link>
@@ -42,7 +43,7 @@ const Navbar = (): JSX.Element => {
             }}
             className="xl:hidden"
           >
-            <img src={menu} alt="" className="h-8 w-8" />
+            <img src={menu} alt="Menu" className="h-8 w-8" />
           </button>
         </nav>
       </header>
@@ -55,7 +56,7 @@ const Navbar = (): JSX.Element => {
           {/* logo */}
           <div className="flex justify-between items-center w-full gap-4">
             <Link to="/" className="2xl:w-[250px]">
-              <img src={logo} className="w-[100px]" />
+              <img src={logo} className="w-[100px]" alt="Logo" />
             </Link>
             <button
               onClick={() => {
@@ -63,7 +64,7 @@ const Navbar = (): JSX.Element => {
                 asideBarRef?.current?.classList.add('translate-x-full')
               }}
             >
-              <img src={close} alt="" className="h-8 w-8" />
+              <img src={close} alt="Close" className="h-8 w-8" />
             </button>
           </div>
 
@@ -77,9 +78,9 @@ const Navbar = (): JSX.Element => {
           </ul>
           {/* cta buttons */}
           <div className="flex gap-4">
-            <Link to="/login" className="w-full">
+            <button className="w-full">
               <SecondaryButton className="w-full">Login</SecondaryButton>
-            </Link>
+            </button>
             <Link to="#" className="w-full">
               <PrimaryButton className="w-full">Enroll Now</PrimaryButton>
             </Link>
@@ -89,4 +90,9 @@ const Navbar = (): JSX.Element => {
     </>
   )
 }
+
+Navbar.propTypes = {
+  onClick: PropTypes.func.isRequired,
+}
+
 export default Navbar

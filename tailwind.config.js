@@ -47,6 +47,7 @@ export default {
         10: '#F5F8FF', //For Dark theme/Heading
         15: '#E9ECF2',
         20: '#DCDFE5',
+        25: '#202635',
         30: '#C4C7CC',
         35: '#D9D9D9',
         40: '#ABAEB2', //For Dark theme/Body Text

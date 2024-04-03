@@ -35,12 +35,14 @@ const ROUTES: IRoute[] = [
   {
     path: '/video',
     component: lazy(async () => await import('../pages/VideoSection')),
+
   },
   {
     path: '/dashboard/certification',
     component: lazy(
       async () => await import('../pages/Dashboard/DashboardCertification')
     ),
+
   },
 ]
 

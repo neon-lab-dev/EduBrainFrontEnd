@@ -6,7 +6,7 @@ import emoji from '../../assets/images/emoji.png'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 import { useInnerSize } from '../../hooks/useInnerSize'
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import type { JSX } from 'react'
 
 interface TimelineProps {
