@@ -27,9 +27,11 @@ import PropTypes from 'prop-types'
 const Home = ({
   handleModal,
   isModalOpen,
+  setIsModalOpen
 }: {
   handleModal: () => void
   isModalOpen: boolean
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }): JSX.Element => {
   const aboutUsRef = useRef(null)
   const { width } = useInnerSize()
@@ -42,6 +44,7 @@ const Home = ({
       <AuthenticationModal
         isModalOpen={isModalOpen}
         handleModal={handleModal}
+        setIsModalOpen={setIsModalOpen}
       ></AuthenticationModal>
       {/* // Hero Section */}
       <HeroSection />
@@ -176,6 +179,7 @@ const Home = ({
 Home.propTypes = {
   handleModal: PropTypes.func.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
+  setIsModalOpen: PropTypes.func.isRequired
 }
 
 export default Home

@@ -13,7 +13,7 @@ const HomePage = (): JSX.Element => {
     <div className="dark bg-background">
       <Navbar onClick={handleModal} />
       <main className="mt-[64px] xl:mt-[80px]">
-        <Home isModalOpen={isModalOpen} handleModal={handleModal} />
+        <Home isModalOpen={isModalOpen} handleModal={handleModal} setIsModalOpen={setIsModalOpen}/>
       </main>
     </div>
   )
