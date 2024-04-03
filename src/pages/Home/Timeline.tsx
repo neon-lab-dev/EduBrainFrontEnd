@@ -1,6 +1,8 @@
 import PROCESS from '../../assets/data/process'
 import crown from '../../assets/images/Crown.png'
+
 import emoji from '../../assets/images/emoji.png'
+
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 import { useInnerSize } from '../../hooks/useInnerSize'
 import { motion, useInView } from 'framer-motion'
