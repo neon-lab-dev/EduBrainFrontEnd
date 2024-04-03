@@ -14,7 +14,7 @@ const DashboardLayout = ({ children }: Props): JSX.Element => {
       <Sidebar />
 
       {/* All Pages */}
-      <div className="bg-neutral-100 w-full px-7 md:px-10 py-5 overflow-hidden">
+      <div className="dark:bg-neutral-100 bg-neutral-10 w-full px-7 md:px-10 py-5 overflow-hidden">
         <DashboardHeader />
         {children}
       </div>
