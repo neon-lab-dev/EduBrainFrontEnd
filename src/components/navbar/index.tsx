@@ -9,7 +9,7 @@ import type { JSX } from 'react'
 import SecondaryButton from '../buttons/SecondaryButton'
 import PrimaryButton from '../buttons/PrimaryButton'
 
-const Navbar = ({ onClick }: { onClick ?: () => void }): JSX.Element => {
+const Navbar = ({ onClick }: { onClick?: () => void }): JSX.Element => {
   const asideBarRef = useRef<HTMLElement>(null)
   return (
     <>
