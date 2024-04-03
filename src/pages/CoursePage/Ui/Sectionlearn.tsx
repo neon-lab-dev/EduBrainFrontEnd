@@ -17,13 +17,13 @@ const Learn: React.FC = (): JSX.Element => {
   return (
     <div className="py-16">
       <div className="flex justify-center">
-        <span className="text-[48px] font-900 text-white text-center max-sm:text-[36px]">
+        <span className="text-[48px] font-900 text-white text-center max-sm:text-[36px] max-sm:px-2">
           Why you should learn with us?
         </span>
       </div>
       <div className="flex justify-center gap-6 max-lg:flex-col m-4 max-sm:m-2 max-lg:m-2">
         <div className="flex justify-center">
-          <div className="flex flex-col gap-5 w-[700px] max-xl:w-[550px] max-lg:w-[664px] max-sm:w-[320px]">
+          <div className="flex flex-col gap-5 w-[700px] max-xl:w-[550px]  max-lg:w-[664px] max-sm:w-[320px]">
             <Paragraph expanded={expanded} toggleExpand={toggleExpand} />
             <div>
               <img className="rounded-xl" src={learn} alt="Tick Icon" />

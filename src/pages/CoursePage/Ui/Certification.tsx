@@ -26,11 +26,11 @@ const Certification: React.FC = () => {
         </div>
       </div>
       <div className="flex gap-6 justify-center py-10 max-lg:flex-col">
-        <div className="flex justify-center">
-          <div className=" bg-neutral-70 h-[400px] w-[644px] max-sm:w-[320px] max-sm:h-[240px] flex justify-center rounded-xl"></div>
+        <div className="flex justify-center ">
+          <div className=" bg-neutral-70 h-[400px] w-[644px] max-xl:w-[550px] max-sm:w-[320px] max-sm:h-[240px] flex justify-center rounded-xl"></div>
         </div>
         <div className="flex justify-center">
-          <div className="flex flex-col w-[600px] max-sm:w-[320px]">
+          <div className="flex flex-col w-[600px] max-xl:w-[500px] max-sm:w-[320px]">
             <div className="text-[#ABAEB2] flex justify-center text-[16px]">
               <p>
                 Embark on a certification journey that not only validates your
@@ -40,7 +40,7 @@ const Certification: React.FC = () => {
                 commitment to mastering the subject matter.
               </p>
             </div>
-            <div className="text-white flex gap-2 flex-col py-10 max-sm:py-4">
+            <div className="text-white flex gap-2 flex-col py-10 max-xl:py-2 max-sm:py-4">
               {/* Mapping through certification points */}
               {certificationPoints.map((point: string, index: number) => (
                 <div key={index} className="flex gap-4">
