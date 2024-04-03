@@ -8,10 +8,10 @@ import PrimaryButton from '../../buttons/PrimaryButton'
 const AuthenticationModal = ({
   handleModal,
   isModalOpen,
-  setIsModalOpen
+  setIsModalOpen,
 }: {
-  handleModal: () => void,
-  isModalOpen: boolean,
+  handleModal: () => void
+  isModalOpen: boolean
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }): JSX.Element => {
   const [activeTab, setActiveTab] = useState<string>('login')
@@ -29,7 +29,9 @@ const AuthenticationModal = ({
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent): void => {
-      const closestDropdown = (event.target as HTMLElement).closest('#closeModal')
+      const closestDropdown = (event.target as HTMLElement).closest(
+        '#closeModal'
+      )
       if (isModalOpen && closestDropdown === null) {
         setIsModalOpen(false)
       }
@@ -45,9 +47,11 @@ const AuthenticationModal = ({
   return (
     <>
       {isModalOpen && (
-        <div  className="bg-primary-100 bg-opacity-30 backdrop-blur-sm fixed inset-0 flex justify-center items-center z-50 w-full mx-auto ">
-          <div id='closeModal' className="bg-primary-100 w-4/5 max-h-screen rounded-3xl relative">
-            
+        <div className="bg-primary-100 bg-opacity-30 backdrop-blur-sm fixed inset-0 flex justify-center items-center z-50 w-full mx-auto ">
+          <div
+            id="closeModal"
+            className="bg-primary-100 w-4/5 max-h-screen rounded-3xl relative"
+          >
             {activeTab === 'login' && (
               <div className="w-4/5 max-w-[475px] mx-auto py-4">
                 {/* Icon */}
@@ -670,7 +674,7 @@ const AuthenticationModal = ({
 AuthenticationModal.propTypes = {
   handleModal: PropTypes.func.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
-  setIsModalOpen: PropTypes.func.isRequired
+  setIsModalOpen: PropTypes.func.isRequired,
 }
 
 export default AuthenticationModal

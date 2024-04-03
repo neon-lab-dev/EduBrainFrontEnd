@@ -19,7 +19,6 @@ const ROUTES: IRoute[] = [
     ),
   },
   {
-
     path: '/dashboard/myAssignment',
     component: lazy(
       async () => await import('../pages/Dashboard/DashboardPages/Assignments')
@@ -32,11 +31,11 @@ const ROUTES: IRoute[] = [
         await import(
           '../pages/Dashboard/DashboardPages/Assignments/SubmitAssignment'
         )
-    )},
-    {
+    ),
+  },
+  {
     path: '/video',
     component: lazy(async () => await import('../pages/VideoSection')),
-
   },
 ]
 

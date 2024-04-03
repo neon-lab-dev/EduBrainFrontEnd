@@ -27,7 +27,7 @@ import PropTypes from 'prop-types'
 const Home = ({
   handleModal,
   isModalOpen,
-  setIsModalOpen
+  setIsModalOpen,
 }: {
   handleModal: () => void
   isModalOpen: boolean
@@ -179,7 +179,7 @@ const Home = ({
 Home.propTypes = {
   handleModal: PropTypes.func.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
-  setIsModalOpen: PropTypes.func.isRequired
+  setIsModalOpen: PropTypes.func.isRequired,
 }
 
 export default Home
