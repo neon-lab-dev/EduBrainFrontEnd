@@ -2,8 +2,10 @@ import type { LazyExoticComponent, ComponentType } from 'react'
 import { lazy } from 'react'
 import type { RouteProps } from 'react-router-dom'
 
+
 type IRoute = RouteProps & {
   component: LazyExoticComponent<ComponentType<any>>
+
 }
 
 const ROUTES: IRoute[] = [
@@ -11,12 +13,9 @@ const ROUTES: IRoute[] = [
     path: '/',
     component: lazy(async () => await import('../pages/Home')),
   },
-
   {
-    path: '/dashboard/myCourse',
-    component: lazy(
-      async () => await import('../pages/Dashboard/DashboardPages/MyCourse')
-    ),
+    path: '/course',
+    component: lazy(async () => await import('../pages/CoursePage/Ui')),
   },
   {
     path: '/dashboard/myAssignment',
@@ -36,6 +35,14 @@ const ROUTES: IRoute[] = [
   {
     path: '/video',
     component: lazy(async () => await import('../pages/VideoSection')),
+
+  },
+  {
+    path: '/dashboard/certification',
+    component: lazy(
+      async () => await import('../pages/Dashboard/DashboardCertification')
+    ),
+
   },
 ]
 
