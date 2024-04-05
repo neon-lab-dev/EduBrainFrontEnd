@@ -6,7 +6,7 @@ import arrowLeftAlt from '../../assets/icons/arrow_left_alt.svg'
 const PriceDetailsCard = (): JSX.Element => {
   const { cartItems } = useSelector((state: RootState) => state.cartItems)
   return (
-    <div className="w-[436px] border rounded-2xl bg-[#0A0A0A] border-[#2F2F31] p-8 flex flex-col gap-6 h-fit">
+    <div className="w-full xl:w-[436px] border rounded-2xl bg-[#0A0A0A] border-[#2F2F31] p-8 flex flex-col gap-6 h-fit">
       <div className="flex justify-between text-neutral-10 font-Montserrat">
         <span className="body-text-md !font-bold">Total</span>
         <div className="flex flex-col gap-1 items-end">
