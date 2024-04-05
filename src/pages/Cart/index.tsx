@@ -13,7 +13,7 @@ const CartPage = (): JSX.Element => {
 
   return (
     <LayoutWithHeader>
-      <div className="padding-x m-auto flex flex-col gap-12">
+      <div className="padding-x m-auto flex flex-col gap-12 pb-12">
         <div className="mt-12 flex flex-col gap-6 ">
           <h3 className="h3 text-neutral-10">Course Cart Summary</h3>
           <span className="body-text-md text-neutral-10">

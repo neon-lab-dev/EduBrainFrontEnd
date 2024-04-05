@@ -42,8 +42,9 @@ const CourseSection = (): JSX.Element => {
 
   useEffect(() => {
     setIsCurrentCourseAddedToCart(
-      cartItems.find((item) => item.id === OUR_COURSES[activeCourse]._id) !==
-        undefined
+      Boolean(
+        cartItems.find((item) => item.id === OUR_COURSES[activeCourse]._id)
+      )
     )
   }, [cartItems, activeCourse])
 
@@ -131,7 +132,7 @@ const CourseSection = (): JSX.Element => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 xl:max-w-[414px] mt-3">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 xl:max-w-[414px] mt-3 z-40">
           <Link
             to={`/courses/${OUR_COURSES[activeCourse].title}`}
             className="w-full"
