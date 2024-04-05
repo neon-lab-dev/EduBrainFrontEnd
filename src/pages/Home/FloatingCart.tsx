@@ -8,7 +8,7 @@ const FloatingCart = (): JSX.Element | null => {
   const { cartItems } = useSelector((state: RootState) => state.cartItems)
   return (
     <div
-      className={`flex gap-14 fixed bottom-4 right-4 z-40 bg-[#191919] px-8 py-4 rounded-2xl transition-transform
+      className={`flex gap-14 fixed bottom-4 right-4 z-50 bg-[#191919] px-8 py-4 rounded-2xl transition-transform
     ${cartItems.length === 0 ? 'scale-0' : 'scale-100'}
     `}
     >
