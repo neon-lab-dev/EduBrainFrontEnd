@@ -3,7 +3,7 @@ import ClockImg from '../../assets/icons/clock.svg'
 import rightArrow from '../../assets/icons/right-arrow.svg'
 import leftArrow from '../../assets/icons/left-arrow.svg'
 import play from '../../assets/icons/play.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import OUR_COURSES from '../../assets/data/ourCourses'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -11,9 +11,15 @@ import ImageCarousel from './ImageCarousel'
 import type { JSX } from 'react'
 import SecondaryButton from '../../components/buttons/SecondaryButton'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
-import Button from '../../components/buttons/Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCard } from '../../store/slices/cartSlice'
+import { type RootState } from '../../store'
 
 const CourseSection = (): JSX.Element => {
+  const dispatch = useDispatch()
+  const { cartItems } = useSelector((state: RootState) => state.cartItems)
+  const [isCurrentCourseAddedToCart, setIsCurrentCourseAddedToCart] =
+    useState(false)
   const [activeCourse, setActiveCourse] = useState(0)
   const [isReadMoreActive, setIsReadMoreActive] = useState(false)
   const handleCourseChange = (direction: 'next' | 'prev'): void => {
@@ -33,6 +39,13 @@ const CourseSection = (): JSX.Element => {
       })
     }
   }
+
+  useEffect(() => {
+    setIsCurrentCourseAddedToCart(
+      cartItems.find((item) => item.id === OUR_COURSES[activeCourse]._id) !==
+        undefined
+    )
+  }, [cartItems, activeCourse])
 
   return (
     <div className="flex flex-col-reverse xl:flex-row xl:justify-center xl:gap-28 xl:items-center w-full gap-8 mt-8">
@@ -119,15 +132,33 @@ const CourseSection = (): JSX.Element => {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:gap-5 xl:max-w-[414px] mt-3">
-          <Link to="#" className="w-full">
-            <SecondaryButton className="w-full">View Details</SecondaryButton>
+          <Link
+            to={`/courses/${OUR_COURSES[activeCourse].title}`}
+            className="w-full"
+          >
+            <SecondaryButton className="w-full">
+              Let&apos;s Explore It
+            </SecondaryButton>
           </Link>
-          <Link to="#" className="w-full">
-            <PrimaryButton className="w-full">Enroll Now</PrimaryButton>
-          </Link>
-          <Link to="#" className="w-full col-span-2">
-            <Button className="w-full bg-coral">Get more discount!</Button>
-          </Link>
+          <PrimaryButton
+            onClick={() => {
+              dispatch(
+                addToCard({
+                  id: OUR_COURSES[activeCourse]._id,
+                  title: OUR_COURSES[activeCourse].title,
+                  price: OUR_COURSES[activeCourse].discountedPrice,
+                })
+              )
+              // scroll to other course
+              handleCourseChange('next')
+            }}
+            className={`w-full h-full ${
+              isCurrentCourseAddedToCart ? 'pointer-events-none opacity-70' : ''
+            }`}
+          >
+            {isCurrentCourseAddedToCart ? 'Added to cart' : 'Add to cart'}
+          </PrimaryButton>
+          <span className="text-neutral-10">Get more discount! </span>
         </div>
       </div>
       <div className="flex flex-grow max-w-5xl flex-col items-end gap-4">

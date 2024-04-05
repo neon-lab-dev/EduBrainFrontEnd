@@ -23,9 +23,12 @@ const CTABanner = (): JSX.Element => {
       <p className="max-w-[60%] text-xs sm:text-sm xl:text-2xl xl:leading-[31.2px] text-neutral-80 xl:max-w-[624px]">
         Revolutionize Your Learning Journey with AI-Enhanced Courses!
       </p>
-      <button className="text-neutral-10 bg-background  text-sm px-5 py-2 sm:py-3 lg:py-4  rounded-lg w-[130px] xs:w-[180px] sm:w-[200px] md:w-[300px] mt-4 md:mt-5">
+      <a
+        href="#courses"
+        className="text-neutral-10 bg-background text-sm px-5 py-2 sm:py-3 lg:py-4 rounded-lg w-[130px] xs:w-[180px] sm:w-[200px] md:w-[300px] mt-4 md:mt-5 flex items-center justify-center"
+      >
         Explore Now!
-      </button>
+      </a>
       <img
         src={ctaImg}
         className="absolute right-0 bottom-0 h-[154px] w-[134px] xs:w-auto xs:h-[110%] sm:h-[120%] sm:right-[30px] xl:right-[45px]"
