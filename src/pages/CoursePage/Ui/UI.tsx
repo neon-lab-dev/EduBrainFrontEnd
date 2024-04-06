@@ -6,46 +6,41 @@ import Curriculum from './Curriculum'
 import SliderCard from './Slider'
 import Certification from './Certification'
 import Sectionlearn from './Sectionlearn'
-import UiHome from '../../../assets/data/data/Hero'
-import UiCardData from '../../../assets/data/data/Card'
 import Payment from './Subscrition'
 import FAQSection from '../../Home/FAQSection'
 import SecondaryButton from '../../../components/buttons/SecondaryButton'
 import PrimaryButton from '../../../components/buttons/PrimaryButton'
 import React from 'react'
+import UiData from '../../../assets/data/CourseData/UiData'
+import InfoCard from '../../../pages/CoursePage/Ui/InfoCard'
+
 
 interface UiProps {}
 
 const UI: React.FC<UiProps> = () => {
-  // Check if UiHome is not empty
-  if (UiHome.length === 0) {
-    return null // Return null or handle the empty case
-  }
-
-  const firstItem = UiHome[0] // Accessing the first item in UiHome
-  const { title, subtitle, subtitle1, poster } = firstItem.Ui // Destructure Ui object
 
   return (
     <div className="overflow-hidden">
       <Hero
-        title={title}
-        subtitle={subtitle}
-        subtitle1={subtitle1}
+        title={UiData.title}
+        subtitle={UiData.subtitle}
+        subtitle1={UiData.subtitle1}
         videoSrc=""
-        poster={poster}
+        poster={UiData.poster}
       />
       <Card
-        title1="Benefits"
-        subtitle="Why you should become "
-        subtitle1="UI/UX Designer ?"
-        benefits={UiCardData.benefits}
+        title1={UiData.Cardtitle}
+        subtitle={UiData.subtitle}
+        subtitle1={UiData.subtitle1}
+        benefits={UiData.benefits}
       />
-      <Card
-        title1="Introduction"
-        subtitle="What Our UI/UX Design  ?"
-        subtitle1="Courses Encompasses"
-        benefits={UiCardData.benefits}
-      />
+      <InfoCard
+       title1={UiData.infoCardtitle}
+       subtitle={UiData.infoCardsubtitle}
+       subtitle1={UiData.infoCardsubtitle1}
+       benefits={UiData.infobenefits}
+       />
+
       <Curriculum />
       <SliderCard />
       <Certification />
@@ -88,7 +83,7 @@ const UI: React.FC<UiProps> = () => {
             Master in UI/UX design ?
           </span>
           <div className="flex gap-3 py-6 justify-center">
-            <SecondaryButton>See the curriculum</SecondaryButton>
+            <SecondaryButton >See the curriculum</SecondaryButton>
             <PrimaryButton>Enroll Now</PrimaryButton>
           </div>
         </div>

@@ -12,10 +12,6 @@ const ROUTES: IRoute[] = [
     component: lazy(async () => await import('../pages/Home')),
   },
   {
-    path: '/course',
-    component: lazy(async () => await import('../pages/CoursePage/Ui')),
-  },
-  {
     path: '/dashboard/myAssignment',
     component: lazy(
       async () => await import('../pages/Dashboard/DashboardPages/Assignments')
@@ -39,6 +35,10 @@ const ROUTES: IRoute[] = [
   {
     path: '/video',
     component: lazy(async () => await import('../pages/VideoSection')),
+  },
+  {
+    path: 'course/:page',
+    component: lazy(async () => await import('../pages/CoursePage/Ui')),
   },
   {
     path: '/dashboard/certification',
