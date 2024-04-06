@@ -46,6 +46,10 @@ const ROUTES: IRoute[] = [
       async () => await import('../pages/Dashboard/DashboardCertification')
     ),
   },
+  {
+    path: '/cart',
+    component: lazy(async () => await import('../pages/Cart')),
+  },
 ]
 
 export default ROUTES

@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../components/navbar'
 import Home from './Home'
 import { useState, type JSX } from 'react'
+import FloatingCart from './FloatingCart'
 
 const HomePage = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
@@ -19,6 +20,7 @@ const HomePage = (): JSX.Element => {
           setIsModalOpen={setIsModalOpen}
         />
       </main>
+      <FloatingCart />
     </div>
   )
 }

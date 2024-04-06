@@ -11,10 +11,10 @@ const PROCESS = [
     card: {
       title: 'Find Your Interested Field',
       desc: 'Start your journey by finding your interested field. Explore courses tailored to your passion and career goals',
-      button: {
-        label: 'Play Game',
-        action: () => {},
-      },
+      // button: {
+      //   label: 'Play Game',
+      //   action: () => {},
+      // },
     },
   },
   {
@@ -22,10 +22,10 @@ const PROCESS = [
     card: {
       title: 'Explore Courses',
       desc: 'Discover our cutting-edge courses in Data Science, PowerBI, MERN Stack, Python, and UI/UX Design.',
-      button: {
-        label: 'Explore Now',
-        action: () => {},
-      },
+      // button: {
+      //   label: 'Explore Now',
+      //   action: () => {},
+      // },
     },
   },
   {
