@@ -435,6 +435,21 @@ const AuthenticationModal = ({
                     </span>
                   </p>
 
+                  {/* For testing, it will be removed */}
+                  {/* -------------------------------------------------------------------------- */}
+                  <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
+                    
+                    <span
+                      onClick={() => {
+                        setActiveTab('otp')
+                      }}
+                      className="text-white font-medium cursor-pointer"
+                    >
+                      Enter OTP
+                    </span>
+                  </p>
+                  {/* --------------------------------------------------------------------- */}
+
                   <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
                     Back to{' '}
                     <span
@@ -651,6 +666,94 @@ const AuthenticationModal = ({
                     >
                       Continue
                     </PrimaryButton>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            
+{activeTab === 'otp' && (
+              <div className="w-4/5 max-w-[600px] mx-auto py-4">
+                {/* Icon */}
+                <div className="flex flex-col justify-center items-center gap-4">
+                  <div className="w-24 h-24 rounded-full bg-primary-55 flex justify-center items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 102 102" fill="none">
+  <path d="M34.3789 85.7422H47.1966" stroke="white" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round"/>
+  <path d="M65.8275 60.4211V84.8951C65.8275 87.7161 63.5464 89.9991 60.7235 89.9991H27.8345C25.0135 89.9991 22.7305 87.7181 22.7305 84.8951V17.105C22.7305 14.292 25.0115 12.001 27.8345 12.001H60.7255C63.5464 12.001 65.8295 14.29 65.8295 17.105V41.1128" stroke="white" strokeWidth="4" strokeMiterlimit="10" strokeLinecap="round"/>
+  <path d="M39.2266 17.7822H48.3428" stroke="white" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round"/>
+  <path d="M61.9761 61.5491L53.7045 67.9261L55.0353 60.4215H32.5834C31.2287 60.4215 30.125 59.3179 30.125 57.9632V43.5736C30.125 42.2189 31.2287 41.1152 32.5834 41.1152H82.8164C84.179 41.1152 85.2747 42.2189 85.2747 43.5736V57.9632C85.2747 59.3179 84.179 60.4215 82.8164 60.4215H63.4443L61.9781 61.5511L61.9761 61.5491Z" stroke="white" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round"/>
+  <path d="M52.9089 50.787L52.624 49.765L50.8111 50.4124L50.9645 48.6533H49.9226L49.9983 50.3945L48.303 49.765L47.9922 50.7889L49.7513 51.1754L48.5181 52.6417L49.3588 53.2632L50.4585 51.6715L51.5383 53.2632L52.375 52.6437L51.1 51.1754L52.9089 50.787Z" fill="white"/>
+  <path d="M59.5925 50.787L59.3076 49.765L57.4947 50.4124L57.6481 48.6533H56.6062L56.6819 50.3945L54.9866 49.765L54.6758 50.7889L56.4349 51.1754L55.2017 52.6417L56.0424 53.2632L57.1421 51.6715L58.2219 53.2632L59.0586 52.6437L57.7836 51.1754L59.5925 50.787Z" fill="white"/>
+  <path d="M66.2761 50.787L65.9912 49.765L64.1783 50.4124L64.3317 48.6533H63.2898L63.3655 50.3945L61.6702 49.765L61.3594 50.7889L63.1185 51.1754L61.8853 52.6417L62.726 53.2632L63.8257 51.6715L64.9055 53.2632L65.7422 52.6437L64.4692 51.1754L66.2761 50.787Z" fill="white"/>
+  <path d="M72.9597 50.787L72.6748 49.765L70.8619 50.4124L71.0153 48.6533H69.9734L70.0491 50.3945L68.3537 49.765L68.043 50.7889L69.8041 51.1754L68.5689 52.6417L69.4096 53.2632L70.5093 51.6715L71.5891 53.2632L72.4278 52.6437L71.1528 51.1754L72.9597 50.787Z" fill="white"/>
+  <path d="M79.6472 50.787L79.3623 49.765L77.5494 50.4124L77.7028 48.6533H76.6609L76.7366 50.3945L75.0412 49.765L74.7305 50.7889L76.4916 51.1754L75.2564 52.6417L76.0971 53.2632L77.1968 51.6715L78.2766 53.2632L79.1153 52.6437L77.8403 51.1754L79.6472 50.787Z" fill="white"/>
+  <path d="M37.4958 49.5275V46.7663C37.4958 45.8937 38.203 45.1885 39.0736 45.1885H41.8368C42.7073 45.1885 43.4146 45.8937 43.4146 46.7663V49.5275M43.4166 49.5275H44.5999C44.8191 49.5275 44.9964 49.7048 44.9964 49.9239V55.0538C44.9964 55.2729 44.8191 55.4502 44.5999 55.4502H36.3124C36.0953 55.4502 35.918 55.2729 35.918 55.0538V49.9239C35.918 49.7048 36.0953 49.5275 36.3124 49.5275H43.4186H43.4166Z" stroke="white" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round"/>
+</svg>
+                  </div>
+
+                  <h1 className="text-white text-3xl font-semibold">
+                  Verification
+                  </h1>
+
+                  <p className=" text-neutral-40 text-[16px] font-normal font-Roboto text-center">
+                  Enter the OTP sent to - <span className='text-white'>edubrain@gmail.com</span>
+                  </p>
+                </div>
+
+                {/* Input fields */}
+                <div className="mt-[42px] w-full md:w-[475px] mx-auto">
+
+                    <div className='flex items-center justify-center gap-2 xs:gap-4 sm:gap-7 md:gap-9'>
+                    <input
+                      className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
+                      // type="number"
+                      inputMode="numeric"
+                    />
+
+                    <input
+                      className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
+                      // type="number"
+                      inputMode="numeric"
+                    />
+
+                    <input
+                      className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
+                      // type="number"
+                      inputMode="numeric"
+                    />
+
+                    <input
+                      className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
+                      // type="number"
+                      inputMode="numeric"
+                    />
+                    </div>
+
+                    <p className=" text-white text-[16px] font-normal font-Roboto text-center mt-[32px]">
+                    00:13 Sec
+                  </p>
+
+                  <div className="flex flex-col gap-8 mt-[46px]">
+                    <PrimaryButton
+                      onClick={() => {
+                        setActiveTab('createNewPassword')
+                      }}
+                      className="w-full"
+                    >
+                      Verify
+                    </PrimaryButton>
+
+                    <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
+                    If you don’t receive code yet!{' '}
+                      <span
+                        onClick={() => {
+                          setActiveTab('login')
+                        }}
+                        className="text-white font-medium cursor-pointer"
+                      >
+                        Resend
+                      </span>
+                    </p>
                   </div>
                 </div>
               </div>

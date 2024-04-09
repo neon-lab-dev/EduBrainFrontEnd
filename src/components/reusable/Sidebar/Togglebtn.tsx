@@ -1,3 +1,4 @@
+import React from "react"
 const Togglebtn = (): JSX.Element => {
   return (
     <div className="">
@@ -5,8 +6,7 @@ const Togglebtn = (): JSX.Element => {
         {/* <button className="text-white">Light</button>
     <button className="text-white">Dark</button> */}
         <button
-          data-tip="Make light mode"
-          className="text-primary-55 rounded-lg bg-primary-95 dark:bg-[transparent] px-9 py-1 tooltip dark:text-neutral-40 dark:px-9 dark:py-2 focus:outline-none font-roboto font-normal tooltip"
+          className="text-primary-55 rounded-lg bg-primary-95 dark:bg-[transparent] px-9 py-1 tooltip dark:text-neutral-40 dark:px-9 dark:py-2 focus:outline-none font-roboto font-normal"
           onClick={() => {
             document.body.classList.remove('dark')
           }}
@@ -14,8 +14,7 @@ const Togglebtn = (): JSX.Element => {
           Light
         </button>
         <button
-          data-tip="Make dark mode"
-          className="dark:text-primary-55 dark:rounded-lg dark:bg-primary-95 dark:px-9 dark:py-1 dark:tooltip text-neutral-40 px-9 py-2 focus:outline-none font-roboto font-normal tooltip"
+          className="dark:text-primary-55 dark:rounded-lg dark:bg-primary-95 dark:px-9 dark:py-1 dark:tooltip text-neutral-40 px-9 py-2 focus:outline-none font-roboto font-normal"
           onClick={() => {
             document.body.classList.add('dark')
           }}
