@@ -4,7 +4,7 @@
 
 /* default styles */
 * {
-  @apply font-Roboto tracking-[0px];
+  @apply font-Roboto tracking-[0px] scroll-smooth;
 }
 
 *::-webkit-scrollbar {

@@ -72,7 +72,7 @@ const Sidebar = (): JSX.Element => {
         </NavLink>
 
         <NavLink
-          to={'/'}
+          to={'/dashboard/certification'}
           className={({ isActive, isPending }) =>
             isPending
               ? 'pending'
