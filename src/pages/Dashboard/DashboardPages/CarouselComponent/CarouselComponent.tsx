@@ -55,10 +55,10 @@ const CarouselComponent = ({
       <div className="mt-16">
         {/* Heading and horizontal line */}
         <div className="">
-          <h1 className="text-[24px] text-neutral-10 font-semibold mb-4">
+          <h1 className="text-[24px] dark:text-neutral-10 text-neutral-75 font-Montserrat font-semibold mb-4">
             {courseHeading}
           </h1>
-          <div className="bg-neutral-55 w-full h-1"></div>
+          <div className="dark:bg-neutral-55 bg-neutral-75 opacity-10 w-full h-[1px]"></div>
         </div>
 
         <div className="mt-6 ">
@@ -85,8 +85,8 @@ const CarouselComponent = ({
                     }}
                     className={
                       activeTab === tab.link
-                        ? 'rounded-lg h-9 py-2 px-5 border border-neutral-40 flex justify-center items-center text-neutral-10 flex-shrink-0'
-                        : 'h-9 py-2 px-5 rounded-lg border border-neutral-65 flex justify-center items-center text-neutral-10 flex-shrink-0'
+                        ? 'rounded-lg h-9 py-2 px-5 border border-neutral-40 flex justify-center items-center dark:text-neutral-10 text-neutral-75 flex-shrink-0'
+                        : 'h-9 py-2 px-5 rounded-lg border border-neutral-65 flex justify-center items-center dark:text-neutral-10 text-neutral-75 flex-shrink-0'
                     }
                   >
                     {tab.tabName}

@@ -82,7 +82,7 @@ const DashboardHeader = (props: Props): JSX.Element => {
             <h3 className="h3 dark:text-neutral-10">UI/UX Design</h3>
           </div>
         ) : (
-          <h1 className="text-[32px] text-neutral-10 font-semibold font-roboto hidden md:flex">
+          <h1 className="text-[32px] dark:text-neutral-10 text-neutral-75 font-semibold font-roboto hidden md:flex">
             Hello, Rahul
           </h1>
         )}
@@ -99,10 +99,10 @@ const DashboardHeader = (props: Props): JSX.Element => {
             <div className="relative w-[320px] hidden md:block">
               <input
                 type="text"
-                className="text-white bg-neutral-100 border border-neutral-55 rounded-xl px-4 py-3 w-[320px] outline-none focus:border-primary-60 hover:border-blue-800 transition duration-300"
+                className="text-white bg-neutral-10 dark:bg-neutral-100 border border-neutral-55 rounded-xl px-4 py-3 w-[320px] outline-none focus:border-primary-60 hover:border-blue-800 transition duration-300"
                 placeholder="Search"
               />
-              <CiSearch className="text-neutral-10 w-6 h-6 absolute right-2 bottom-3 cursor-pointer" />
+              <CiSearch className="dark:text-neutral-10 text-neutral-100 w-6 h-6 absolute right-2 bottom-3 cursor-pointer" />
             </div>
           )}
 
@@ -110,7 +110,7 @@ const DashboardHeader = (props: Props): JSX.Element => {
             {/* Notification */}
             <IoNotificationsOutline
               onClick={toggleNotification}
-              className="text-neutral-10 w-8 h-8 cursor-pointer"
+              className="dark:text-neutral-10 text-neutral-100 w-8 h-8 cursor-pointer"
             />
 
             {isNotificationOpen && (

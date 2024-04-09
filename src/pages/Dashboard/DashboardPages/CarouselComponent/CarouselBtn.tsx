@@ -12,10 +12,10 @@ const CarouselBtn = ({
   btnpressnext,
 }: CarouselBtnProps): JSX.Element => {
   return (
-    <div className="flex items-center gap-6 text-neutral-10 text-[24px]">
+    <div className="flex items-center gap-6 dark:text-neutral-10 text-neutral-75 text-[24px]">
       <svg
         onClick={btnpressprev}
-        className="cursor-pointer hover:bg-primary-60 rounded transition duration-300"
+        className="cursor-pointer hover:bg-primary-60 dark:text-neutral-10 text-neutral-75 rounded transition duration-300"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -34,7 +34,7 @@ const CarouselBtn = ({
 
       <svg
         onClick={btnpressnext}
-        className="cursor-pointer hover:bg-primary-60 rounded transition duration-300"
+        className="cursor-pointer hover:bg-primary-60 dark:text-neutral-10 text-neutral-75 rounded transition duration-300"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"

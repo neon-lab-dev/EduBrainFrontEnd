@@ -11,7 +11,7 @@ import Togglebtn from './Togglebtn'
 
 const Sidebar = (): JSX.Element => {
   return (
-    <div className="bg-background w-[290px] p-5 h-screen sticky top-0 hidden lg:block">
+    <div className=" dark:bg-background bg-neutral-5 w-[290px] p-5 h-screen sticky top-0 hidden lg:block">
       {/* Logo */}
       <div className="flex justify-center">
         <img className="w-16 mb-16" src={logo} alt="" />
@@ -25,8 +25,8 @@ const Sidebar = (): JSX.Element => {
             isPending
               ? 'pending'
               : isActive
-                ? 'text-primary-55 h-[45px] rounded-xl bg-primary-95 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
-                : ' text-neutral-40 h-[45px] rounded-xl bg-neutral-100 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                ? 'text-primary-55 h-[45px] rounded-xl dark:bg-primary-95 bg-primary-35/15 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                : ' dark:text-neutral-40 text-neutral-60 h-[45px] rounded-xl p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
           }
         >
           <MdOutlineSpaceDashboard /> My Course
@@ -38,8 +38,8 @@ const Sidebar = (): JSX.Element => {
             isPending
               ? 'pending'
               : isActive
-                ? 'text-primary-55 h-[45px] rounded-xl bg-primary-95 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
-                : ' text-neutral-40 h-[45px] rounded-xl bg-neutral-100 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                ? 'text-primary-55 h-[45px] rounded-xl dark:bg-primary-95 bg-primary-35/15 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                : ' dark:text-neutral-40 text-neutral-60 h-[45px] rounded-xl p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
           }
         >
           <PiNoteBlankLight /> My Assignment
@@ -51,8 +51,8 @@ const Sidebar = (): JSX.Element => {
             isPending
               ? 'pending'
               : isActive
-                ? 'text-primary-55 h-[45px] rounded-xl bg-primary-95 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
-                : ' text-neutral-40 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                ? 'text-primary-55 h-[45px] rounded-xl dark:bg-primary-95 bg-primary-35/15 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                : ' dark:text-neutral-40 text-neutral-60 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
           }
         >
           <IoLogoGameControllerB /> Games
@@ -64,8 +64,8 @@ const Sidebar = (): JSX.Element => {
             isPending
               ? 'pending'
               : isActive
-                ? 'text-primary-55 h-[45px] rounded-xl bg-primary-95 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
-                : ' text-neutral-40 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                ? 'text-primary-55 h-[45px] rounded-xl dark:bg-primary-95 bg-primary-35/15 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                : ' dark:text-neutral-40 text-neutral-60 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
           }
         >
           <IoCheckmarkDoneCircle /> Refer & Earn
@@ -77,8 +77,8 @@ const Sidebar = (): JSX.Element => {
             isPending
               ? 'pending'
               : isActive
-                ? 'text-primary-55 h-[45px] rounded-xl bg-primary-95 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
-                : ' text-neutral-40 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                ? 'text-primary-55 h-[45px] rounded-xl dark:bg-primary-95 bg-primary-35/15 p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
+                : ' dark:text-neutral-40 text-neutral-60 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal'
           }
         >
           <GrCertificate /> Certificate
@@ -89,7 +89,7 @@ const Sidebar = (): JSX.Element => {
         {/* Light & Dark mode button */}
         <Togglebtn></Togglebtn>
 
-        <button className="text-neutral-40 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal transform transition-transform duration-300 hover:-translate-y-0.5">
+        <button className="dark:text-neutral-40 text-neutral-60 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal transform transition-transform duration-300 hover:-translate-y-0.5">
           <TbLogout2 /> Logout
         </button>
       </div>

@@ -33,6 +33,7 @@ export default {
         10: '#D3E1FF',
         20: '#B6CEFE',
         30: '#91B5FE', //primary for dark mode
+        35: '#6E40FF',
         40: '#6D9CFE',
         50: '#4884FD',
         55: '#246BFD',
@@ -44,6 +45,7 @@ export default {
         100: '#071533',
       },
       neutral: {
+        5: '#F1EDFF',
         10: '#F5F8FF', //For Dark theme/Heading
         15: '#E9ECF2',
         20: '#DCDFE5',
