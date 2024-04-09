@@ -13,7 +13,7 @@ const Sidebar = (): JSX.Element => {
   return (
     <div className=" dark:bg-background bg-neutral-5 w-[290px] p-5 h-screen sticky top-0 hidden lg:block">
       {/* Logo */}
-      <Link to={"/"} className="flex justify-center">
+      <Link to={'/'} className="flex justify-center">
         <img className="w-16 mb-16" src={logo} alt="" />
       </Link>
 
