@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { MdOutlineSpaceDashboard } from 'react-icons/md'
 import { PiNoteBlankLight } from 'react-icons/pi'
 import { IoLogoGameControllerB } from 'react-icons/io'
@@ -13,9 +13,9 @@ const Sidebar = (): JSX.Element => {
   return (
     <div className=" dark:bg-background bg-neutral-5 w-[290px] p-5 h-screen sticky top-0 hidden lg:block">
       {/* Logo */}
-      <div className="flex justify-center">
+      <Link to={"/"} className="flex justify-center">
         <img className="w-16 mb-16" src={logo} alt="" />
-      </div>
+      </Link>
 
       {/* Navlinks */}
       <div className="flex flex-col gap-4">
