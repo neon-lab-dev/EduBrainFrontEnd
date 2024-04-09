@@ -78,7 +78,7 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
             ) : (
               <div>
                 <div className="flex items-center gap-2 mb-4">
-                  <img className='w-5' src={calender} alt="" />
+                  <img className="w-5" src={calender} alt="" />
                   <p className="text-[12px] dark:text-neutral-10 text-neutral-75/60 font-normal font-Roboto">
                     {details?.enrollDate}
                   </p>
