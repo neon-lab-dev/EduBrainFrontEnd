@@ -1,6 +1,5 @@
 import heroImage from '../../assets/images/Hero Image.svg'
 import heroImageOverlay from '../../assets/images/Ellipse 1.svg'
-import { Link } from 'react-router-dom'
 import type { JSX } from 'react'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 import vector2 from '../../assets/icons/Vector 2.svg'
@@ -41,12 +40,12 @@ const HeroSection = (): JSX.Element => {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatu
           </p>
-          <Link
-            to="/course"
+          <a
+            href="#courses"
             className="w-full sm:max-w-[323px] xl:w-[193px] xl:max-w-none"
           >
             <PrimaryButton className="w-full">Explore Courses</PrimaryButton>
-          </Link>
+          </a>
         </div>
         <div className="w-fit relative overflow-hidden xl:mt-[116px] flex items-center justify-center">
           <img

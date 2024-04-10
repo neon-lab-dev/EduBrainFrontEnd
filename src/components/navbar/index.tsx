@@ -8,6 +8,7 @@ import { useRef } from 'react'
 import type { JSX } from 'react'
 import SecondaryButton from '../buttons/SecondaryButton'
 import PrimaryButton from '../buttons/PrimaryButton'
+import shoppingCart from '../../assets/icons/shopping_cart.svg'
 
 const Navbar = ({ onClick }: { onClick?: () => void }): JSX.Element => {
   const asideBarRef = useRef<HTMLElement>(null)
@@ -28,13 +29,13 @@ const Navbar = ({ onClick }: { onClick?: () => void }): JSX.Element => {
             ))}
           </ul>
           {/* cta buttons */}
-          <div className="gap-4 hidden xl:flex">
-            <button onClick={onClick}>
-              <SecondaryButton>Login</SecondaryButton>
-            </button>
-            <Link to="#" className="w-[193px]">
-              <PrimaryButton className="w-full">Enroll Now</PrimaryButton>
+          <div className="gap-6 hidden xl:flex items-center">
+            <Link to="/cart">
+              <img src={shoppingCart} alt="Shopping Cart" className="h-6 w-6" />
             </Link>
+            <PrimaryButton onClick={onClick} className="w-[193px]">
+              Login / Sign Up
+            </PrimaryButton>
           </div>
           <button
             onClick={() => {

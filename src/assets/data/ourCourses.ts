@@ -15,6 +15,7 @@ const OUR_COURSES = [
     lecturesCount: 67,
     duration: '31h 46m',
     image: UiUxCourse,
+    _id: '1',
   },
   {
     title: 'Data Science',
@@ -26,6 +27,7 @@ const OUR_COURSES = [
     lecturesCount: 67,
     duration: '31h 46m',
     image: dataScienceCourse,
+    _id: '2',
   },
   {
     title: 'Python',
@@ -37,6 +39,7 @@ const OUR_COURSES = [
     lecturesCount: 67,
     duration: '31h 46m',
     image: pythonCourse,
+    _id: '3',
   },
   {
     title: 'Power Bi',
@@ -48,6 +51,7 @@ const OUR_COURSES = [
     lecturesCount: 67,
     duration: '31h 46m',
     image: powerBiCourse,
+    _id: '4',
   },
   {
     title: 'MERN Stack',
@@ -59,6 +63,7 @@ const OUR_COURSES = [
     lecturesCount: 67,
     duration: '31h 46m',
     image: mernStackCourse,
+    _id: '5',
   },
 ]
 export default OUR_COURSES
