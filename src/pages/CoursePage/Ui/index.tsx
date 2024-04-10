@@ -13,9 +13,9 @@ const HomePage = (): JSX.Element => {
       <main className="mt-[64px] xl:mt-[80px]">
         {/* Use braces to wrap the comments */}
         {page === 'ui/ux' && <UI data={Course['UI/UX']} />}
-        {/* Use braces to wrap the comments */}
-        {page === 'powerbi' && <UI data={Course.PowerBi} />}
-        {/* Use braces to wrap the comments */}
+         {/* Use braces to wrap the comments */}
+         {page === 'powerbi' && <UI data={Course.powerbi}/>}
+                  {/* Use braces to wrap the comments */}
         {page === 'mernstack' && <UI data={Course.Mern} />}
         {/* Use braces to wrap the comments */}
         {page === 'python' && <UI data={Course.Python} />}

@@ -245,7 +245,7 @@ const Course = {
       },
     ],
   },
-  PowerBi: {
+  powerbi:{
     title: 'Visualize Insights, Drive Decisions',
     subtitle: 'Enroll in Our Power BI Courses',
     subtitle1: 'with Us',
