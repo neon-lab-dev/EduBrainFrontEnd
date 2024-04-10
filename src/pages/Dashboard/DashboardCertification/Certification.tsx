@@ -101,7 +101,9 @@ const Step: React.FC<StepProps> = ({ index, number, title, description }) => {
       />
       <div className="p-2 font-Roboto flex flex-col gap-4">
         <span className="text-[24px] text-black dark:text-white">{title}</span>
-        <p className="text-[16px] text-black dark:text-[#FFFFFF8A]">{description}</p>
+        <p className="text-[16px] text-black dark:text-[#FFFFFF8A]">
+          {description}
+        </p>
       </div>
     </div>
   )

@@ -1,45 +1,60 @@
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+import Card from './Card';
+import Hero from './Hero';
+import Curriculum from './Curriculum';
+import SliderCard from './Slider';
+import Certification from './Certification';
+import Sectionlearn from './Sectionlearn';
+import Payment from './Subscrition';
+import FAQSection from '../../Home/FAQSection';
+import SecondaryButton from '../../../components/buttons/SecondaryButton';
+import PrimaryButton from '../../../components/buttons/PrimaryButton';
+import React from 'react';
+import InfoCard from '../../../pages/CoursePage/Ui/InfoCard';
 
-import Card from './Card'
-import Hero from './Hero'
-import Curriculum from './Curriculum'
-import SliderCard from './Slider'
-import Certification from './Certification'
-import Sectionlearn from './Sectionlearn'
-import Payment from './Subscrition'
-import FAQSection from '../../Home/FAQSection'
-import SecondaryButton from '../../../components/buttons/SecondaryButton'
-import PrimaryButton from '../../../components/buttons/PrimaryButton'
-import React from 'react'
-import UiData from '../../../assets/data/CourseData/UiData'
-import InfoCard from '../../../pages/CoursePage/Ui/InfoCard'
-
-
-interface UiProps {}
-
-const UI: React.FC<UiProps> = () => {
-
+// Define the UiProps interface
+interface UiProps {
+  data: {
+    title: string;
+    subtitle: string;
+    subtitle1: string;
+    poster: string;
+    Cardtitle: string;
+    Cardsubtitle: string;
+    Cardsubtitle1: string;
+    infoCardtitle: string;
+    infoCardsubtitle: string;
+    infoCardsubtitle1: string;
+    benefits: Benefit[];
+    infobenefits: Benefit[];
+  };
+}
+interface Benefit {
+  icon: string;
+  title: string;
+  description: string;
+}
+const UI: React.FC<UiProps> = ({ data }) => {
   return (
     <div className="overflow-hidden">
       <Hero
-        title={UiData.title}
-        subtitle={UiData.subtitle}
-        subtitle1={UiData.subtitle1}
+        title={data.title}
+        subtitle={data.subtitle}
+        subtitle1={data.subtitle1}
         videoSrc=""
-        poster={UiData.poster}
+        poster={data.poster}
       />
       <Card
-        title1={UiData.Cardtitle}
-        subtitle={UiData.subtitle}
-        subtitle1={UiData.subtitle1}
-        benefits={UiData.benefits}
+        title1={data.Cardtitle}
+        subtitle={data.subtitle}
+        subtitle1={data.subtitle1}
+        benefits={data.benefits}
       />
       <InfoCard
-       title1={UiData.infoCardtitle}
-       subtitle={UiData.infoCardsubtitle}
-       subtitle1={UiData.infoCardsubtitle1}
-       benefits={UiData.infobenefits}
-       />
+        title1={data.infoCardtitle}
+        subtitle={data.infoCardsubtitle}
+        subtitle1={data.infoCardsubtitle1}
+        benefits={data.infobenefits}
+      />
 
       <Curriculum />
       <SliderCard />
@@ -83,13 +98,13 @@ const UI: React.FC<UiProps> = () => {
             Master in UI/UX design ?
           </span>
           <div className="flex gap-3 py-6 justify-center">
-            <SecondaryButton >See the curriculum</SecondaryButton>
+            <SecondaryButton>See the curriculum</SecondaryButton>
             <PrimaryButton>Enroll Now</PrimaryButton>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UI
+export default UI;
