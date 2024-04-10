@@ -1,37 +1,37 @@
-import Card from './Card';
-import Hero from './Hero';
-import Curriculum from './Curriculum';
-import SliderCard from './Slider';
-import Certification from './Certification';
-import Sectionlearn from './Sectionlearn';
-import Payment from './Subscrition';
-import FAQSection from '../../Home/FAQSection';
-import SecondaryButton from '../../../components/buttons/SecondaryButton';
-import PrimaryButton from '../../../components/buttons/PrimaryButton';
-import React from 'react';
-import InfoCard from '../../../pages/CoursePage/Ui/InfoCard';
+import Card from './Card'
+import Hero from './Hero'
+import Curriculum from './Curriculum'
+import SliderCard from './Slider'
+import Certification from './Certification'
+import Sectionlearn from './Sectionlearn'
+import Payment from './Subscrition'
+import FAQSection from '../../Home/FAQSection'
+import SecondaryButton from '../../../components/buttons/SecondaryButton'
+import PrimaryButton from '../../../components/buttons/PrimaryButton'
+import React from 'react'
+import InfoCard from '../../../pages/CoursePage/Ui/InfoCard'
 
 // Define the UiProps interface
 interface UiProps {
   data: {
-    title: string;
-    subtitle: string;
-    subtitle1: string;
-    poster: string;
-    Cardtitle: string;
-    Cardsubtitle: string;
-    Cardsubtitle1: string;
-    infoCardtitle: string;
-    infoCardsubtitle: string;
-    infoCardsubtitle1: string;
-    benefits: Benefit[];
-    infobenefits: Benefit[];
-  };
+    title: string
+    subtitle: string
+    subtitle1: string
+    poster: string
+    Cardtitle: string
+    Cardsubtitle: string
+    Cardsubtitle1: string
+    infoCardtitle: string
+    infoCardsubtitle: string
+    infoCardsubtitle1: string
+    benefits: Benefit[]
+    infobenefits: Benefit[]
+  }
 }
 interface Benefit {
-  icon: string;
-  title: string;
-  description: string;
+  icon: string
+  title: string
+  description: string
 }
 const UI: React.FC<UiProps> = ({ data }) => {
   return (
@@ -104,7 +104,7 @@ const UI: React.FC<UiProps> = ({ data }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UI;
+export default UI

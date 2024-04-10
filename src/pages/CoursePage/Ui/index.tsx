@@ -1,13 +1,11 @@
-import Navbar from '../../../components/navbar';
-import type { JSX } from 'react';
-import { useParams } from 'react-router-dom'; // Importing useParams
-import UI from './UI';
-import Course from '../../../assets/data/CourseData/CourseData';
-
-
+import Navbar from '../../../components/navbar'
+import type { JSX } from 'react'
+import { useParams } from 'react-router-dom' // Importing useParams
+import UI from './UI'
+import Course from '../../../assets/data/CourseData/CourseData'
 
 const HomePage = (): JSX.Element => {
-  const { page } = useParams(); // Getting the 'page' parameter from the URL
+  const { page } = useParams() // Getting the 'page' parameter from the URL
 
   return (
     <div className="dark bg-background">
@@ -25,7 +23,7 @@ const HomePage = (): JSX.Element => {
         {page === 'DataScience' && <UI data={Course.DataScience} />}
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
