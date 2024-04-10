@@ -12,15 +12,15 @@ const HomePage = (): JSX.Element => {
       <Navbar />
       <main className="mt-[64px] xl:mt-[80px]">
         {/* Use braces to wrap the comments */}
-        {page === 'ui' && <UI data={Course['UI/UX']} />}
+        {page === 'ui/ux' && <UI data={Course['UI/UX']} />}
         {/* Use braces to wrap the comments */}
-        {page === 'Bi' && <UI data={Course.PowerBi} />}
+        {page === 'powerbi' && <UI data={Course.PowerBi} />}
         {/* Use braces to wrap the comments */}
-        {page === 'mern' && <UI data={Course.Mern} />}
+        {page === 'mernstack' && <UI data={Course.Mern} />}
         {/* Use braces to wrap the comments */}
         {page === 'python' && <UI data={Course.Python} />}
         {/* Use braces to wrap the comments */}
-        {page === 'DataScience' && <UI data={Course.DataScience} />}
+        {page === 'datascience' && <UI data={Course.DataScience} />}
       </main>
     </div>
   )
