@@ -1,10 +1,10 @@
-import React from 'react';
-import { twMerge } from 'tailwind-merge';
-import type { ButtonHTMLAttributes } from 'react'; // Importing ButtonHTMLAttributes directly as a type
+import React from 'react'
+import { twMerge } from 'tailwind-merge'
+import type { ButtonHTMLAttributes } from 'react' // Importing ButtonHTMLAttributes directly as a type
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'default' | 'large';
-};
+  variant?: 'default' | 'large'
+}
 
 const SecondaryButton: React.FC<ButtonProps> = ({
   variant = 'default',
@@ -12,11 +12,12 @@ const SecondaryButton: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const scrollToCurriculum = (): void => {
-    const curriculumSection = document.getElementById('curriculumSection');
-    if (curriculumSection !== null) { // Check for null explicitly
-      curriculumSection.scrollIntoView({ behavior: 'smooth' });
+    const curriculumSection = document.getElementById('curriculumSection')
+    if (curriculumSection !== null) {
+      // Check for null explicitly
+      curriculumSection.scrollIntoView({ behavior: 'smooth' })
     }
-  };
+  }
 
   return (
     <button
@@ -32,7 +33,7 @@ const SecondaryButton: React.FC<ButtonProps> = ({
     >
       {props.children}
     </button>
-  );
-};
+  )
+}
 
-export default SecondaryButton;
+export default SecondaryButton
