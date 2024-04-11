@@ -1,7 +1,8 @@
-import React from 'react'
+
 import tick from '../../../assets/icons/tick-circle.svg'
 
 const Certification: React.FC = () => {
+
   // Array of certification points
   const certificationPoints: string[] = [
     'Immerse yourself in a hands-on project mirroring real-world scenarios.',
@@ -10,7 +11,7 @@ const Certification: React.FC = () => {
     'Earn your Edubraining certificate by successfully completing a practical, skill-based project.',
   ]
   return (
-    <div className="p-10 max-sm:p-3 max-lg:p-2">
+    <div   className="p-10 max-sm:p-3 max-lg:p-2">
       <div className="flex justify-center">
         <div className="flex flex-col">
           <div className="flex justify-center">

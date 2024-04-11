@@ -25,5 +25,4 @@ const HomePage = (): JSX.Element => {
     </div>
   )
 }
-
 export default HomePage

@@ -70,9 +70,9 @@ const Curriculum: React.FC = () => {
 
   return (
     <div className="py-16 p-2">
-      <div className="flex  justify-center py-16">
+      <div className="flex  justify-center py-16" id="curriculumSection">
         <div className="flex flex-col gap-4">
-          <div className="flex justify-center">
+          <div  className=" flex justify-center">
             <span className="font font-400 text-[#246BFD] font-Lato text-[24px]">
               Curriculum
             </span>
