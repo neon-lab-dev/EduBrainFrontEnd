@@ -5,6 +5,12 @@ import { RxCross1 } from 'react-icons/rx'
 import { LuUnlock } from 'react-icons/lu'
 import PrimaryButton from '../../buttons/PrimaryButton'
 
+import email from "../../../assets/icons/Authentication modal icons/email.svg"
+import lock from "../../../assets/icons/Authentication modal icons/lock.svg"
+
+// import phone from "../../../assets/icons/Authentication modal icons/phone.svg"
+import user from "../../../assets/icons/Authentication modal icons/user.svg"
+
 const AuthenticationModal = ({
   handleModal,
   isModalOpen,
@@ -34,6 +40,7 @@ const AuthenticationModal = ({
       )
       if (isModalOpen && closestDropdown === null) {
         setIsModalOpen(false)
+        setActiveTab("login")
       }
     }
 
@@ -50,7 +57,7 @@ const AuthenticationModal = ({
         <div className="bg-primary-100 bg-opacity-30 backdrop-blur-sm fixed inset-0 flex justify-center items-center z-50 w-full mx-auto ">
           <div
             id="closeModal"
-            className="bg-primary-100 w-4/5 max-h-screen rounded-3xl relative"
+            className="bg-primary-100 w-4/5 max-h-screen rounded-3xl relative overflow-y-auto"
           >
             {activeTab === 'login' && (
               <div className="w-4/5 max-w-[475px] mx-auto py-4">
@@ -73,18 +80,8 @@ const AuthenticationModal = ({
                       type="text"
                     />
                     <div className="absolute right-0 px-6">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
-                          fill="white"
-                        />
-                      </svg>
+                      
+                      <img src={email} alt="" />
                     </div>
                   </div>
 
@@ -99,28 +96,7 @@ const AuthenticationModal = ({
                       className="absolute right-0 px-6 cursor-pointer"
                     >
                       {showPassword ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="26"
-                          viewBox="0 0 24 26"
-                          fill="none"
-                        >
-                          <path
-                            d="M19 11.9584H5C3.89543 11.9584 3 12.8911 3 14.0417V21.3334C3 22.484 3.89543 23.4167 5 23.4167H19C20.1046 23.4167 21 22.484 21 21.3334V14.0417C21 12.8911 20.1046 11.9584 19 11.9584Z"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M7 11.9584V7.79171C7 6.41037 7.52678 5.08561 8.46447 4.10886C9.40215 3.13211 10.6739 2.58337 12 2.58337C13.3261 2.58337 14.5979 3.13211 15.5355 4.10886C16.4732 5.08561 17 6.41037 17 7.79171V11.9584"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                       <img src={lock} alt="" />
                       ) : (
                         <LuUnlock className="text-white text-[24px]" />
                       )}
@@ -168,49 +144,39 @@ const AuthenticationModal = ({
 
                 {/* Input fields */}
                 <div className="mt-12">
+
                   <div className="relative flex items-center">
                     <input
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
-                      placeholder="Email"
+                      placeholder="Your Name"
                       type="text"
                     />
                     <div className="absolute right-0 px-6">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
-                          fill="white"
-                        />
-                      </svg>
+                    <img className='w-[24px] z-20' src={user} alt="" />
                     </div>
                   </div>
 
-                  <div className="relative flex items-center mt-6">
+                  <div className="relative flex items-center  mt-6">
+                    <input
+                      className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
+                      placeholder="Email"
+                      type="email"
+                    />
+                    <div className="absolute right-0 px-6">
+                    <img src={email} alt="" />
+                    </div>
+                  </div>
+
+                  {/* <div className="relative flex items-center mt-6">
                     <input
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Enter your phone number"
                       type="text"
                     />
                     <div className="absolute right-0 px-6 cursor-pointer">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M16 1H8C6.34 1 5 2.34 5 4V20C5 21.66 6.34 23 8 23H16C17.66 23 19 21.66 19 20V4C19 2.34 17.66 1 16 1ZM14 21H10V20H14V21ZM17.25 18H6.75V4H17.25V18Z"
-                          fill="white"
-                        />
-                      </svg>
+                    <img src={phone} alt="" />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="relative flex items-center mt-6">
                     <input
@@ -223,28 +189,26 @@ const AuthenticationModal = ({
                       className="absolute right-0 px-6 cursor-pointer"
                     >
                       {showPassword ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="26"
-                          viewBox="0 0 24 26"
-                          fill="none"
-                        >
-                          <path
-                            d="M19 11.9584H5C3.89543 11.9584 3 12.8911 3 14.0417V21.3334C3 22.484 3.89543 23.4167 5 23.4167H19C20.1046 23.4167 21 22.484 21 21.3334V14.0417C21 12.8911 20.1046 11.9584 19 11.9584Z"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M7 11.9584V7.79171C7 6.41037 7.52678 5.08561 8.46447 4.10886C9.40215 3.13211 10.6739 2.58337 12 2.58337C13.3261 2.58337 14.5979 3.13211 15.5355 4.10886C16.4732 5.08561 17 6.41037 17 7.79171V11.9584"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                        <img src={lock} alt="" />
+                      ) : (
+                        <LuUnlock className="text-white text-[24px]" />
+                      )}
+                    </div>
+                  </div>
+
+
+                  <div className="relative flex items-center mt-6">
+                    <input
+                      className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
+                      placeholder="Confirm Password"
+                      type={showSecondPassword ? 'text' : 'password'}
+                    />
+                    <div
+                      onClick={handleSecondPasswordToggle}
+                      className="absolute right-0 px-6 cursor-pointer"
+                    >
+                      {showSecondPassword ? (
+                        <img src={lock} alt="" />
                       ) : (
                         <LuUnlock className="text-white text-[24px]" />
                       )}
@@ -252,7 +216,7 @@ const AuthenticationModal = ({
                   </div>
 
                   <div className="flex flex-col gap-7 mt-[62px]">
-                    <PrimaryButton className="w-full">Sign Up</PrimaryButton>
+                    <PrimaryButton onClick={() => {setActiveTab("otp")}} className="w-full">Sign Up</PrimaryButton>
                     <p className="text-neutral-40 text-center">
                       Already have an account?{' '}
                       <button
@@ -311,18 +275,7 @@ const AuthenticationModal = ({
                       type="text"
                     />
                     <div className="absolute right-0 px-6">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
-                          fill="white"
-                        />
-                      </svg>
+                    <img src={email} alt="" />
                     </div>
                   </div>
 
@@ -435,20 +388,6 @@ const AuthenticationModal = ({
                     </span>
                   </p>
 
-                  {/* For testing, it will be removed */}
-                  {/* -------------------------------------------------------------------------- */}
-                  <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
-                    <span
-                      onClick={() => {
-                        setActiveTab('otp')
-                      }}
-                      className="text-white font-medium cursor-pointer"
-                    >
-                      Enter OTP
-                    </span>
-                  </p>
-                  {/* --------------------------------------------------------------------- */}
-
                   <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
                     Back to{' '}
                     <span
@@ -501,28 +440,7 @@ const AuthenticationModal = ({
                       className="absolute right-0 px-6 cursor-pointer"
                     >
                       {showPassword ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="26"
-                          viewBox="0 0 24 26"
-                          fill="none"
-                        >
-                          <path
-                            d="M19 11.9584H5C3.89543 11.9584 3 12.8911 3 14.0417V21.3334C3 22.484 3.89543 23.4167 5 23.4167H19C20.1046 23.4167 21 22.484 21 21.3334V14.0417C21 12.8911 20.1046 11.9584 19 11.9584Z"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M7 11.9584V7.79171C7 6.41037 7.52678 5.08561 8.46447 4.10886C9.40215 3.13211 10.6739 2.58337 12 2.58337C13.3261 2.58337 14.5979 3.13211 15.5355 4.10886C16.4732 5.08561 17 6.41037 17 7.79171V11.9584"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                        <img src={lock} alt="" />
                       ) : (
                         <LuUnlock className="text-white text-[24px]" />
                       )}
@@ -540,28 +458,7 @@ const AuthenticationModal = ({
                       className="absolute right-0 px-6 cursor-pointer"
                     >
                       {showSecondPassword ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="26"
-                          viewBox="0 0 24 26"
-                          fill="none"
-                        >
-                          <path
-                            d="M19 11.9584H5C3.89543 11.9584 3 12.8911 3 14.0417V21.3334C3 22.484 3.89543 23.4167 5 23.4167H19C20.1046 23.4167 21 22.484 21 21.3334V14.0417C21 12.8911 20.1046 11.9584 19 11.9584Z"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M7 11.9584V7.79171C7 6.41037 7.52678 5.08561 8.46447 4.10886C9.40215 3.13211 10.6739 2.58337 12 2.58337C13.3261 2.58337 14.5979 3.13211 15.5355 4.10886C16.4732 5.08561 17 6.41037 17 7.79171V11.9584"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                        <img src={lock} alt="" />
                       ) : (
                         <LuUnlock className="text-white text-[24px]" />
                       )}
@@ -784,9 +681,9 @@ const AuthenticationModal = ({
 
                   <div className="flex flex-col gap-8 mt-[46px]">
                     <PrimaryButton
-                      onClick={() => {
-                        setActiveTab('createNewPassword')
-                      }}
+                      // onClick={() => {
+                      //   setActiveTab('createNewPassword')
+                      // }}
                       className="w-full"
                     >
                       Verify
@@ -815,7 +712,7 @@ const AuthenticationModal = ({
               <RxCross1 />
             </button>
 
-            <div className="hidden lg:block w-[304px] h-[304px] rounded-full bg-primary-55 bg-opacity-30 blur-[100px] absolute top-[100px] right-4"></div>
+            <div className="hidden lg:block w-[304px] h-[304px] rounded-full bg-primary-55 bg-opacity-30 blur-[100px] absolute top-[150px] right-4"></div>
           </div>
         </div>
       )}
