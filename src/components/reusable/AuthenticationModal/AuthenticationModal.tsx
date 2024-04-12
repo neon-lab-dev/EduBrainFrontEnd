@@ -77,7 +77,7 @@ const AuthenticationModal = ({
                     <input
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Email"
-                      type="text"
+                      type="email"
                     />
                     <div className="absolute right-0 px-6">
                       <img src={email} alt="" />
@@ -276,7 +276,7 @@ const AuthenticationModal = ({
                     <input
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Email"
-                      type="text"
+                      type="email"
                     />
                     <div className="absolute right-0 px-6">
                       <img src={email} alt="" />
@@ -380,18 +380,6 @@ const AuthenticationModal = ({
 
                 {/* Input fields */}
                 <div className="mt-[42px] flex flex-col gap-3">
-                  <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
-                    Did not receive the email?{' '}
-                    <span
-                      onClick={() => {
-                        setActiveTab('createNewPassword')
-                      }}
-                      className="text-white font-medium cursor-pointer"
-                    >
-                      Resend Email
-                    </span>
-                  </p>
-
                   <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
                     Back to{' '}
                     <span
