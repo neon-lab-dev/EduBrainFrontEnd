@@ -1,4 +1,3 @@
-import React from 'react'
 import tick from '../../../assets/icons/tick-circle.svg'
 
 const Certification: React.FC = () => {

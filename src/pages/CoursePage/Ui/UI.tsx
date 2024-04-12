@@ -1,51 +1,61 @@
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-
 import Card from './Card'
 import Hero from './Hero'
 import Curriculum from './Curriculum'
 import SliderCard from './Slider'
 import Certification from './Certification'
 import Sectionlearn from './Sectionlearn'
-import UiHome from '../../../assets/data/data/Hero'
-import UiCardData from '../../../assets/data/data/Card'
 import Payment from './Subscrition'
 import FAQSection from '../../Home/FAQSection'
 import SecondaryButton from '../../../components/buttons/SecondaryButton'
 import PrimaryButton from '../../../components/buttons/PrimaryButton'
 import React from 'react'
+import InfoCard from '../../../pages/CoursePage/Ui/InfoCard'
 
-interface UiProps {}
-
-const UI: React.FC<UiProps> = () => {
-  // Check if UiHome is not empty
-  if (UiHome.length === 0) {
-    return null // Return null or handle the empty case
+// Define the UiProps interface
+interface UiProps {
+  data: {
+    title: string
+    subtitle: string
+    subtitle1: string
+    poster: string
+    Cardtitle: string
+    Cardsubtitle: string
+    Cardsubtitle1: string
+    infoCardtitle: string
+    infoCardsubtitle: string
+    infoCardsubtitle1: string
+    benefits: Benefit[]
+    infobenefits: Benefit[]
   }
-
-  const firstItem = UiHome[0] // Accessing the first item in UiHome
-  const { title, subtitle, subtitle1, poster } = firstItem.Ui // Destructure Ui object
-
+}
+interface Benefit {
+  icon: string
+  title: string
+  description: string
+}
+const UI: React.FC<UiProps> = ({ data }) => {
   return (
     <div className="overflow-hidden">
       <Hero
-        title={title}
-        subtitle={subtitle}
-        subtitle1={subtitle1}
+        title={data.title}
+        subtitle={data.subtitle}
+        subtitle1={data.subtitle1}
         videoSrc=""
-        poster={poster}
+        poster={data.poster}
       />
       <Card
-        title1="Benefits"
-        subtitle="Why you should become "
-        subtitle1="UI/UX Designer ?"
-        benefits={UiCardData.benefits}
+        title1={data.Cardtitle}
+        subtitle={data.subtitle}
+        subtitle1={data.subtitle1}
+        benefits={data.benefits}
       />
-      <Card
-        title1="Introduction"
-        subtitle="What Our UI/UX Design  ?"
-        subtitle1="Courses Encompasses"
-        benefits={UiCardData.benefits}
+      <InfoCard
+        title1={data.infoCardtitle}
+        subtitle={data.infoCardsubtitle}
+        subtitle1={data.infoCardsubtitle1}
+        benefits={data.infobenefits}
       />
+
       <Curriculum />
       <SliderCard />
       <Certification />
