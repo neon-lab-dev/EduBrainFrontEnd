@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import leftBtn from "../../../../assets/icons/arrow-left.svg"
-import rightBtn from "../../../../assets/icons/arrow-right.svg"
+import leftBtn from '../../../../assets/icons/arrow-left.svg'
+import rightBtn from '../../../../assets/icons/arrow-right.svg'
 
 interface CarouselBtnProps {
   btnpressprev: () => void
@@ -16,7 +16,12 @@ const CarouselBtn = ({
 }: CarouselBtnProps): JSX.Element => {
   return (
     <div className="flex items-center gap-6 dark:text-neutral-10 text-neutral-75 text-[24px]">
-      <img className='invert dark:invert-0 hover:bg-primary-55 rounded cursor-pointer' onClick={btnpressprev} src={leftBtn} alt="" />
+      <img
+        className="invert dark:invert-0 hover:bg-primary-55 rounded cursor-pointer"
+        onClick={btnpressprev}
+        src={leftBtn}
+        alt=""
+      />
       {/* <svg
         onClick={btnpressprev}
         className="cursor-pointer hover:bg-primary-60 dark:text-neutral-10 text-neutral-75 rounded transition duration-300"
@@ -36,7 +41,12 @@ const CarouselBtn = ({
         />
       </svg> */}
 
-      <img className='invert dark:invert-0 hover:bg-primary-55 rounded cursor-pointer' onClick={btnpressnext} src={rightBtn} alt="" />
+      <img
+        className="invert dark:invert-0 hover:bg-primary-55 rounded cursor-pointer"
+        onClick={btnpressnext}
+        src={rightBtn}
+        alt=""
+      />
       {/* <svg
         onClick={btnpressnext}
         className="cursor-pointer hover:bg-primary-60 dark:text-neutral-10 text-neutral-75 rounded transition duration-300"
