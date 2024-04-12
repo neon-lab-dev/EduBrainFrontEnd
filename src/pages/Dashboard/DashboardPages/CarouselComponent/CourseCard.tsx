@@ -31,16 +31,16 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
 
         {details?.lecture !== undefined ? (
           <div>
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2 mb-4">
-                <img src={userIcon} alt="" />
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center gap-2">
+                <img className='invert dark:invert-0' src={userIcon} alt="" />
                 <p className="text-base dark:text-neutral-40 text-neutral-80 font-light font-Roboto">
                   {details?.lecture}
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 mb-2">
-                <img src={clock} alt="" />
+              <div className="flex items-center gap-2">
+                <img className='invert dark:invert-0' src={clock} alt="" />
                 <p className="text-base dark:text-neutral-40 text-neutral-80 font-light font-Roboto">
                   {details.duration}
                 </p>
@@ -62,14 +62,14 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
             {details?.startDate !== undefined ? (
               <div className="flex justify-between items-center mb-5">
                 <div className="flex items-center gap-2">
-                  <img className="w-6" src={calender} alt="" />
+                  <img className='invert dark:invert-0 w-6' src={calender} alt="" />
                   <p className="text-base dark:text-neutral-40 text-neutral-80 font-light font-Roboto">
                     {details?.startDate}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <img src={clock} alt="" />
+                  <img className='invert dark:invert-0' src={clock} alt="" />
                   <p className="text-base dark:text-neutral-40 text-neutral-80 font-light font-Roboto">
                     {details.startTime}
                   </p>
@@ -78,14 +78,14 @@ const CourseCard = ({ details }: { details: CourseDetails }): JSX.Element => {
             ) : (
               <div>
                 <div className="flex items-center gap-2 mb-4">
-                  <img className="w-5" src={calender} alt="" />
+                  <img className="w-5 invert dark:invert-0" src={calender} alt="" />
                   <p className="text-[12px] dark:text-neutral-10 text-neutral-75/60 font-normal font-Roboto">
                     {details?.enrollDate}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2 mb-2">
-                  <img src={timer} alt="" />
+                  <img className='invert dark:invert-0' src={timer} alt="" />
                   <p className="text-base dark:text-neutral-10 text-neutral-100 font-normal font-Roboto">
                     {details.time}
                   </p>
