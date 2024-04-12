@@ -5,11 +5,11 @@ import { RxCross1 } from 'react-icons/rx'
 import { LuUnlock } from 'react-icons/lu'
 import PrimaryButton from '../../buttons/PrimaryButton'
 
-import email from "../../../assets/icons/Authentication modal icons/email.svg"
-import lock from "../../../assets/icons/Authentication modal icons/lock.svg"
+import email from '../../../assets/icons/Authentication modal icons/email.svg'
+import lock from '../../../assets/icons/Authentication modal icons/lock.svg'
 
 // import phone from "../../../assets/icons/Authentication modal icons/phone.svg"
-import user from "../../../assets/icons/Authentication modal icons/user.svg"
+import user from '../../../assets/icons/Authentication modal icons/user.svg'
 
 const AuthenticationModal = ({
   handleModal,
@@ -40,7 +40,7 @@ const AuthenticationModal = ({
       )
       if (isModalOpen && closestDropdown === null) {
         setIsModalOpen(false)
-        setActiveTab("login")
+        setActiveTab('login')
       }
     }
 
@@ -80,7 +80,6 @@ const AuthenticationModal = ({
                       type="text"
                     />
                     <div className="absolute right-0 px-6">
-                      
                       <img src={email} alt="" />
                     </div>
                   </div>
@@ -96,7 +95,7 @@ const AuthenticationModal = ({
                       className="absolute right-0 px-6 cursor-pointer"
                     >
                       {showPassword ? (
-                       <img src={lock} alt="" />
+                        <img src={lock} alt="" />
                       ) : (
                         <LuUnlock className="text-white text-[24px]" />
                       )}
@@ -144,7 +143,6 @@ const AuthenticationModal = ({
 
                 {/* Input fields */}
                 <div className="mt-12">
-
                   <div className="relative flex items-center">
                     <input
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
@@ -152,7 +150,7 @@ const AuthenticationModal = ({
                       type="text"
                     />
                     <div className="absolute right-0 px-6">
-                    <img className='w-[24px] z-20' src={user} alt="" />
+                      <img className="w-[24px] z-20" src={user} alt="" />
                     </div>
                   </div>
 
@@ -163,7 +161,7 @@ const AuthenticationModal = ({
                       type="email"
                     />
                     <div className="absolute right-0 px-6">
-                    <img src={email} alt="" />
+                      <img src={email} alt="" />
                     </div>
                   </div>
 
@@ -196,7 +194,6 @@ const AuthenticationModal = ({
                     </div>
                   </div>
 
-
                   <div className="relative flex items-center mt-6">
                     <input
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
@@ -216,7 +213,14 @@ const AuthenticationModal = ({
                   </div>
 
                   <div className="flex flex-col gap-7 mt-[62px]">
-                    <PrimaryButton onClick={() => {setActiveTab("otp")}} className="w-full">Sign Up</PrimaryButton>
+                    <PrimaryButton
+                      onClick={() => {
+                        setActiveTab('otp')
+                      }}
+                      className="w-full"
+                    >
+                      Sign Up
+                    </PrimaryButton>
                     <p className="text-neutral-40 text-center">
                       Already have an account?{' '}
                       <button
@@ -275,7 +279,7 @@ const AuthenticationModal = ({
                       type="text"
                     />
                     <div className="absolute right-0 px-6">
-                    <img src={email} alt="" />
+                      <img src={email} alt="" />
                     </div>
                   </div>
 
