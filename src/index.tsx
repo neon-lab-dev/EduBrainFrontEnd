@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
 import { store } from './store'
+
 const rootElement = document.getElementById('root')
 let root = null
 if (rootElement !== null) {
@@ -19,6 +20,7 @@ if (root !== null) {
     <React.StrictMode>
       <Provider store={store}>
         <App />
+
         <Toaster />
       </Provider>
     </React.StrictMode>

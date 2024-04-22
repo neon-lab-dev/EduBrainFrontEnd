@@ -24,6 +24,8 @@ module.exports = {
     'space-before-function-paren': 'off',
     'react/react-in-jsx-scope': 'warn',
     '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/prefer-optional-chain': 'off',
   },
   settings: {
     react: {
