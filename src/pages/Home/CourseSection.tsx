@@ -113,8 +113,8 @@ const CourseSection = (): JSX.Element => {
             ₹
             {data &&
               getPriceAfterDiscount(
-                (data[activeCourse].basePrice ?? 0) as number,
-                (data[activeCourse].discountedPercent ?? 0) as number
+                Number(data[activeCourse].basePrice ?? 0),
+                Number(data[activeCourse].discountedPercent ?? 0)
               )}
           </span>
           <span className="text-neutral-40 text-xs sm:text-base xl:text-lg line-through mb-1 sm:mb-0.5">
