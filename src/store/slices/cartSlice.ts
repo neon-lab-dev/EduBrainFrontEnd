@@ -4,7 +4,8 @@ import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
 interface ICartItem {
   id: string
   title: string
-  price: number
+  discountedPercent: number
+  basePrice: number
 }
 
 const initialState = {

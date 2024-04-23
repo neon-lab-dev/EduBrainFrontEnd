@@ -166,8 +166,8 @@ const CourseSection = (): JSX.Element => {
                 addToCard({
                   id: data[activeCourse]._id,
                   title: data[activeCourse].title,
-                  // price: data[activeCourse].discountedPrice,
-                  price: 0,
+                  discountedPercent: data[activeCourse].discountedPercent,
+                  basePrice: data[activeCourse].basePrice,
                 })
               )
               // scroll to other course

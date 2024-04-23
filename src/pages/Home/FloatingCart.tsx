@@ -3,6 +3,7 @@ import { type RootState } from '../../store'
 import { Link } from 'react-router-dom'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 import cartIcon from '../../assets/icons/shopping_cart.svg'
+import { getPriceAfterDiscount } from '../../utils/getPriceAfterDiscount'
 
 const FloatingCart = (): JSX.Element | null => {
   const { cartItems } = useSelector((state: RootState) => state.cartItems)
@@ -19,7 +20,13 @@ const FloatingCart = (): JSX.Element | null => {
         </div>
         <div className="flex flex-col items-center gap-1">
           <h3 className="h3">
-            ₹{cartItems.reduce((acc, item) => acc + item.price, 0)}
+            ₹
+            {cartItems.reduce(
+              (acc, item) =>
+                acc +
+                getPriceAfterDiscount(item.basePrice, item.discountedPercent),
+              0
+            )}
           </h3>
           <span>Total</span>
         </div>
