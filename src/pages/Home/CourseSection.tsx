@@ -143,7 +143,7 @@ const CourseSection = (): JSX.Element => {
               className="w-6 sm:w-8 h-6 sm:h-8 mr-1 mb-1 sm:mb-1.5"
             />
             <span className="text-neutral-10 text-base xs:text-lg sm:text-2xl font-medium">
-              {data[activeCourse].total_duration} 
+              {data[activeCourse].total_duration}
             </span>
             <span className="text-neutral-20 text-sm xs:text-base sm:text-xl">
               Time
