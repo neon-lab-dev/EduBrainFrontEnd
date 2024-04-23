@@ -4,6 +4,9 @@ export interface ICourse {
   description: string
   views: number
   numOfVideos: number
+  discountedPercent: number
+  basePrice: number
+  total_duration: string
   category: string
   createdBy: string
   createdAt: string

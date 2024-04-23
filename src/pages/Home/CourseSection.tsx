@@ -16,6 +16,7 @@ import { type RootState } from '../../store'
 import { useQuery } from '@tanstack/react-query'
 import { getAllCourses } from '../../api/courses'
 import { type ICourse } from '../../types/course.types'
+import { getPriceAfterDiscount } from '../../utils/getPriceAfterDiscount'
 
 const CourseSection = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -102,20 +103,25 @@ const CourseSection = (): JSX.Element => {
               isReadMoreActive ? 'Read Less' : 'Read More'
             }
           </button>
-        </motion.p >
+        </motion.p>
         {/* for larger devices */}
         <motion.p className="text-neutral-60 text-lg hidden xl:block break-all ">
           {data && data[activeCourse].description.substring(0, 250) + '...'}
         </motion.p>
         <motion.div className="flex gap-2 sm:gap-3 items-end">
           <span className="text-neutral-10 text-2xl sm:text-3xl xl:text-3xl font-semibold">
-            {/* ₹{data && data[activeCourse].discountedPrice} */} 0
+            ₹
+            {data &&
+              getPriceAfterDiscount(
+                data[activeCourse].basePrice as number,
+                data[activeCourse].discountedPercent as number
+              )}
           </span>
           <span className="text-neutral-40 text-xs sm:text-base xl:text-lg line-through mb-1 sm:mb-0.5">
-            {/* ₹{data[activeCourse].basePrice}  */} 0
+            ₹{data[activeCourse].basePrice ?? 0}
           </span>
           <span className="text-xs xl:text-lg sm:text-base text-blue mb-1 sm:mb-0.5 text-primary-30">
-            {/* ({data[activeCourse].discount}%) */} 0
+            ({data[activeCourse].discountedPercent ?? 0}%)
           </span>
         </motion.div>
         <div className="flex gap-6">
@@ -125,7 +131,7 @@ const CourseSection = (): JSX.Element => {
               className="w-6 sm:w-8 h-6 sm:h-8 mr-1 mb-1 sm:mb-1.5"
             />
             <span className="text-neutral-10 text-base xs:text-lg sm:text-2xl font-medium">
-              {/* {data[activeCourse].lecturesCount} */} 0
+              {data[activeCourse].numOfVideos ?? 0}
             </span>
             <span className="text-neutral-20 text-sm xs:text-base sm:text-xl">
               Lectures
