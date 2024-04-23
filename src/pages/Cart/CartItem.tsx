@@ -12,7 +12,7 @@ const CartItem = ({ item }: { item: ICourse }): JSX.Element => {
       <img
         src={item.poster.url}
         alt=""
-        className="object-cover object-left h-full rounded-l-xl max-w-[289px]"
+        className="object-cover object-left h-full rounded-l-xl w-[289px]"
       />
       <div className="flex flex-col justify-between h-full w-full p-4">
         <div className="flex flex-col gap-4">

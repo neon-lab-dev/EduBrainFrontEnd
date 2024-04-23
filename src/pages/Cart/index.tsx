@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 import { type ICourse } from '../../types/course.types'
 import { getAllCourses } from '../../api/courses'
 import { useEffect, useState } from 'react'
+import { getPriceAfterDiscount } from '../../utils/getPriceAfterDiscount'
 
 const CartPage = (): JSX.Element => {
   const { cartItems } = useSelector((state: RootState) => state.cartItems)
@@ -42,7 +43,7 @@ const CartPage = (): JSX.Element => {
           <div className="flex-grow flex flex-col gap-10">
             {cartItemsFullDetails.length > 0 ? (
               cartItemsFullDetails.map((item) => (
-                <CartItem key={item?._id} item={item as any} />
+                <CartItem key={item?._id} item={item} />
               ))
             ) : (
               <div>
@@ -53,7 +54,18 @@ const CartPage = (): JSX.Element => {
               </div>
             )}
           </div>
-          <PriceDetailsCard items={data!} />
+          <PriceDetailsCard
+            totalPayableAmount={cartItemsFullDetails.reduce(
+              (acc, item) =>
+                acc +
+                getPriceAfterDiscount(item.basePrice, item.discountedPercent),
+              0
+            )}
+            totalBasePrice={cartItemsFullDetails.reduce(
+              (acc, item) => acc + item.basePrice,
+              0
+            )}
+          />
         </div>
       </div>
     </LayoutWithHeader>
