@@ -205,8 +205,8 @@ const AuthenticationModal = ({
         toast.error('Error!!')
       },
       onSuccess: () => {
-        toast.success('Email sent, please check.')
-        dispatch(setActiveTab('emailSent'))
+        toast.success('Password created successfully.')
+        dispatch(setActiveTab('completedPasswordSetup'))
       },
     })
 
