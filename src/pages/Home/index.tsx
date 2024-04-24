@@ -1,14 +1,18 @@
 import React from 'react'
 import Navbar from '../../components/navbar'
 import Home from './Home'
-import { useState, type JSX } from 'react'
+import { type JSX } from 'react'
 import FloatingCart from './FloatingCart'
+import { useDispatch, useSelector } from 'react-redux'
+import { type RootState } from '../../store'
+import { setIsModalOpen } from '../../store/slices/modalSlices'
 
 const HomePage = (): JSX.Element => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const dispatch = useDispatch()
+  const { isModalOpen } = useSelector((state: RootState) => state.modalSlice)
 
   const handleModal = (): void => {
-    setIsModalOpen(!isModalOpen)
+    dispatch(setIsModalOpen(!isModalOpen))
   }
   return (
     <div className="dark bg-background">
