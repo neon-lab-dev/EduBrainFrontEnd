@@ -12,7 +12,15 @@ import lock from '../../../assets/icons/Authentication modal icons/lock.svg'
 import user from '../../../assets/icons/Authentication modal icons/user.svg'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation } from '@tanstack/react-query'
-import { type ForgetPassData, handleForget, handleOtp, login, signup, type CreateNewPassword, handleNewPassword } from '../../../api/auth'
+import {
+  type ForgetPassData,
+  handleForget,
+  handleOtp,
+  login,
+  signup,
+  type CreateNewPassword,
+  handleNewPassword,
+} from '../../../api/auth'
 import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { type RootState } from '../../../store'
@@ -21,22 +29,22 @@ import { useLocation } from 'react-router-dom'
 // import { useNavigate } from 'react-router-dom'
 
 export interface SignUpFormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
 }
 
 export interface LoginFormData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 interface OTPData {
-  OTP1 : number;
-  OTP2 : number;
-  OTP3 : number;
-  OTP4 : number;
+  OTP1: number
+  OTP2: number
+  OTP3: number
+  OTP4: number
 }
 
 const AuthenticationModal = ({
@@ -48,7 +56,6 @@ const AuthenticationModal = ({
   isModalOpen: boolean
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }): JSX.Element => {
-
   const dispatch = useDispatch()
   const { activeTab } = useSelector((state: RootState) => state.modalSlice)
 
@@ -81,9 +88,6 @@ const AuthenticationModal = ({
     }
   }, [isModalOpen])
 
-
-
-
   // Login/signup functionality
 
   // const navigate = useNavigate();
@@ -93,166 +97,154 @@ const AuthenticationModal = ({
     handleSubmit,
     watch,
     // formState: { errors },
-  } = useForm<SignUpFormData>();
+  } = useForm<SignUpFormData>()
 
   const {
-    register : registerOtp,
-    handleSubmit : handleOtpSubmit,
+    register: registerOtp,
+    handleSubmit: handleOtpSubmit,
     // formState: { errors },
-  } = useForm<OTPData>();
-
+  } = useForm<OTPData>()
 
   const {
-    register : registerLogin,
-    handleSubmit : handleLoginSubmit,
+    register: registerLogin,
+    handleSubmit: handleLoginSubmit,
     // formState: { errors },
-  } = useForm<LoginFormData>();
+  } = useForm<LoginFormData>()
 
   const {
-    register : registerForgetPassword,
-    handleSubmit : handleForgetSubmit,
-    watch : watchForgotPassword
+    register: registerForgetPassword,
+    handleSubmit: handleForgetSubmit,
+    watch: watchForgotPassword,
     // formState: { errors },
-  } = useForm<ForgetPassData>();
-
+  } = useForm<ForgetPassData>()
 
   const {
-    register : registerCreateNewPassword,
-    handleSubmit : handleForgetPasswordSubmit,
+    register: registerCreateNewPassword,
+    handleSubmit: handleForgetPasswordSubmit,
     // formState: { errors },
-  } = useForm<CreateNewPassword['data']>();
+  } = useForm<CreateNewPassword['data']>()
 
-
-
-
-
-
-  const { mutate : mutateOtp, isPending : isOtpPending } = useMutation({
+  const { mutate: mutateOtp, isPending: isOtpPending } = useMutation({
     mutationFn: handleOtp,
-     onError: (error) => {
-      console.log(error);
-       toast.error("Authentication failed!!");
-     },
-     onSuccess: () => {
-       toast.success("Account created successfully")
-       dispatch(setActiveTab("otp"));
-     },
-   });
-
+    onError: (error) => {
+      console.log(error)
+      toast.error('Authentication failed!!')
+    },
+    onSuccess: () => {
+      toast.success('Account created successfully')
+      dispatch(setActiveTab('otp'))
+    },
+  })
 
   const handleSubmitOtp: SubmitHandler<OTPData> = (data) => {
-    const otp = Object.values(data).join('');
+    const otp = Object.values(data).join('')
     mutateOtp({
       OTP: otp,
-      email : watch("email")
+      email: watch('email'),
     })
-  };
+  }
 
-// signup
+  // signup
   const { mutate, isPending } = useMutation({
-   mutationFn: signup,
+    mutationFn: signup,
     onError: () => {
-      toast.error("Sign up failed");
+      toast.error('Sign up failed')
     },
     onSuccess: () => {
-      toast.success("OTP sent to your email,please check and verify.")
-      dispatch(setActiveTab("otp"));
+      toast.success('OTP sent to your email,please check and verify.')
+      dispatch(setActiveTab('otp'))
     },
-  });
+  })
 
+  const handleSignup: SubmitHandler<SignUpFormData> = (data): void => {
+    mutate(data)
+  }
 
-  const handleSignup: SubmitHandler<SignUpFormData> = (data) : void => {mutate(data)};
-
-
-
- // login
-  const { mutate : mutateLogin, isPending : isLoginpending } = useMutation({
-   mutationFn: login,
+  // login
+  const { mutate: mutateLogin, isPending: isLoginpending } = useMutation({
+    mutationFn: login,
     onError: () => {
-      toast.error("Login failed");
+      toast.error('Login failed')
     },
     onSuccess: () => {
-      toast.success("Logged in successfully.")
+      toast.success('Logged in successfully.')
       setIsModalOpen(false)
     },
-  });
+  })
 
-  const handleLogin: SubmitHandler<LoginFormData> = (data) : void => {mutateLogin(data)};
+  const handleLogin: SubmitHandler<LoginFormData> = (data): void => {
+    mutateLogin(data)
+  }
 
+  // forgot password
+  const { mutate: mutateForgotPassword, isPending: isForgotpending } =
+    useMutation({
+      mutationFn: handleForget,
+      onError: () => {
+        toast.error('Error!!')
+      },
+      onSuccess: () => {
+        toast.success('Email sent, please check.')
+        dispatch(setActiveTab('emailSent'))
+      },
+    })
 
+  const handleForgetPassword: SubmitHandler<ForgetPassData> = (data): void => {
+    mutateForgotPassword(data)
+  }
 
- // forgot password
-  const { mutate : mutateForgotPassword, isPending : isForgotpending } = useMutation({
-   mutationFn: handleForget,
-    onError: () => {
-      toast.error("Error!!");
-    },
-    onSuccess: () => {
-      toast.success("Email sent, please check.")
-      dispatch(setActiveTab('emailSent'))
-    },
-  });
+  const {
+    state: { token },
+  } = useLocation()
 
-  const handleForgetPassword: SubmitHandler<ForgetPassData> = (data) : void => {mutateForgotPassword(data)};
+  // create new password
+  const { mutate: mutateCreateNewPassword, isPending: isCreatingPassword } =
+    useMutation({
+      mutationFn: handleNewPassword,
+      onError: () => {
+        toast.error('Error!!')
+      },
+      onSuccess: () => {
+        toast.success('Email sent, please check.')
+        dispatch(setActiveTab('emailSent'))
+      },
+    })
 
+  const handleCreateNewPassword: SubmitHandler<CreateNewPassword['data']> = (
+    data
+  ): void => {
+    mutateCreateNewPassword({ data, token })
+  }
 
-const {state : {token}} = useLocation();
-
- // create new password
-  const { mutate : mutateCreateNewPassword, isPending : isCreatingPassword } = useMutation({
-   mutationFn: handleNewPassword,
-    onError: () => {
-      toast.error("Error!!");
-    },
-    onSuccess: () => {
-      toast.success("Email sent, please check.")
-      dispatch(setActiveTab('emailSent'))
-    },
-  });
-
-  const handleCreateNewPassword: SubmitHandler<CreateNewPassword['data']> = (data) : void => 
-    
-    {
-     
-      mutateCreateNewPassword({data, token})};
-
-
-
-
-  
-
-  const [seconds, setSeconds] = useState<number>(10 * 60);
-
+  const [seconds, setSeconds] = useState<number>(10 * 60)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setSeconds(prevSeconds => {
+      setSeconds((prevSeconds) => {
         if (prevSeconds === 0) {
-          clearInterval(intervalId);
+          clearInterval(intervalId)
           // You can add any logic here for when the timer reaches 0
-          return 0;
+          return 0
         }
-        return prevSeconds - 1;
-      });
-    }, 1000);
+        return prevSeconds - 1
+      })
+    }, 1000)
 
     return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+      clearInterval(intervalId)
+    }
+  }, [])
 
   const formatTime: (time: number) => string = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  };
-
+    const minutes = Math.floor(time / 60)
+    const seconds = time % 60
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  }
 
   return (
     <>
       {isModalOpen && (
         <div className="bg-primary-100 bg-opacity-30 backdrop-blur-sm fixed inset-0 flex justify-center items-center z-50 w-full mx-auto ">
-
           <div
             id="closeModal"
             className="bg-primary-100 w-4/5 max-h-screen rounded-3xl relative overflow-y-auto"
@@ -270,13 +262,16 @@ const {state : {token}} = useLocation();
                 </div>
 
                 {/* Input fields */}
-                <form 
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onSubmit={handleLoginSubmit(handleLogin)} 
-                className="mt-12">
+                <form
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleLoginSubmit(handleLogin)}
+                  className="mt-12"
+                >
                   <div className="relative flex items-center">
                     <input
-                      {...registerLogin('email', { required: 'Enter your email' })}
+                      {...registerLogin('email', {
+                        required: 'Enter your email',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Email"
                       type="email"
@@ -288,7 +283,9 @@ const {state : {token}} = useLocation();
 
                   <div className="relative flex items-center mt-6">
                     <input
-                    {...registerLogin('password', { required: 'Enter your password' })}
+                      {...registerLogin('password', {
+                        required: 'Enter your password',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Password"
                       type={showPassword ? 'text' : 'password'}
@@ -316,9 +313,9 @@ const {state : {token}} = useLocation();
                   </p>
 
                   <div className="flex flex-col gap-7 mt-[62px]">
-                    <PrimaryButton className="w-full">{
-                    isLoginpending ? "Login in..." : "Login"
-                    }</PrimaryButton>
+                    <PrimaryButton className="w-full">
+                      {isLoginpending ? 'Login in...' : 'Login'}
+                    </PrimaryButton>
                     <p className="text-neutral-40 text-center">
                       Don’t have an account?{' '}
                       <button
@@ -347,13 +344,14 @@ const {state : {token}} = useLocation();
                 </div>
 
                 {/* Input fields */}
-                <form 
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onSubmit={handleSubmit(handleSignup)}
-                 className="mt-12">
+                <form
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleSubmit(handleSignup)}
+                  className="mt-12"
+                >
                   <div className="relative flex items-center">
                     <input
-                    {...register('name', { required: 'Enter your name' })}
+                      {...register('name', { required: 'Enter your name' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Your Name"
                       type="text"
@@ -365,7 +363,7 @@ const {state : {token}} = useLocation();
 
                   <div className="relative flex items-center  mt-6">
                     <input
-                    {...register('email', { required: 'Enter your email' })}
+                      {...register('email', { required: 'Enter your email' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Email"
                       type="email"
@@ -388,7 +386,9 @@ const {state : {token}} = useLocation();
 
                   <div className="relative flex items-center mt-6">
                     <input
-                    {...register('password', { required: 'Enter your password' })}
+                      {...register('password', {
+                        required: 'Enter your password',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Password"
                       type={showPassword ? 'text' : 'password'}
@@ -407,7 +407,9 @@ const {state : {token}} = useLocation();
 
                   <div className="relative flex items-center mt-6">
                     <input
-                    {...register('confirmPassword', { required: 'Re-enter your password again' })}
+                      {...register('confirmPassword', {
+                        required: 'Re-enter your password again',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Confirm Password"
                       type={showSecondPassword ? 'text' : 'password'}
@@ -425,17 +427,13 @@ const {state : {token}} = useLocation();
                   </div>
 
                   <div className="flex flex-col gap-7 mt-[62px]">
-                    <PrimaryButton
-                      className="w-full"
-                    >
-                      {
-                      isPending ? "Signing Up..." : 
-                      "Sign Up"}
+                    <PrimaryButton className="w-full">
+                      {isPending ? 'Signing Up...' : 'Sign Up'}
                     </PrimaryButton>
                     <p className="text-neutral-40 text-center">
                       Already have an account?{' '}
                       <button
-                      role='button'
+                        role="button"
                         onClick={() => {
                           dispatch(setActiveTab('login'))
                         }}
@@ -484,12 +482,15 @@ const {state : {token}} = useLocation();
 
                 {/* Input fields */}
                 <form
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onSubmit={handleForgetSubmit(handleForgetPassword)}
-                className="mt-[42px] w-[475px] mx-auto">
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleForgetSubmit(handleForgetPassword)}
+                  className="mt-[42px] w-[475px] mx-auto"
+                >
                   <div className="relative flex items-center">
                     <input
-                    {...registerForgetPassword('email', { required: 'Enter your email' })}
+                      {...registerForgetPassword('email', {
+                        required: 'Enter your email',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Email"
                       type="email"
@@ -500,12 +501,8 @@ const {state : {token}} = useLocation();
                   </div>
 
                   <div className="flex flex-col gap-7 mt-[42px]">
-                    <PrimaryButton
-                      className="w-full"
-                    >
-                      {
-                        isForgotpending ? "Loading..." : "Submit"
-                      }
+                    <PrimaryButton className="w-full">
+                      {isForgotpending ? 'Loading...' : 'Submit'}
                     </PrimaryButton>
 
                     <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
@@ -587,9 +584,9 @@ const {state : {token}} = useLocation();
                   {/* <p className='text-white text-[16px] font-normal font-Roboto text-center'>We have sent you an email at my-emailid@gmail.com.</p> */}
 
                   <p className="text-white text-[16px] font-normal font-Roboto text-center leading-6">
-                    We have sent you an email at {watchForgotPassword('email')}. Check
-                    your inbox and follow the instructions to reset your account
-                    password.
+                    We have sent you an email at {watchForgotPassword('email')}.
+                    Check your inbox and follow the instructions to reset your
+                    account password.
                   </p>
                 </div>
 
@@ -636,12 +633,15 @@ const {state : {token}} = useLocation();
 
                 {/* Input fields */}
                 <form
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onSubmit={handleForgetPasswordSubmit(handleCreateNewPassword)}
-                className="mt-[42px]">
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleForgetPasswordSubmit(handleCreateNewPassword)}
+                  className="mt-[42px]"
+                >
                   <div className="relative flex items-center mt-6">
                     <input
-                    {...registerCreateNewPassword('password', { required: 'Enter your password' })}
+                      {...registerCreateNewPassword('password', {
+                        required: 'Enter your password',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Enter New Password"
                       type={showPassword ? 'text' : 'password'}
@@ -660,7 +660,9 @@ const {state : {token}} = useLocation();
 
                   <div className="relative flex items-center mt-6">
                     <input
-                    {...registerCreateNewPassword('confirmPassword', { required: 'Re-enter your password' })}
+                      {...registerCreateNewPassword('confirmPassword', {
+                        required: 'Re-enter your password',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Confirm Password"
                       type={showSecondPassword ? 'text' : 'password'}
@@ -678,13 +680,8 @@ const {state : {token}} = useLocation();
                   </div>
 
                   <div className="flex flex-col gap-7 mt-[42px]">
-                    <PrimaryButton
-                      className="w-full"
-                    >
-                      {
-                        isCreatingPassword ? 'Loading...' : 'Reset Password'
-                      }
-                      
+                    <PrimaryButton className="w-full">
+                      {isCreatingPassword ? 'Loading...' : 'Reset Password'}
                     </PrimaryButton>
 
                     <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
@@ -855,18 +852,19 @@ const {state : {token}} = useLocation();
 
                   <p className=" text-neutral-40 text-[16px] font-normal font-Roboto text-center">
                     Enter the OTP sent to -{' '}
-                    <span className="text-white">{watch("email")}</span>
+                    <span className="text-white">{watch('email')}</span>
                   </p>
                 </div>
 
                 {/* Input fields */}
                 <form
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onSubmit={handleOtpSubmit(handleSubmitOtp)}
-                className="mt-[42px] w-full md:w-[475px] mx-auto">
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleOtpSubmit(handleSubmitOtp)}
+                  className="mt-[42px] w-full md:w-[475px] mx-auto"
+                >
                   <div className="flex items-center justify-center gap-2 xs:gap-4 sm:gap-7 md:gap-9">
                     <input
-                    {...registerOtp('OTP1', { required: 'Enter your OTP' })}
+                      {...registerOtp('OTP1', { required: 'Enter your OTP' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
                       // type="number"
                       inputMode="numeric"
@@ -874,16 +872,7 @@ const {state : {token}} = useLocation();
                     />
 
                     <input
-                    {...registerOtp('OTP2', { required: 'Enter your OTP' })}
-                      className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
-                      // type="number"
-                      inputMode="numeric"
-                      maxLength={1}
-                      
-                    />
-
-                    <input
-                    {...registerOtp('OTP3', { required: 'Enter your OTP' })}
+                      {...registerOtp('OTP2', { required: 'Enter your OTP' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
                       // type="number"
                       inputMode="numeric"
@@ -891,7 +880,15 @@ const {state : {token}} = useLocation();
                     />
 
                     <input
-                    {...registerOtp('OTP4', { required: 'Enter your OTP' })}
+                      {...registerOtp('OTP3', { required: 'Enter your OTP' })}
+                      className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
+                      // type="number"
+                      inputMode="numeric"
+                      maxLength={1}
+                    />
+
+                    <input
+                      {...registerOtp('OTP4', { required: 'Enter your OTP' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
                       // type="number"
                       inputMode="numeric"
@@ -900,7 +897,7 @@ const {state : {token}} = useLocation();
                   </div>
 
                   <p className=" text-white text-[16px] font-normal font-Roboto text-center mt-[32px]">
-                  {formatTime(seconds)} {seconds < 60 ? "Sec" : "Min"}
+                    {formatTime(seconds)} {seconds < 60 ? 'Sec' : 'Min'}
                   </p>
 
                   <div className="flex flex-col gap-8 mt-[46px]">
@@ -910,9 +907,7 @@ const {state : {token}} = useLocation();
                       // }}
                       className="w-full"
                     >
-                      {
-                      isOtpPending ? "Verifying.." : "Verify"
-                      }
+                      {isOtpPending ? 'Verifying..' : 'Verify'}
                     </PrimaryButton>
 
                     <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
@@ -923,9 +918,11 @@ const {state : {token}} = useLocation();
                         }}
                         className="text-white font-medium cursor-pointer"
                       >
-                        {
-                          seconds > 0 ? <button disabled>Resend</button> : <button>Resend</button> 
-                        }
+                        {seconds > 0 ? (
+                          <button disabled>Resend</button>
+                        ) : (
+                          <button>Resend</button>
+                        )}
                       </span>
                     </p>
                   </div>

@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 interface IModal {
-    activeTab : string;
-    isModalOpen : boolean;
+  activeTab: string
+  isModalOpen: boolean
 }
 
-const initialState : IModal = {
-    activeTab : "login",
-    isModalOpen : false
-  } 
+const initialState: IModal = {
+  activeTab: 'login',
+  isModalOpen: false,
+}
 
 export const modalSlice = createSlice({
   name: 'modalSlice',
@@ -17,7 +17,6 @@ export const modalSlice = createSlice({
     setIsModalOpen: (state, action) => {
       state.isModalOpen = action.payload
     },
-
 
     setActiveTab: (state, action) => {
       state.activeTab = action.payload
