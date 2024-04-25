@@ -10,46 +10,43 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-
-
 const RootLayout = ({ children }: RootLayoutProps): JSX.Element => {
-
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     handleGetUser()
-    .then(res => {console.log(res)})
-    .catch(error => {console.log(error)})
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   })
 
-
-  const {isError, isLoading, data} = useQuery({
+  const { isError, isLoading, data } = useQuery({
     queryKey: ['user'],
-    queryFn: handleGetUser
+    queryFn: handleGetUser,
   })
 
   useEffect(() => {
-    if(!isLoading){
-      if(isError){
-        toast.error("You are not logged in")
-      }else{
-        if(data){
+    if (!isLoading) {
+      if (isError) {
+        toast.error('You are not logged in')
+      } else {
+        if (data) {
           dispatch(setIsAuthenticated(true))
           dispatch(setUser(data))
-          console.log(data);
-        }else{
-          console.log("Data doesn't exists.");
+          console.log(data)
+        } else {
+          console.log("Data doesn't exists.")
         }
-        
       }
     }
-    
   }, [data, isError, isLoading])
 
-
-if(isLoading){
-  return <p>Loading</p>
-}
+  if (isLoading) {
+    return <p>Loading</p>
+  }
   return <div className="bg-white dark:bg-background">{children}</div>
 }
 export default RootLayout

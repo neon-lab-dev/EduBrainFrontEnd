@@ -193,9 +193,7 @@ const AuthenticationModal = ({
     mutateForgotPassword(data)
   }
 
-  const {
-    state,
-  } = useLocation()
+  const { state } = useLocation()
 
   // create new password
   const { mutate: mutateCreateNewPassword, isPending: isCreatingPassword } =
