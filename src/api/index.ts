@@ -10,6 +10,7 @@ const API = {
   login: BASE_URL + '/login',
   forgotpassword: BASE_URL + '/forgotpassword',
   resetpassword: BASE_URL + '/resetpassword',
+  user: BASE_URL + '/me',
 }
 
 export default API

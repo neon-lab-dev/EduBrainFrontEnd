@@ -194,7 +194,7 @@ const AuthenticationModal = ({
   }
 
   const {
-    state: { token },
+    state,
   } = useLocation()
 
   // create new password
@@ -213,7 +213,7 @@ const AuthenticationModal = ({
   const handleCreateNewPassword: SubmitHandler<CreateNewPassword['data']> = (
     data
   ): void => {
-    mutateCreateNewPassword({ data, token })
+    mutateCreateNewPassword({ data, token: state?.token })
   }
 
   const [seconds, setSeconds] = useState<number>(10 * 60)
