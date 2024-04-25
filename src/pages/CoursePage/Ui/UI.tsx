@@ -1,48 +1,40 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import Card from './Card';
-import Hero from './Hero';
-import Curriculum from './Curriculum';
-import SliderCard from './Slider';
-import Certification from './Certification';
-import Sectionlearn from './Sectionlearn';
-import Payment from './Subscrition';
-import FAQSection from '../../Home/FAQSection';
-import SecondaryButton from '../../../components/buttons/SecondaryButton';
-import PrimaryButton from '../../../components/buttons/PrimaryButton';
-import InfoCard from '../../../pages/CoursePage/Ui/InfoCard';
-import { getAllCourses } from '../../../api/courses';
-import { ICourse } from '../../../types/course.types';
+import React from 'react'
+import Card from './Card'
+import Hero from './Hero'
+import Curriculum from './Curriculum'
+import SliderCard from './Slider'
+import Certification from './Certification'
+import Sectionlearn from './Sectionlearn'
+import Payment from './Subscrition'
+import FAQSection from '../../Home/FAQSection'
+import SecondaryButton from '../../../components/buttons/SecondaryButton'
+import PrimaryButton from '../../../components/buttons/PrimaryButton'
+import InfoCard from '../../../pages/CoursePage/Ui/InfoCard'
 
 interface UiProps {
   data: {
-    title: string;
-    subtitle: string;
-    subtitle1: string;
-    poster: string;
-    Cardtitle: string;
-    Cardsubtitle: string;
-    Cardsubtitle1: string;
-    infoCardtitle: string;
-    infoCardsubtitle: string;
-    infoCardsubtitle1: string;
-    benefits: Benefit[];
-    infobenefits: Benefit[];
-  };
+    title: string
+    subtitle: string
+    subtitle1: string
+    poster: string
+    Cardtitle: string
+    Cardsubtitle: string
+    Cardsubtitle1: string
+    infoCardtitle: string
+    infoCardsubtitle: string
+    infoCardsubtitle1: string
+    benefits: Benefit[]
+    infobenefits: Benefit[]
+  }
 }
 
 interface Benefit {
-  icon: string;
-  title: string;
-  description: string;
+  icon: string
+  title: string
+  description: string
 }
 
 const UI: React.FC<UiProps> = ({ data }) => {
-  const { data: courseData, isLoading, isError } = useQuery<ICourse[]>({
-    queryKey: ['courses'],
-    queryFn: getAllCourses,
-  });
-
   return (
     <div className="overflow-hidden">
       <Hero
@@ -71,7 +63,8 @@ const UI: React.FC<UiProps> = ({ data }) => {
       <Payment
         package1={{
           title: 'Self-Paced',
-          description: 'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
+          description:
+            'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
           oldPrice: 100,
           price: 20,
           features: [
@@ -83,7 +76,8 @@ const UI: React.FC<UiProps> = ({ data }) => {
         }}
         package2={{
           title: 'Mentor Support',
-          description: 'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
+          description:
+            'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
           oldPrice: 1999,
           price: 1299,
           features: [
@@ -110,7 +104,7 @@ const UI: React.FC<UiProps> = ({ data }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UI;
+export default UI

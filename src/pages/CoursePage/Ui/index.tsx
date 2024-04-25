@@ -3,18 +3,9 @@ import type { JSX } from 'react'
 import { useParams } from 'react-router-dom' // Importing useParams
 import UI from './UI'
 import Course from '../../../assets/data/CourseData/CourseData'
-import { getAllCourses } from '../../../api/courses'
-import { useQuery } from '@tanstack/react-query'
-import { ICourse } from '../../../types/course.types'
-
 
 const HomePage = (): JSX.Element => {
-  const { data, isLoading, isError } = useQuery<ICourse[]>({
-    queryKey: ['courses'],
-    queryFn: getAllCourses,
-  })
   const { page } = useParams() // Getting the 'page' parameter from the Url
-  console.log(data)
   return (
     <div className="dark bg-background">
       <Navbar />

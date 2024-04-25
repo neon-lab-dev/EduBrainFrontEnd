@@ -4,7 +4,7 @@ import refer from '../../../assets/images/refer.svg'
 import refersm from '../../../assets/images/refersm.svg'
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { ICourse } from '../../../types/course.types'
+import { type ICourse } from '../../../types/course.types'
 import { getAllCourses } from '../../../api/courses'
 
 interface PackageProps {
@@ -22,33 +22,39 @@ interface PaymentProps {
 }
 
 const Payment: React.FC<PaymentProps> = ({ package1, package2 }) => {
-  const { page } = useParams();
+  const { page } = useParams()
   const { data, isLoading, isError } = useQuery<ICourse[]>({
     queryKey: ['courses'],
     queryFn: getAllCourses,
-  });
+  })
 
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
-   // Default values
-   let courseBasePrice = package1.oldPrice;
-   let courseDiscounted = package1.price;
+  if (isError) {
+    return <div>Error loading course data.</div>
+  }
 
- 
-   // Determine specific course details based on 'page'
-   if (data && data.length > 0) {
-     if (page === 'uiux') {
-       courseBasePrice=data[0].basePrice;
-       courseDiscounted=data[0].discountedPercent;
-     }
-     if (page === 'mernstack') {
-      courseBasePrice=data[1].basePrice;
-      courseDiscounted=data[1].discountedPercent;
-     }
-     if (page === 'python') {
-      courseBasePrice=data[2].basePrice;
-      courseDiscounted=data[2].discountedPercent;
-     }
-   }
+  // Default values
+  let courseBasePrice = package1.oldPrice
+  let courseDiscounted = package1.price
+
+  // Determine specific course details based on 'page'
+  if (data && data.length > 0) {
+    if (page === 'uiux') {
+      courseBasePrice = data[0].basePrice
+      courseDiscounted = data[0].discountedPercent
+    }
+    if (page === 'mernstack') {
+      courseBasePrice = data[1].basePrice
+      courseDiscounted = data[1].discountedPercent
+    }
+    if (page === 'python') {
+      courseBasePrice = data[2].basePrice
+      courseDiscounted = data[2].discountedPercent
+    }
+  }
   return (
     <div className="m-2">
       <div className="flex gap-12 justify-center max-sm:flex-col max-lg:gap-2 py-10 max-lg:hidden">
@@ -58,10 +64,10 @@ const Payment: React.FC<PaymentProps> = ({ package1, package2 }) => {
               <span className="text-[#246BFD]">{package1.title}</span>
             </div>
             <span className="text-white text-[24px] font-Lato font-400 line-through">
-            ₹{courseBasePrice}
+              ₹{courseBasePrice}
             </span>
             <span className="text-white text-[48px] font-Lato font-600">
-            ₹{courseDiscounted}
+              ₹{courseDiscounted}
             </span>
             <p className="text-white pr-16">{package1.description}</p>
             <hr className="bg-white" />
