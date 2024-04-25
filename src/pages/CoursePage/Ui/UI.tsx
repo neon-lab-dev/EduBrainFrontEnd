@@ -1,39 +1,48 @@
-import Card from './Card'
-import Hero from './Hero'
-import Curriculum from './Curriculum'
-import SliderCard from './Slider'
-import Certification from './Certification'
-import Sectionlearn from './Sectionlearn'
-import Payment from './Subscrition'
-import FAQSection from '../../Home/FAQSection'
-import SecondaryButton from '../../../components/buttons/SecondaryButton'
-import PrimaryButton from '../../../components/buttons/PrimaryButton'
-import React from 'react'
-import InfoCard from '../../../pages/CoursePage/Ui/InfoCard'
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import Card from './Card';
+import Hero from './Hero';
+import Curriculum from './Curriculum';
+import SliderCard from './Slider';
+import Certification from './Certification';
+import Sectionlearn from './Sectionlearn';
+import Payment from './Subscrition';
+import FAQSection from '../../Home/FAQSection';
+import SecondaryButton from '../../../components/buttons/SecondaryButton';
+import PrimaryButton from '../../../components/buttons/PrimaryButton';
+import InfoCard from '../../../pages/CoursePage/Ui/InfoCard';
+import { getAllCourses } from '../../../api/courses';
+import { ICourse } from '../../../types/course.types';
 
-// Define the UiProps interface
 interface UiProps {
   data: {
-    title: string
-    subtitle: string
-    subtitle1: string
-    poster: string
-    Cardtitle: string
-    Cardsubtitle: string
-    Cardsubtitle1: string
-    infoCardtitle: string
-    infoCardsubtitle: string
-    infoCardsubtitle1: string
-    benefits: Benefit[]
-    infobenefits: Benefit[]
-  }
+    title: string;
+    subtitle: string;
+    subtitle1: string;
+    poster: string;
+    Cardtitle: string;
+    Cardsubtitle: string;
+    Cardsubtitle1: string;
+    infoCardtitle: string;
+    infoCardsubtitle: string;
+    infoCardsubtitle1: string;
+    benefits: Benefit[];
+    infobenefits: Benefit[];
+  };
 }
+
 interface Benefit {
-  icon: string
-  title: string
-  description: string
+  icon: string;
+  title: string;
+  description: string;
 }
+
 const UI: React.FC<UiProps> = ({ data }) => {
+  const { data: courseData, isLoading, isError } = useQuery<ICourse[]>({
+    queryKey: ['courses'],
+    queryFn: getAllCourses,
+  });
+
   return (
     <div className="overflow-hidden">
       <Hero
@@ -45,8 +54,8 @@ const UI: React.FC<UiProps> = ({ data }) => {
       />
       <Card
         title1={data.Cardtitle}
-        subtitle={data.subtitle}
-        subtitle1={data.subtitle1}
+        subtitle={data.Cardsubtitle}
+        subtitle1={data.Cardsubtitle1}
         benefits={data.benefits}
       />
       <InfoCard
@@ -55,7 +64,6 @@ const UI: React.FC<UiProps> = ({ data }) => {
         subtitle1={data.infoCardsubtitle1}
         benefits={data.infobenefits}
       />
-
       <Curriculum />
       <SliderCard />
       <Certification />
@@ -63,12 +71,11 @@ const UI: React.FC<UiProps> = ({ data }) => {
       <Payment
         package1={{
           title: 'Self-Paced',
-          description:
-            'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
-          oldPrice: '$1299',
-          price: '$999',
+          description: 'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
+          oldPrice: 100,
+          price: 20,
           features: [
-            'Access to all courses materials',
+            'Access to all course materials',
             'Self-paced learning',
             'Certificate of completion',
           ],
@@ -76,10 +83,9 @@ const UI: React.FC<UiProps> = ({ data }) => {
         }}
         package2={{
           title: 'Mentor Support',
-          description:
-            'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
-          oldPrice: '$1999',
-          price: '$1299',
+          description: 'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
+          oldPrice: 1999,
+          price: 1299,
           features: [
             'Dedicated mentor support',
             'Interactive live sessions',
@@ -91,11 +97,11 @@ const UI: React.FC<UiProps> = ({ data }) => {
       <FAQSection />
       <div className="py-10">
         <div className="flex flex-col items-center">
-          <span className="text-[48px] font-700 font-Roboto text-white max-sm:text-[24px] ">
+          <span className="text-[48px] font-700 font-Roboto text-white max-sm:text-[24px]">
             Are you Ready to become
           </span>
           <span className="text-[48px] font-700 font-Roboto text-white max-sm:text-[24px]">
-            Master in UI/UX design ?
+            Master in UI/UX design?
           </span>
           <div className="flex gap-3 py-6 justify-center">
             <SecondaryButton>See the curriculum</SecondaryButton>
@@ -104,7 +110,7 @@ const UI: React.FC<UiProps> = ({ data }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UI
+export default UI;
