@@ -22,7 +22,7 @@ const AssignmentPage = (): JSX.Element => {
 
   return (
     <DashboardLayout>
-      <main className="h-full w-full px-10 flex flex-col gap-5 min-h-[calc(100vh-100px)]">
+      <main className="h-full w-full flex flex-col gap-5 min-h-[calc(100vh-100px)]">
         <div className="mt-12 flex flex-col gap-4">
           <h3 className="h3 dark:text-neutral-10">My Assignments</h3>
           <hr className="w-full h-0.5 dark:text-neutral-10/10 text-neutral-30" />
@@ -55,7 +55,11 @@ const AssignmentPage = (): JSX.Element => {
             }}
           >
             {ASSIGNMENTS.map((assignment, i) => (
-              <option key={i} value={assignment.course}>
+              <option
+                key={i}
+                value={assignment.course}
+                className="dark:text-neutral-10 text-neutral-80 dark:bg-neutral-90"
+              >
                 {assignment.course}
               </option>
             ))}
