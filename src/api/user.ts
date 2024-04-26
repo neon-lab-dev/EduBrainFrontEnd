@@ -1,8 +1,8 @@
 import axios from 'axios'
 import API from '.'
 
-export const handleGetUser = async (): Promise<unknown> => {
-  try {
+export const handleGetUser = (): Promise<unknown> => {
+  return new Promise((resolve, reject) => {
     axios
       .get(API.user, {
         withCredentials: true,
@@ -10,9 +10,11 @@ export const handleGetUser = async (): Promise<unknown> => {
           'Content-Type': 'application/json',
         },
       })
-      .then((res) => res.data?.user)
-      .catch((error) => error)
-  } catch (error) {
-    return error
-  }
+      .then((res) => {
+        resolve(res.data?.user)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
 }
