@@ -27,7 +27,7 @@ export const login = async (loginData: LoginFormData): Promise<unknown> => {
         'Content-Type': 'application/json',
       },
     })
-    console.log(data);
+    console.log(data)
     return data.user ?? []
   } catch (error) {
     return []

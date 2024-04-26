@@ -161,8 +161,7 @@ const AuthenticationModal = ({
     mutate(data)
   }
 
-
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   // login
   const { mutate: mutateLogin, isPending: isLoginpending } = useMutation({
@@ -171,23 +170,20 @@ const AuthenticationModal = ({
       toast.error('Login failed')
     },
     onSuccess: (res) => {
-    
-      
-      queryClient.invalidateQueries({
-        
-        queryKey: ['user']
-      })
+      queryClient
+        .invalidateQueries({
+          queryKey: ['user'],
+        })
 
-      .then(() => {
-        dispatch(setUser(res))
-        dispatch(setIsAuthenticated(true))
-        handleModal()
-        toast.success('Logged in successfully.')
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      
+        .then(() => {
+          dispatch(setUser(res))
+          dispatch(setIsAuthenticated(true))
+          handleModal()
+          toast.success('Logged in successfully.')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
   })
 
