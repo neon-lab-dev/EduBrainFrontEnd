@@ -18,3 +18,21 @@ export const handleGetUser = (): Promise<unknown> => {
       })
   })
 }
+
+export const handleLogout = (): Promise<unknown> => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(API.logout, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        resolve(res.data?.user)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
+}

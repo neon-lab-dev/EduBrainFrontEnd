@@ -11,7 +11,7 @@ import lock from '../../../assets/icons/Authentication modal icons/lock.svg'
 // import phone from "../../../assets/icons/Authentication modal icons/phone.svg"
 import user from '../../../assets/icons/Authentication modal icons/user.svg'
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   type ForgetPassData,
   handleForget,
@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { type RootState } from '../../../store'
 import { setActiveTab } from '../../../store/slices/modalSlices'
 import { useLocation } from 'react-router-dom'
+import { setIsAuthenticated, setUser } from '../../../store/slices/userSlices'
 // import { useNavigate } from 'react-router-dom'
 
 export interface SignUpFormData {
@@ -160,15 +161,33 @@ const AuthenticationModal = ({
     mutate(data)
   }
 
+
+  const queryClient = useQueryClient();
+
   // login
   const { mutate: mutateLogin, isPending: isLoginpending } = useMutation({
     mutationFn: login,
     onError: () => {
       toast.error('Login failed')
     },
-    onSuccess: () => {
-      toast.success('Logged in successfully.')
-      setIsModalOpen(false)
+    onSuccess: (res) => {
+    
+      
+      queryClient.invalidateQueries({
+        
+        queryKey: ['user']
+      })
+
+      .then(() => {
+        dispatch(setUser(res))
+        dispatch(setIsAuthenticated(true))
+        handleModal()
+        toast.success('Logged in successfully.')
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      
     },
   })
 

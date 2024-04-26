@@ -13,7 +13,7 @@ export const signup = async (signUpData: SignUpFormData): Promise<unknown> => {
         'Content-Type': 'application/json',
       },
     })
-    return data.courses ?? []
+    return data.user ?? []
   } catch (error) {
     return []
   }
@@ -27,7 +27,8 @@ export const login = async (loginData: LoginFormData): Promise<unknown> => {
         'Content-Type': 'application/json',
       },
     })
-    return data.courses ?? []
+    console.log(data);
+    return data.user ?? []
   } catch (error) {
     return []
   }

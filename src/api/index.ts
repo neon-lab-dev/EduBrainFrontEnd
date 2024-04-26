@@ -11,6 +11,7 @@ const API = {
   forgotpassword: BASE_URL + '/forgotpassword',
   resetpassword: BASE_URL + '/resetpassword',
   user: BASE_URL + '/me',
+  logout: BASE_URL + '/logout',
 }
 
 export default API

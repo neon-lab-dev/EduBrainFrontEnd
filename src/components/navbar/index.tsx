@@ -18,6 +18,7 @@ const Navbar = ({ onClick }: { onClick?: () => void }): JSX.Element => {
   const { isAuthenticated, user } = useSelector(
     (state: RootState) => state.userSlice
   )
+
   return (
     <>
       <header className="absolute inset-0 w-full bg-background py-4 h-fit z-40">
