@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/icons/logo.svg'
 import menu from '../../assets/icons/menu.svg'
 import close from '../../assets/icons/close.svg'
@@ -9,9 +9,16 @@ import type { JSX } from 'react'
 import SecondaryButton from '../buttons/SecondaryButton'
 import PrimaryButton from '../buttons/PrimaryButton'
 import shoppingCart from '../../assets/icons/shopping_cart.svg'
+import { useSelector } from 'react-redux'
+import { type RootState } from '../../store'
 
 const Navbar = ({ onClick }: { onClick?: () => void }): JSX.Element => {
   const asideBarRef = useRef<HTMLElement>(null)
+  const navigate = useNavigate()
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.userSlice
+  )
+
   return (
     <>
       <header className="absolute inset-0 w-full bg-background py-4 h-fit z-40">
@@ -33,8 +40,19 @@ const Navbar = ({ onClick }: { onClick?: () => void }): JSX.Element => {
             <Link to="/cart">
               <img src={shoppingCart} alt="Shopping Cart" className="h-6 w-6" />
             </Link>
-            <PrimaryButton onClick={onClick} className="w-[193px]">
-              Login / Sign Up
+            <PrimaryButton
+              onClick={() => {
+                if (isAuthenticated) {
+                  navigate('/dashboard/myCourse')
+                } else {
+                  if (onClick) {
+                    onClick()
+                  }
+                }
+              }}
+              className="w-[193px]"
+            >
+              {isAuthenticated ? user?.name : 'Login / Sign Up'}
             </PrimaryButton>
           </div>
           <button

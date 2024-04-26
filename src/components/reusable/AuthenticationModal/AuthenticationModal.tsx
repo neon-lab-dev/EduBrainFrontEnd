@@ -10,6 +10,43 @@ import lock from '../../../assets/icons/Authentication modal icons/lock.svg'
 
 // import phone from "../../../assets/icons/Authentication modal icons/phone.svg"
 import user from '../../../assets/icons/Authentication modal icons/user.svg'
+import { type SubmitHandler, useForm } from 'react-hook-form'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import {
+  type ForgetPassData,
+  handleForget,
+  handleOtp,
+  login,
+  signup,
+  type CreateNewPassword,
+  handleNewPassword,
+} from '../../../api/auth'
+import toast from 'react-hot-toast'
+import { useDispatch, useSelector } from 'react-redux'
+import { type RootState } from '../../../store'
+import { setActiveTab } from '../../../store/slices/modalSlices'
+import { useLocation } from 'react-router-dom'
+import { setIsAuthenticated, setUser } from '../../../store/slices/userSlices'
+// import { useNavigate } from 'react-router-dom'
+
+export interface SignUpFormData {
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
+}
+
+export interface LoginFormData {
+  email: string
+  password: string
+}
+
+interface OTPData {
+  OTP1: number
+  OTP2: number
+  OTP3: number
+  OTP4: number
+}
 
 const AuthenticationModal = ({
   handleModal,
@@ -20,7 +57,8 @@ const AuthenticationModal = ({
   isModalOpen: boolean
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }): JSX.Element => {
-  const [activeTab, setActiveTab] = useState<string>('login')
+  const dispatch = useDispatch()
+  const { activeTab } = useSelector((state: RootState) => state.modalSlice)
 
   const [showPassword, setShowPassword] = useState(false)
   const [showSecondPassword, setShowSecondPassword] = useState(false)
@@ -40,7 +78,7 @@ const AuthenticationModal = ({
       )
       if (isModalOpen && closestDropdown === null) {
         setIsModalOpen(false)
-        setActiveTab('login')
+        dispatch(setActiveTab('login'))
       }
     }
 
@@ -50,6 +88,171 @@ const AuthenticationModal = ({
       document.removeEventListener('mousedown', handleOutsideClick)
     }
   }, [isModalOpen])
+
+  // Login/signup functionality
+
+  // const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    // formState: { errors },
+  } = useForm<SignUpFormData>()
+
+  const {
+    register: registerOtp,
+    handleSubmit: handleOtpSubmit,
+    // formState: { errors },
+  } = useForm<OTPData>()
+
+  const {
+    register: registerLogin,
+    handleSubmit: handleLoginSubmit,
+    // formState: { errors },
+  } = useForm<LoginFormData>()
+
+  const {
+    register: registerForgetPassword,
+    handleSubmit: handleForgetSubmit,
+    watch: watchForgotPassword,
+    // formState: { errors },
+  } = useForm<ForgetPassData>()
+
+  const {
+    register: registerCreateNewPassword,
+    handleSubmit: handleForgetPasswordSubmit,
+    // formState: { errors },
+  } = useForm<CreateNewPassword['data']>()
+
+  const { mutate: mutateOtp, isPending: isOtpPending } = useMutation({
+    mutationFn: handleOtp,
+    onError: (error) => {
+      console.log(error)
+      toast.error('Authentication failed!!')
+    },
+    onSuccess: () => {
+      toast.success('Account created successfully')
+      dispatch(setActiveTab('otp'))
+    },
+  })
+
+  const handleSubmitOtp: SubmitHandler<OTPData> = (data) => {
+    const otp = Object.values(data).join('')
+    mutateOtp({
+      OTP: otp,
+      email: watch('email'),
+    })
+  }
+
+  // signup
+  const { mutate, isPending } = useMutation({
+    mutationFn: signup,
+    onError: () => {
+      toast.error('Sign up failed')
+    },
+    onSuccess: () => {
+      toast.success('OTP sent to your email,please check and verify.')
+      dispatch(setActiveTab('otp'))
+    },
+  })
+
+  const handleSignup: SubmitHandler<SignUpFormData> = (data): void => {
+    mutate(data)
+  }
+
+  const queryClient = useQueryClient()
+
+  // login
+  const { mutate: mutateLogin, isPending: isLoginpending } = useMutation({
+    mutationFn: login,
+    onError: () => {
+      toast.error('Login failed')
+    },
+    onSuccess: (res) => {
+      queryClient
+        .invalidateQueries({
+          queryKey: ['user'],
+        })
+
+        .then(() => {
+          dispatch(setUser(res))
+          dispatch(setIsAuthenticated(true))
+          handleModal()
+          toast.success('Logged in successfully.')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+  })
+
+  const handleLogin: SubmitHandler<LoginFormData> = (data): void => {
+    mutateLogin(data)
+  }
+
+  // forgot password
+  const { mutate: mutateForgotPassword, isPending: isForgotpending } =
+    useMutation({
+      mutationFn: handleForget,
+      onError: () => {
+        toast.error('Error!!')
+      },
+      onSuccess: () => {
+        toast.success('Email sent, please check.')
+        dispatch(setActiveTab('emailSent'))
+      },
+    })
+
+  const handleForgetPassword: SubmitHandler<ForgetPassData> = (data): void => {
+    mutateForgotPassword(data)
+  }
+
+  const { state } = useLocation()
+
+  // create new password
+  const { mutate: mutateCreateNewPassword, isPending: isCreatingPassword } =
+    useMutation({
+      mutationFn: handleNewPassword,
+      onError: () => {
+        toast.error('Error!!')
+      },
+      onSuccess: () => {
+        toast.success('Password created successfully.')
+        dispatch(setActiveTab('completedPasswordSetup'))
+      },
+    })
+
+  const handleCreateNewPassword: SubmitHandler<CreateNewPassword['data']> = (
+    data
+  ): void => {
+    mutateCreateNewPassword({ data, token: state?.token })
+  }
+
+  const [seconds, setSeconds] = useState<number>(10 * 60)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSeconds((prevSeconds) => {
+        if (prevSeconds === 0) {
+          clearInterval(intervalId)
+          // You can add any logic here for when the timer reaches 0
+          return 0
+        }
+        return prevSeconds - 1
+      })
+    }, 1000)
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [])
+
+  const formatTime: (time: number) => string = (time: number) => {
+    const minutes = Math.floor(time / 60)
+    const seconds = time % 60
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  }
 
   return (
     <>
@@ -72,9 +275,16 @@ const AuthenticationModal = ({
                 </div>
 
                 {/* Input fields */}
-                <div className="mt-12">
+                <form
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleLoginSubmit(handleLogin)}
+                  className="mt-12"
+                >
                   <div className="relative flex items-center">
                     <input
+                      {...registerLogin('email', {
+                        required: 'Enter your email',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Email"
                       type="email"
@@ -86,6 +296,9 @@ const AuthenticationModal = ({
 
                   <div className="relative flex items-center mt-6">
                     <input
+                      {...registerLogin('password', {
+                        required: 'Enter your password',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Password"
                       type={showPassword ? 'text' : 'password'}
@@ -105,7 +318,7 @@ const AuthenticationModal = ({
                   {/* Forgot password navigation */}
                   <p
                     onClick={() => {
-                      setActiveTab('forgotPassword')
+                      dispatch(setActiveTab('forgotPassword'))
                     }}
                     className="text-neutral-40 hover:underline text-sm font-light text-end cursor-pointer mt-3"
                   >
@@ -113,12 +326,14 @@ const AuthenticationModal = ({
                   </p>
 
                   <div className="flex flex-col gap-7 mt-[62px]">
-                    <PrimaryButton className="w-full">Login</PrimaryButton>
+                    <PrimaryButton className="w-full">
+                      {isLoginpending ? 'Login in...' : 'Login'}
+                    </PrimaryButton>
                     <p className="text-neutral-40 text-center">
                       Don’t have an account?{' '}
                       <button
                         onClick={() => {
-                          setActiveTab('signup')
+                          dispatch(setActiveTab('signup'))
                         }}
                         className="text-white hover:underline"
                       >
@@ -126,7 +341,7 @@ const AuthenticationModal = ({
                       </button>
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             )}
 
@@ -142,9 +357,14 @@ const AuthenticationModal = ({
                 </div>
 
                 {/* Input fields */}
-                <div className="mt-12">
+                <form
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleSubmit(handleSignup)}
+                  className="mt-12"
+                >
                   <div className="relative flex items-center">
                     <input
+                      {...register('name', { required: 'Enter your name' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Your Name"
                       type="text"
@@ -156,6 +376,7 @@ const AuthenticationModal = ({
 
                   <div className="relative flex items-center  mt-6">
                     <input
+                      {...register('email', { required: 'Enter your email' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Email"
                       type="email"
@@ -178,6 +399,9 @@ const AuthenticationModal = ({
 
                   <div className="relative flex items-center mt-6">
                     <input
+                      {...register('password', {
+                        required: 'Enter your password',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Password"
                       type={showPassword ? 'text' : 'password'}
@@ -196,6 +420,9 @@ const AuthenticationModal = ({
 
                   <div className="relative flex items-center mt-6">
                     <input
+                      {...register('confirmPassword', {
+                        required: 'Re-enter your password again',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Confirm Password"
                       type={showSecondPassword ? 'text' : 'password'}
@@ -213,19 +440,15 @@ const AuthenticationModal = ({
                   </div>
 
                   <div className="flex flex-col gap-7 mt-[62px]">
-                    <PrimaryButton
-                      onClick={() => {
-                        setActiveTab('otp')
-                      }}
-                      className="w-full"
-                    >
-                      Sign Up
+                    <PrimaryButton className="w-full">
+                      {isPending ? 'Signing Up...' : 'Sign Up'}
                     </PrimaryButton>
                     <p className="text-neutral-40 text-center">
                       Already have an account?{' '}
                       <button
+                        role="button"
                         onClick={() => {
-                          setActiveTab('login')
+                          dispatch(setActiveTab('login'))
                         }}
                         className="text-white hover:underline"
                       >
@@ -233,7 +456,7 @@ const AuthenticationModal = ({
                       </button>
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             )}
 
@@ -271,9 +494,16 @@ const AuthenticationModal = ({
                 </div>
 
                 {/* Input fields */}
-                <div className="mt-[42px] w-[475px] mx-auto">
+                <form
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleForgetSubmit(handleForgetPassword)}
+                  className="mt-[42px] w-[475px] mx-auto"
+                >
                   <div className="relative flex items-center">
                     <input
+                      {...registerForgetPassword('email', {
+                        required: 'Enter your email',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Email"
                       type="email"
@@ -284,20 +514,15 @@ const AuthenticationModal = ({
                   </div>
 
                   <div className="flex flex-col gap-7 mt-[42px]">
-                    <PrimaryButton
-                      onClick={() => {
-                        setActiveTab('emailSent')
-                      }}
-                      className="w-full"
-                    >
-                      Submit
+                    <PrimaryButton className="w-full">
+                      {isForgotpending ? 'Loading...' : 'Submit'}
                     </PrimaryButton>
 
                     <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
                       Back to{' '}
                       <span
                         onClick={() => {
-                          setActiveTab('login')
+                          dispatch(setActiveTab('login'))
                         }}
                         className="text-white font-medium cursor-pointer"
                       >
@@ -305,7 +530,7 @@ const AuthenticationModal = ({
                       </span>
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             )}
 
@@ -372,9 +597,9 @@ const AuthenticationModal = ({
                   {/* <p className='text-white text-[16px] font-normal font-Roboto text-center'>We have sent you an email at my-emailid@gmail.com.</p> */}
 
                   <p className="text-white text-[16px] font-normal font-Roboto text-center leading-6">
-                    We have sent you an email at my-emailid@gmail.com. Check
-                    your inbox and follow the instructions to reset your account
-                    password.
+                    We have sent you an email at {watchForgotPassword('email')}.
+                    Check your inbox and follow the instructions to reset your
+                    account password.
                   </p>
                 </div>
 
@@ -384,7 +609,7 @@ const AuthenticationModal = ({
                     Back to{' '}
                     <span
                       onClick={() => {
-                        setActiveTab('login')
+                        dispatch(setActiveTab('login'))
                       }}
                       className="text-white font-medium cursor-pointer"
                     >
@@ -420,9 +645,16 @@ const AuthenticationModal = ({
                 </div>
 
                 {/* Input fields */}
-                <div className="mt-[42px]">
+                <form
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleForgetPasswordSubmit(handleCreateNewPassword)}
+                  className="mt-[42px]"
+                >
                   <div className="relative flex items-center mt-6">
                     <input
+                      {...registerCreateNewPassword('password', {
+                        required: 'Enter your password',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Enter New Password"
                       type={showPassword ? 'text' : 'password'}
@@ -441,6 +673,9 @@ const AuthenticationModal = ({
 
                   <div className="relative flex items-center mt-6">
                     <input
+                      {...registerCreateNewPassword('confirmPassword', {
+                        required: 'Re-enter your password',
+                      })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full h-[64px]"
                       placeholder="Confirm Password"
                       type={showSecondPassword ? 'text' : 'password'}
@@ -458,20 +693,15 @@ const AuthenticationModal = ({
                   </div>
 
                   <div className="flex flex-col gap-7 mt-[42px]">
-                    <PrimaryButton
-                      onClick={() => {
-                        setActiveTab('completedPasswordSetup')
-                      }}
-                      className="w-full"
-                    >
-                      Reset Password
+                    <PrimaryButton className="w-full">
+                      {isCreatingPassword ? 'Loading...' : 'Reset Password'}
                     </PrimaryButton>
 
                     <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
                       Back to{' '}
                       <span
                         onClick={() => {
-                          setActiveTab('login')
+                          dispatch(setActiveTab('login'))
                         }}
                         className="text-white font-medium cursor-pointer"
                       >
@@ -479,7 +709,7 @@ const AuthenticationModal = ({
                       </span>
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             )}
 
@@ -548,7 +778,7 @@ const AuthenticationModal = ({
 
                     <PrimaryButton
                       onClick={() => {
-                        setActiveTab('login')
+                        dispatch(setActiveTab('login'))
                       }}
                       className="w-[475px] mx-auto"
                     >
@@ -635,40 +865,52 @@ const AuthenticationModal = ({
 
                   <p className=" text-neutral-40 text-[16px] font-normal font-Roboto text-center">
                     Enter the OTP sent to -{' '}
-                    <span className="text-white">edubrain@gmail.com</span>
+                    <span className="text-white">{watch('email')}</span>
                   </p>
                 </div>
 
                 {/* Input fields */}
-                <div className="mt-[42px] w-full md:w-[475px] mx-auto">
+                <form
+                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                  onSubmit={handleOtpSubmit(handleSubmitOtp)}
+                  className="mt-[42px] w-full md:w-[475px] mx-auto"
+                >
                   <div className="flex items-center justify-center gap-2 xs:gap-4 sm:gap-7 md:gap-9">
                     <input
+                      {...registerOtp('OTP1', { required: 'Enter your OTP' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
                       // type="number"
                       inputMode="numeric"
+                      maxLength={1}
                     />
 
                     <input
+                      {...registerOtp('OTP2', { required: 'Enter your OTP' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
                       // type="number"
                       inputMode="numeric"
+                      maxLength={1}
                     />
 
                     <input
+                      {...registerOtp('OTP3', { required: 'Enter your OTP' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
                       // type="number"
                       inputMode="numeric"
+                      maxLength={1}
                     />
 
                     <input
+                      {...registerOtp('OTP4', { required: 'Enter your OTP' })}
                       className="bg-neutral-25 border border-neutral-80 px-6 text-white focus:outline-none rounded-xl w-full xs:w-12 md:w-16 h-[64px]"
                       // type="number"
                       inputMode="numeric"
+                      maxLength={1}
                     />
                   </div>
 
                   <p className=" text-white text-[16px] font-normal font-Roboto text-center mt-[32px]">
-                    00:13 Sec
+                    {formatTime(seconds)} {seconds < 60 ? 'Sec' : 'Min'}
                   </p>
 
                   <div className="flex flex-col gap-8 mt-[46px]">
@@ -678,22 +920,26 @@ const AuthenticationModal = ({
                       // }}
                       className="w-full"
                     >
-                      Verify
+                      {isOtpPending ? 'Verifying..' : 'Verify'}
                     </PrimaryButton>
 
                     <p className="text-neutral-40 text-[16px] font-normal font-Roboto text-center">
                       If you don’t receive code yet!{' '}
                       <span
                         onClick={() => {
-                          setActiveTab('login')
+                          dispatch(setActiveTab('login'))
                         }}
                         className="text-white font-medium cursor-pointer"
                       >
-                        Resend
+                        {seconds > 0 ? (
+                          <button disabled>Resend</button>
+                        ) : (
+                          <button>Resend</button>
+                        )}
                       </span>
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             )}
 

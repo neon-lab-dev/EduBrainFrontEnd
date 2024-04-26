@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { MdOutlineSpaceDashboard } from 'react-icons/md'
 import { PiNoteBlankLight } from 'react-icons/pi'
 import { IoLogoGameControllerB } from 'react-icons/io'
@@ -8,8 +8,33 @@ import { GrCertificate } from 'react-icons/gr'
 import { TbLogout2 } from 'react-icons/tb'
 import logo from '../../../assets/logo.png'
 import Togglebtn from './Togglebtn'
+import { handleLogout } from '../../../api/user'
+import toast from 'react-hot-toast'
+import { useQueryClient } from '@tanstack/react-query'
+import { setIsAuthenticated, setUser } from '../../../store/slices/userSlices'
+import { useDispatch } from 'react-redux'
 
 const Sidebar = (): JSX.Element => {
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  const dispatch = useDispatch()
+
+  const logout = (): void => {
+    handleLogout()
+      .then(async () => {
+        dispatch(setIsAuthenticated(false))
+        dispatch(setUser(null))
+        await queryClient.invalidateQueries({
+          queryKey: ['user'],
+        })
+        toast.success('Logged out successfully.')
+        navigate('/')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   return (
     <div className=" dark:bg-background bg-neutral-5 w-[290px] p-5 h-screen sticky top-0 hidden lg:block">
       {/* Logo */}
@@ -89,7 +114,10 @@ const Sidebar = (): JSX.Element => {
         {/* Light & Dark mode button */}
         <Togglebtn></Togglebtn>
 
-        <button className="dark:text-neutral-40 text-neutral-60 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal transform transition-transform duration-300 hover:-translate-y-0.5">
+        <button
+          onClick={logout}
+          className="dark:text-neutral-40 text-neutral-60 h-[45px] p-3 flex items-center gap-3 text-[16px] font-roboto font-normal transform transition-transform duration-300 hover:-translate-y-0.5"
+        >
           <TbLogout2 /> Logout
         </button>
       </div>

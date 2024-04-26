@@ -50,6 +50,10 @@ const ROUTES: IRoute[] = [
     path: '/cart',
     component: lazy(async () => await import('../pages/Cart')),
   },
+  {
+    path: '/resetpassword/:token',
+    component: lazy(async () => await import('../pages/ResetPassword')),
+  },
 ]
 
 export default ROUTES
