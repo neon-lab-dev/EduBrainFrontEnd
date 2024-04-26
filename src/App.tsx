@@ -1,15 +1,18 @@
-import React from 'react'
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import RoutesContainer from './routes'
+import type { JSX } from 'react'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
-function App(): JSX.Element {
+const queryClient = new QueryClient()
+
+const App = (): JSX.Element => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<div>Hiii</div>} />
-      </Routes>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <RoutesContainer />
+      {process.env.NODE_ENV === 'development' && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
+    </QueryClientProvider>
   )
 }
-
 export default App

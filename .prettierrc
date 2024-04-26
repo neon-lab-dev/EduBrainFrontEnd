@@ -1,7 +1,6 @@
 {
     "singleQuote": true,
     "semi": false,
-    "trailingComma": "es5",
-    "tslintIntegration": true,
-    "insertSpaceBeforeFunctionParenthesis": true
+    "trailingComma": "es5"
+    
 }
