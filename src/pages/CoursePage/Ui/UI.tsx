@@ -1,3 +1,4 @@
+import React from 'react'
 import Card from './Card'
 import Hero from './Hero'
 import Curriculum from './Curriculum'
@@ -8,10 +9,8 @@ import Payment from './Subscrition'
 import FAQSection from '../../Home/FAQSection'
 import SecondaryButton from '../../../components/buttons/SecondaryButton'
 import PrimaryButton from '../../../components/buttons/PrimaryButton'
-import React from 'react'
 import InfoCard from '../../../pages/CoursePage/Ui/InfoCard'
 
-// Define the UiProps interface
 interface UiProps {
   data: {
     title: string
@@ -28,11 +27,13 @@ interface UiProps {
     infobenefits: Benefit[]
   }
 }
+
 interface Benefit {
   icon: string
   title: string
   description: string
 }
+
 const UI: React.FC<UiProps> = ({ data }) => {
   return (
     <div className="overflow-hidden">
@@ -45,8 +46,8 @@ const UI: React.FC<UiProps> = ({ data }) => {
       />
       <Card
         title1={data.Cardtitle}
-        subtitle={data.subtitle}
-        subtitle1={data.subtitle1}
+        subtitle={data.Cardsubtitle}
+        subtitle1={data.Cardsubtitle1}
         benefits={data.benefits}
       />
       <InfoCard
@@ -55,7 +56,6 @@ const UI: React.FC<UiProps> = ({ data }) => {
         subtitle1={data.infoCardsubtitle1}
         benefits={data.infobenefits}
       />
-
       <Curriculum />
       <SliderCard />
       <Certification />
@@ -65,10 +65,10 @@ const UI: React.FC<UiProps> = ({ data }) => {
           title: 'Self-Paced',
           description:
             'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
-          oldPrice: '$1299',
-          price: '$999',
+          oldPrice: 100,
+          price: 20,
           features: [
-            'Access to all courses materials',
+            'Access to all course materials',
             'Self-paced learning',
             'Certificate of completion',
           ],
@@ -78,8 +78,8 @@ const UI: React.FC<UiProps> = ({ data }) => {
           title: 'Mentor Support',
           description:
             'Unlock foundational knowledge with our Basic Plan. Ideal for self-paced learners',
-          oldPrice: '$1999',
-          price: '$1299',
+          oldPrice: 1999,
+          price: 1299,
           features: [
             'Dedicated mentor support',
             'Interactive live sessions',
@@ -91,11 +91,11 @@ const UI: React.FC<UiProps> = ({ data }) => {
       <FAQSection />
       <div className="py-10">
         <div className="flex flex-col items-center">
-          <span className="text-[48px] font-700 font-Roboto text-white max-sm:text-[24px] ">
+          <span className="text-[48px] font-700 font-Roboto text-white max-sm:text-[24px]">
             Are you Ready to become
           </span>
           <span className="text-[48px] font-700 font-Roboto text-white max-sm:text-[24px]">
-            Master in UI/UX design ?
+            Master in UI/UX design?
           </span>
           <div className="flex gap-3 py-6 justify-center">
             <SecondaryButton>See the curriculum</SecondaryButton>

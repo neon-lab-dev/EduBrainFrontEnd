@@ -1,8 +1,11 @@
 import React from 'react'
-
+import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 import Video from './Video'
 import PrimaryButton from '../../../components/buttons/PrimaryButton'
 import SecondaryButton from '../../../components/buttons/SecondaryButton'
+import { getAllCourses } from '../../../api/courses'
+import { type ICourse } from '../../../types/course.types'
 
 interface HeroProps {
   title: string
@@ -11,6 +14,7 @@ interface HeroProps {
   videoSrc: string
   poster: string
 }
+
 const Hero: React.FC<HeroProps> = ({
   title,
   subtitle,
@@ -18,20 +22,56 @@ const Hero: React.FC<HeroProps> = ({
   videoSrc,
   poster,
 }) => {
+  const { page } = useParams()
+  const { data, isLoading, isError } = useQuery<ICourse[]>({
+    queryKey: ['courses'],
+    queryFn: getAllCourses,
+  })
+
+  // Default values
+  let courseTitle = title
+  let courseDesc = subtitle
+  let coursePoster = poster
+
+  // Determine specific course details based on 'page'
+  if (data && data.length > 0) {
+    if (page === 'uiux') {
+      courseTitle = data[0].category
+      coursePoster = data[0].poster.url
+      courseDesc = data[0].description
+    }
+    if (page === 'mernstack') {
+      courseTitle = data[1].category
+      coursePoster = data[1].poster.url
+      courseDesc = data[0].description
+    }
+    if (page === 'python') {
+      courseTitle = data[2].category
+      coursePoster = data[2].poster.url
+      courseDesc = data[2].description
+    }
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (isError) {
+    return <div>Error loading course data.</div>
+  }
+
   return (
-    <div className="flex flex-col text-white pt-[60px] font-700 gap-6">
-      <div className="flex  justify-center">
+    <div className="flex flex-col text-white pt-[60px] font-bold gap-6">
+      <div className="flex justify-center">
         <div className="flex flex-col gap-4">
-          <span className="text-[48px] font-Lato font-900 flex justify-center max-lg text-center  max-sm:text-[26px]">
-            {title}
+          <span className="text-[48px] font-Lato font-extrabold text-center max-sm:text-[26px]">
+            {courseTitle}
           </span>
           <div className="flex flex-col">
-            <span className="text-[36px] font-Lato font-500 text-[#ABAEB2] max-sm:p-3 text-center max-sm:text-[22px] leading-none">
-              {' '}
-              {subtitle}
+            <span className="text-[36px] font-medium font-Lato text-[#ABAEB2] text-center max-sm:text-[22px]">
+              {courseDesc}
             </span>
-            <span className="text-[36px] font-500 font-Lato text-[#ABAEB2] text-center pt-0 max-sm:text-[22px] leading-none">
-              {' '}
+            <span className="text-[36px] font-medium font-Lato text-[#ABAEB2] text-center max-sm:text-[22px]">
               {subtitle1}
             </span>
           </div>
@@ -42,9 +82,10 @@ const Hero: React.FC<HeroProps> = ({
         <PrimaryButton>Enroll Now</PrimaryButton>
       </div>
       <div className="flex justify-center">
-        <Video videoSrc={videoSrc} poster={poster} />
+        <Video videoSrc={videoSrc} poster={coursePoster} />
       </div>
     </div>
   )
 }
+
 export default Hero
