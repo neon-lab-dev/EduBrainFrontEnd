@@ -4,6 +4,7 @@
 const BASE_URL = process.env.REACT_APP_SERVER_BASE_URL + '/api/v1'
 
 const API = {
+  // course
   courses: BASE_URL + '/courses',
   signup: BASE_URL + '/register',
   otp: BASE_URL + '/verifyOTP',

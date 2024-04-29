@@ -5,8 +5,7 @@ import UI from './UI'
 import Course from '../../../assets/data/CourseData/CourseData'
 
 const HomePage = (): JSX.Element => {
-  const { page } = useParams() // Getting the 'page' parameter from the URL
-
+  const { page } = useParams() // Getting the 'page' parameter from the Url
   return (
     <div className="dark bg-background">
       <Navbar />
