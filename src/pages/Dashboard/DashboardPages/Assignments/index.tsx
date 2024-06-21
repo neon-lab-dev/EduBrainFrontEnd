@@ -31,7 +31,7 @@ const AssignmentPage = (): JSX.Element => {
 
   useEffect(() => {
     if (user) {
-      setSelectedCourse(user.playlist[0].course)
+      setSelectedCourse(user?.playlist[0]?.course ?? '')
     }
   }, [user])
 
@@ -55,6 +55,15 @@ const AssignmentPage = (): JSX.Element => {
 
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Error...</div>
+  if (user?.playlist.length === 0) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center dark:text-neutral-10 text-neutral-80 h-44">
+          <span>No assignments found</span>
+        </div>
+      </DashboardLayout>
+    )
+  }
   return (
     <DashboardLayout>
       <main className="h-full w-full flex flex-col gap-5 min-h-[calc(100vh-100px)]">
