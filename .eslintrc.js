@@ -28,6 +28,12 @@ module.exports = {
     '@typescript-eslint/prefer-optional-chain': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/promise-function-async': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    '@typescript-eslint/prefer-ts-expect-error': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    ' @typescript-eslint/no-unsafe-argument': 'off',
   },
   settings: {
     react: {

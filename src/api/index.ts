@@ -13,6 +13,12 @@ const API = {
   resetpassword: BASE_URL + '/resetpassword',
   user: BASE_URL + '/me',
   logout: BASE_URL + '/logout',
+
+  // assignment
+  assignments: BASE_URL + '/assignments',
+  assignment: BASE_URL + '/assignment',
+  submission: BASE_URL + '/Submission',
+  submissionSolution: BASE_URL + '/Submission/solution',
 }
 
 export default API

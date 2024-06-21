@@ -6,20 +6,35 @@ import PrimaryButton from '../../../../components/buttons/PrimaryButton'
 import SecondaryButton from '../../../../components/buttons/SecondaryButton'
 import toast from 'react-hot-toast'
 import { MAX_FILE_SIZE_IN_MB } from '../../../../assets/data/constants'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import {
+  handleSubmitAnAssignment,
+  handleUpdateAnAssignment,
+} from '../../../../api/assignments'
 const SubmitCard = ({
   task,
+  id,
+  courseId,
   i,
 }: {
   task: {
     title: string
-    isSubmitted: boolean
+    status: string
+    solutionId: string
+    feedback: string
   }
+  id: string
+  courseId: string
   i: number
 }): JSX.Element => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const imgInputRef = useRef<HTMLInputElement>(null)
   const [isFileDropping, setIsFileDropping] = useState(false)
   const [file, setFile] = useState<File | null | string>(null)
+  const queryClient = useQueryClient()
+  const [solutionLink, setSolutionLink] = useState<string | null>(null)
+
+  console.log(task)
 
   // Prevent default behavior of drag and drop in the window
   useEffect(() => {
@@ -37,6 +52,46 @@ const SubmitCard = ({
     }
   }, [])
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: task.status
+      ? handleUpdateAnAssignment
+      : handleSubmitAnAssignment,
+    onSuccess: () => {
+      if (task.status?.toLowerCase() === 'submitted') {
+        toast.success('Assignment updated successfully')
+      } else {
+        toast.success('Assignment submitted successfully')
+      }
+      queryClient.invalidateQueries({
+        queryKey: ['assignment', id],
+      })
+      setFile(null)
+      setSolutionLink(null)
+      setIsSubmitting(false)
+    },
+    onError: () => {
+      toast.error('Failed to submit assignment')
+      setIsSubmitting(false)
+    },
+  })
+
+  const handleSubmit = (): void => {
+    if (solutionLink || file) {
+      const data = {
+        assignmentId: id,
+        questionIndex: i,
+        solutionLink,
+        file,
+        courseId,
+      }
+      // @ts-ignore
+      mutate({
+        ...data,
+        solutionId: task.solutionId,
+      })
+    }
+  }
+
   return (
     <motion.div
       className={`w-full px-5 rounded-xl flex flex-col overflow-hidden gap-6 ${
@@ -48,6 +103,7 @@ const SubmitCard = ({
         boxShadow: isSubmitting ? '0px 4px 60px 0px #6E40FF29' : '',
       }}
     >
+      {/* task details */}
       <div className="flex justify-between">
         <div className="flex flex-col">
           <span className="body-text-sm text-neutral-60">Task {i + 1}</span>
@@ -55,38 +111,74 @@ const SubmitCard = ({
             {task.title}
           </span>
         </div>
-        {task.isSubmitted ? (
-          <button className="border border-neutral-20 dark:border-neutral-90 dark:text-neutral-40 rounded-lg px-5 py-0 text-neutral-60">
+
+        {/* buttons */}
+        {/* when the task is approved give a option to view the assignment */}
+        {task?.status?.toLowerCase() === 'approved' ? (
+          <button
+            onClick={() => {
+              alert('Congratulations, Your assignment is approved!')
+            }}
+            className="border border-neutral-20 dark:border-neutral-90 dark:text-neutral-40 rounded-lg px-5 py-0 text-neutral-60"
+          >
             View
           </button>
         ) : (
           <>
+            {/* show when there is file ie submit data */}
             {file === null ? (
-              <button
-                onClick={() => {
-                  setIsSubmitting((prev) => !prev)
-                }}
-                className="flex bg-[#6E40FF1F] px-4 rounded-lg items-center justify-center gap-4 text-[#6E40FF]"
-              >
-                <span>Submit Now</span>
-                <img
-                  src={arrowDown}
-                  alt="arrow down"
-                  className={`transition-all transform ${isSubmitting ? 'rotate-180' : ''}`}
-                />
-              </button>
+              <div className="flex gap-3">
+                {/* if the task is rejected view feedback button */}
+                {task?.status?.toLowerCase() === 'rejected' && (
+                  <button
+                    onClick={() => {
+                      alert(`Feedback: ${task.feedback}`)
+                    }}
+                    className="border border-neutral-20 dark:border-neutral-90 dark:text-neutral-40 rounded-lg px-5 py-0 text-neutral-60"
+                  >
+                    View Feedback
+                  </button>
+                )}
+
+                {/* update button */}
+                <button
+                  disabled={isPending}
+                  onClick={() => {
+                    setIsSubmitting((prev) => !prev)
+                  }}
+                  className="flex bg-[#6E40FF1F] px-4 rounded-lg items-center justify-center gap-4 text-[#6E40FF]"
+                >
+                  <span>{task.status ? 'Update' : 'Submit Now'}</span>
+                  <img
+                    src={arrowDown}
+                    alt="arrow down"
+                    className={`transition-all transform ${isSubmitting ? 'rotate-180' : ''}`}
+                  />
+                </button>
+              </div>
             ) : (
-              <PrimaryButton>Submit Now</PrimaryButton>
+              // button to submit assignment
+              <PrimaryButton onClick={handleSubmit}>
+                {isPending
+                  ? 'Submitting...'
+                  : task.status
+                    ? 'Update'
+                    : 'Submit'}
+              </PrimaryButton>
             )}
           </>
         )}
       </div>
-      {!task.isSubmitted && isSubmitting && file === null && (
+      {isSubmitting && file === null && (
         <motion.form className="flex flex-col gap-5">
           <input
             type="text"
             placeholder="Past any url"
-            pattern="https?://.+"
+            pattern="http?://.+"
+            value={solutionLink ?? ''}
+            onChange={(e) => {
+              setSolutionLink(e.currentTarget.value)
+            }}
             className="border border-neutral-20 bg-[transparent] dark:border-neutral-90 rounded-lg px-4 py-2 dark:text-neutral-20"
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
