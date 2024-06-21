@@ -1,25 +1,60 @@
 import { useState, type JSX, useEffect } from 'react'
-import ASSIGNMENTS from '../../../../assets/mockData/assignments'
 import AssessmentCard from './AssignmentCard'
-import {
-  filterAssignments,
-  getTabButtons,
-} from '../../../../utils/assignmentsUtils'
 import DashboardLayout from '../../../../components/layouts/DashboardLayout'
+import { useQuery } from '@tanstack/react-query'
+import {
+  type IAssignment,
+  handleGetAllAssignments,
+} from '../../../../api/assignments'
+
+const COURSE_STATUS = ['All', 'Completed', 'Pending', 'Submitted']
 
 const AssignmentPage = (): JSX.Element => {
-  const [selectedCourse, setSelectedCourse] = useState(ASSIGNMENTS[0].course)
-  const [courseData, setCourseData] = useState(ASSIGNMENTS[0])
+  const [selectedCourse, setSelectedCourse] = useState('')
+  const [filteredAssignments, setFilteredAssignments] =
+    useState<IAssignment['assignments']>()
   const [selectedAssignmentType, setSelectedAssignmentType] =
     useState<string>('All')
 
-  useEffect(() => {
-    const course = ASSIGNMENTS.find(
-      (assignment) => assignment.course === selectedCourse
-    )
-    if (course !== undefined) setCourseData(course)
-  }, [selectedCourse])
+  const { data, isLoading, isError } = useQuery({
+    queryFn: handleGetAllAssignments,
+    queryKey: ['assignments'],
+  })
+  const { data: user } = useQuery<{
+    playlist: Array<{
+      course: string
+      assignment: string
+    }>
+  }>({
+    queryKey: ['user'],
+  })
 
+  useEffect(() => {
+    if (user) {
+      setSelectedCourse(user.playlist[0].course)
+    }
+  }, [user])
+
+  useEffect(() => {
+    if (data) {
+      const course = data.find(
+        (assignment) => assignment.course.id === selectedCourse
+      )
+      if (selectedAssignmentType === 'All') {
+        setFilteredAssignments(course?.assignments)
+      } else {
+        setFilteredAssignments(
+          course?.assignments.filter(
+            (assignment) =>
+              assignment.assignmentStatus === selectedAssignmentType
+          )
+        )
+      }
+    }
+  }, [selectedCourse, data, selectedAssignmentType])
+
+  if (isLoading) return <div>Loading...</div>
+  if (isError) return <div>Error...</div>
   return (
     <DashboardLayout>
       <main className="h-full w-full flex flex-col gap-5 min-h-[calc(100vh-100px)]">
@@ -29,7 +64,7 @@ const AssignmentPage = (): JSX.Element => {
         </div>
         <div className="flex justify-between dark:text-neutral-10/80">
           <div className="flex gap-4 items-center">
-            {getTabButtons(courseData.assignments).map((tab, i) => (
+            {COURSE_STATUS.map((tab, i) => (
               <button
                 key={i}
                 className={`
@@ -54,13 +89,13 @@ const AssignmentPage = (): JSX.Element => {
               setSelectedCourse(e.currentTarget.value)
             }}
           >
-            {ASSIGNMENTS.map((assignment, i) => (
+            {data?.map((assignment, i) => (
               <option
                 key={i}
-                value={assignment.course}
+                value={assignment.course.id}
                 className="dark:text-neutral-10 text-neutral-80 dark:bg-neutral-90"
               >
-                {assignment.course}
+                {assignment.course.title}
               </option>
             ))}
           </select>
@@ -69,7 +104,7 @@ const AssignmentPage = (): JSX.Element => {
           <div className="flex items-center justify-center gap-2">
             <div className="bg-green h-4 w-4 rounded-md" />
             <span className="dark:text-neutral-20 text-neutral-80">
-              Checked
+              Approved
             </span>
           </div>
           <div className="flex items-center justify-center gap-2">
@@ -81,15 +116,26 @@ const AssignmentPage = (): JSX.Element => {
           <div className="flex items-center justify-center gap-2">
             <div className="bg-red h-4 w-4 rounded-md" />
             <span className="dark:text-neutral-20 text-neutral-80">
-              Pending
+              Pending/Rejected
             </span>
           </div>
         </div>
         <div className="flex gap-6 flex-wrap">
-          {filterAssignments(courseData, selectedAssignmentType).map(
-            (assignment, i) => (
-              <AssessmentCard i={i} key={i} {...assignment} />
-            )
+          {filteredAssignments?.length === 0 ? (
+            <div className="text-center w-full dark:text-neutral-10 text-neutral-80 h-44 flex items-center flex-col justify-center">
+              <span>No assignments found</span>
+            </div>
+          ) : (
+            filteredAssignments?.map((assignment, i) => (
+              <AssessmentCard
+                key={i}
+                assignment_name={assignment.assignment_name}
+                _id={assignment._id}
+                i={i}
+                questions={assignment.questions}
+                status={assignment.assignmentStatus}
+              />
+            ))
           )}
         </div>
       </main>
